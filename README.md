@@ -1,3 +1,1 @@
-# APILojaInfo
-Api de Uma Loja de Infomática
-#h2 
+# Projeto Loja Kilobyte
