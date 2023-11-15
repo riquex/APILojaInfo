@@ -54,8 +54,14 @@ class DBManager:
             return 0
         return 1
     
-    def AtualizarUsuario(self, email, validador, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
-        pass
+    def AtualizacaoCompletaUsuario(self, IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
+        try:
+            self.__cursor.execute(f"CALL AtualizacaoCompletaUsuario({IdUsuario}, {Nome}, {DataNascimento}, {Telefone}, {cpf}, {cep}, {rua}, {municipio}, {estado}, {complemento})")
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
 
     def LimparCarrinho(self, idUsuario: int):
         try:

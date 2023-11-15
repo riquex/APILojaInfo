@@ -1,4 +1,3 @@
-from userManager import UserManager
 from hashlib import sha256
 
 class UserManager:
