@@ -1,0 +1,126 @@
+/*todos os estilos de paragrafo*/
+/*quando a tag tem ponto antes do nome (Exemplo: .p1) no index deve chamar com class (Exemplo: <p class="p1"> quando não tem ponto não chama com class */
+
+head{
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background-color:black;
+    color: white;
+    text-align: center;
+}
+.menu_head{
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+    text-align: right;
+    color: white; 
+
+
+}
+
+body{
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left; 
+}
+/* Estilos para o menu superior */
+.menu_sup {
+    background-color: #333;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white; 
+}
+
+/* Estilos para o conteúdo principal */
+content {
+    background-color: #f5ecd0;
+    padding: 20px;
+}
+
+.h1_head{
+    color: white;
+    font-size: 20px;
+    font-weight: 700; /*negrito*/
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+    text-align: left; 
+}
+h2{
+    color: yellow;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+}
+
+
+/*text-decoration: 
+		underline - linha embaixo; 
+		overline = linha em cima, none - sem linha*/
+p{
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium; 
+         }
+         
+
+.p1 {
+    color: darkgrey;
+    font-size: 20px;
+    font-weight: 700; /*negrito*/
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+    text-align: center;
+    text-decoration: overline underline; /*overline = linha em cima, none = sem linha*/
+    
+}
+.p2{
+    color: red;
+    text-align: justify;
+    font-weight: 700; /*negrito*/
+	font-size:30px;
+	text-decoration:none;
+}
+
+/*todos os estilos de imagem*/
+.img_logo{
+    border-color:black;
+	width: 80px;
+}
+
+.img2{
+	border:3px;
+	border-color:black;
+	width: 50px;
+	height:50;
+}
+
+.img3 {
+    width: 40%;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.social-links a {
+    margin: 0 10px;
+}
+
+/*todos os estilos de links*/
+.link_retorno{
+	font-family:Verdana;
+	font-size:12px;
+    color: white;
+}
+.link_head{
+    color: white;
+    font-size: 20px;
+    font-weight: 700; /*negrito*/
+    font-family: 'Courier New', Courier, monospace;
+    text-align: right;
+}
+.link_menusup{
+	font-family:Verdana;
+	font-size:12px;
+    color: white;
+}

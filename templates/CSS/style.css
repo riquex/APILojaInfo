@@ -1,0 +1,201 @@
+
+body{
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left; 
+}
+
+/* head */
+
+head{
+    background-color: #333;
+    color: white;
+    font-size: 20px;
+    font-weight: 700; /*negrito*/
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+}
+/*table_1 - Definindo os estilos para a tabela */
+
+.table_1{
+    width: 100%;
+    border-collapse: collapse;
+}
+/* Definindo as colunas com tamanhos específicos */
+.table_1 td:nth-child(1){
+    width: 30%;
+}
+
+.table_1 td:nth-child(2) {
+    width: 35%;
+}
+
+.table_1 td:nth-child(3) {
+    width: 35%;
+}
+/* Definindo centralizando o texto nas células */
+.table_1 td {
+    text-align: center;
+}
+/* Removendo as bordas entre as células */
+.table_1 td, .table_1 th {
+    border: 2px solid black;
+    padding: 8px;
+}
+/* links (entrar, cadastrar e meu carrinho */
+.link_entrar{ 
+    color: white;
+    text-align: center;
+}
+.link_carrinho{ 
+    color: white;
+    text-align: right;
+}
+/* --------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------*/
+
+/* Estilos para o cabeçalho */
+.header{
+    background-color: black;
+    position: absolute;
+    top: 50px;
+    left: 10%;
+    right: 10%;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+/* Estilos para a imagem do logo */
+.img_logo {
+    width: 20%;
+    /* Adicione outros estilos conforme necessário */
+}
+
+/* Estilos para o menu superior */
+.menu_sup {
+    background-color: #333; /* Mantém a cor de fundo original para o menu superior */
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white;
+}
+
+.menu_sup ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu_sup li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.menu_sup a {
+    text-decoration: none;
+    color: white;
+}
+
+/* --------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------*/
+/* div */
+
+.fundo_degrade{
+    background-image: linear-gradient(45deg,rgb(114, 113, 113), rgb(69, 67, 67));
+    height: 100vh; /* direção do degrade vh = degrade inclinado - v= degrade na vertical - h= degrade na horizontal */
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+.ofertas{
+    position: absolute;
+    background-color: rgb(19, 131, 192);
+    top: 750px;
+    left: 50%;
+    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
+    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+.placasDeVideo{
+    position: absolute;
+    background-color:  rgb(19, 131, 192);
+    top: 1200px;
+    left: 50%;
+    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
+    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    padding: 15px;
+    text-align: center;
+    color: white;
+
+}
+.placasMae{
+    position: absolute;
+    background-color:  rgb(19, 131, 192);
+    top: 1650px;
+    left: 50%;
+    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
+    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+footer{
+    position: absolute;
+    top: 3000px;
+    left: 30%;
+    right: 30%;
+    text-align: center;
+    color: white;
+}
+/* Estilos para a tabela de produtos */
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-produtos td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+}
+
+.tabela-produtos img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos para cada seção de produtos */
+#grandes-ofertas {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+
+
+.h1{
+    color: white;
+    font-size: 20px;
+    font-weight: 700; /*negrito*/
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+    text-align: left; 
+}
+
+.menu_head{
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+    text-align: right;
+    color: white; 
+}
+
+
+/* Estilos para o menu superior */
+.menu_sup {
+    background-color: #333;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white; 
+}
+
