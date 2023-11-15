@@ -1,7 +1,7 @@
 import mysql.connector 
 from datetime import datetime
 
-class VendasProdutos:
+class VendaManager:
     def __init__(self, idvendas, datavenda, idProd, valorprod, valortotal, enderecodaentrega, idusuario, nomeusuario):
         self.idvendas = idvendas
         self.datavenda = datavenda
@@ -47,6 +47,6 @@ class VendasProdutos:
 
 # Exemplo de uso da classe
 data_venda = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-venda = VendasProdutos(1, data_venda, 101, 50.0, 150.0, 'Rua A, 123', 1, 'Alexandre')
+venda = VendaManager(1, data_venda, 101, 50.0, 150.0, 'Rua A, 123', 1, 'Alexandre')
 
 venda.cadastrar_venda()

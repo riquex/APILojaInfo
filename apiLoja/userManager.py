@@ -1,6 +1,6 @@
 import uuid
 from hashlib import sha256
-from dbManager import DBManager
+from .dbManager import DBManager
 from datetime import datetime, timedelta
 
 def validator(email: str, password: str, key: str):
@@ -41,7 +41,15 @@ class UserManager:
     def __init__(self) -> None:
         self.__dbm = DBManager()
 
-    def IniciarSecaoUsuario(self, email: str, senha: str, horasLimite:int=24):
+    def novoUsuario(
+            self, email,  senha, Nome,
+            DataNascimento, Telefone, cpf,
+            cep, rua, municipio, estado,
+            complemento):
+        validador = validator(email, senha, '42')
+        return self.__dbm.InserirUsuario(email, validador, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+
+    def iniciarSecaoUsuario(self, email: str, senha: str, horasLimite:int=24):
         validador = validator(email, senha, '42')
         if self.__dbm.VerificarValidador(email=email, validador=validador):# or True:
             limite = datetime.now() + timedelta(hours=horasLimite)
@@ -53,8 +61,10 @@ class UserManager:
             if idUsuario == -1:
                 raise ValueError(f'There is no user with {email =}')
 
-            return self.__dbm.NovaSecaoDeUsuario(idUsuario, chaveSecao.hex, strLimite)
-        return -1
+            _code = self.__dbm.NovaSecaoDeUsuario(idUsuario, chaveSecao.hex, strLimite)
+
+            return chaveSecao.hex
+        return None
 
 if __name__ == '__main__': # Testes
     a = UserManager()

@@ -63,7 +63,7 @@ class DBManager:
             return 0
         return 1
 
-    def NovaSecaoDeUsuario(self, IdUsuario, chaveDaSecao, limite):
+    def NovaSecaoDeUsuario(self, IdUsuario: int, chaveDaSecao: str, limite: str):
         try:
             self.__cursor.execute(f'CALL NovaSecaoUsuario({IdUsuario}, "{chaveDaSecao}", "{limite}")')
             self.__mydb.commit()
