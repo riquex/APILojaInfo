@@ -53,7 +53,7 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
-    
+
     def AtualizacaoCompletaUsuario(self, IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
         try:
             self.__cursor.execute(f"CALL AtualizacaoCompletaUsuario({IdUsuario}, {Nome}, {DataNascimento}, {Telefone}, {cpf}, {cep}, {rua}, {municipio}, {estado}, {complemento})")
@@ -62,6 +62,38 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
+
+    def NovaSecaoDeUsuario(self, IdUsuario, chaveDaSecao, limite):
+        try:
+            self.__cursor.execute(f'CALL NovaSecaoUsuario({IdUsuario}, "{chaveDaSecao}", "{limite}")')
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
+    def VerificarValidador(self, validador:str, idUsuario:int=None, email:str=None):
+        if idUsuario or email:
+            if email:
+                self.__cursor.execute(f'SELECT validador FROM Usuarios AS u WHERE u.email LIKE "{email}"')
+                result = self.__cursor.fetchone()[0]
+                if result == validador:
+                    return 1
+                return 0
+            if idUsuario:
+                self.__cursor.execute(f'SELECT validador FROM Usuarios AS u WHERE u.idUsuarios = {idUsuario}')
+                result = self.__cursor.fetchone()[0]
+                if result == validador:
+                    return 1
+                return 0
+        return 0
+
+    def PegarUsuarioPeloEmail(self, email: str) -> 'int':
+        self.__cursor.execute(f'SELECT u.idUsuarios FROM Usuarios AS u WHERE u.email LIKE "{email}"')
+        result = self.__cursor.fetchone()
+        if result is not None:
+            return result[0]
+        return -1
 
     def LimparCarrinho(self, idUsuario: int):
         try:
@@ -95,3 +127,5 @@ if __name__ == '__main__':
     print(a)
     print(len(a.VisualizarTodosUsuariosCompletos()))
     print(a.VerificarSeUsuarioExiste('dshackletonrp@homestead.com'))
+    print(a.VerificarValidador(validador='$2a$04$DhDuIuoKjTQ0GAOK.uarGejPWoDhZg5UqPiGx9SUEyfRWchLC8GDy'))
+    print(a.PegarUsuarioPeloEmail('jdudmarsh8@wordpress.com'))
