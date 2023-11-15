@@ -1,7 +1,7 @@
 from userManager import UserManager
 from hashlib import sha256
 
-class User:
+class UserManager:
     def __init__(self, idUsuario,Nome, cpf, DataNascimento, telefone, email, validador):
         self.idUsuario = idUsuario
         self.Nome = Nome
