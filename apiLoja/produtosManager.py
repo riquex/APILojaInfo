@@ -1,6 +1,18 @@
-class ProdutosManager:
-    produtos = []  # Lista para armazenar os produtos
+from.dbManager import DBManager
+class Produtos:
+    def __init__(self, id_prod, categoria_prod, nome_prod, desc_prod, quantidade, valor_prod):
+        self.id_prod = id_prod
+        self.categoria_prod = categoria_prod
+        self.nome_prod = nome_prod
+        self.desc_prod = desc_prod
+        self.quantidade = quantidade
+        self.valor_prod = valor_prod
+        ProdutosManager.produtos.append(self)  # Adiciona o produto à lista
+    
+    
 
+class ProdutosManager:
+    
     def __init__(self, id_prod, categoria_prod, nome_prod, desc_prod, quantidade, valor_prod):
         self.id_prod = id_prod
         self.categoria_prod = categoria_prod
