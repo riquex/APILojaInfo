@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuários</title>
+</head>
+<body>
+    <h1>Cadastro de Usuários</h1>
+    <form action="/cadastrar" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required><br>
+
+        <label for="cpf">CPF:</label>
+        <input type="text" name="cpf" required><br>
+
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" required><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" name="telefone" required><br>
+
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" required><br>
+
+        <label for="cep">CEP:</label>
+        <input type="text" name="cep" required><br>
+
+        <label for="rua">Rua:</label>
+        <input type="text" name="rua" required><br>
+
+        <label for="municipio">Município:</label>
+        <input type="text" name="municipio" required><br>
+
+        <label for="estado">Estado:</label>
+        <input type="text" name="estado" required><br>
+
+        <label for="complemento">Complemento:</label>
+        <input type="text" name="complemento"><br>
+
+        <input type="submit" value="Cadastrar">
+    </form>
+</body>
+</html>
