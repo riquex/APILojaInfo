@@ -19,7 +19,7 @@ class User:
         self.rua = rua
         self.municipio = municipio
         self.estado = estado
-        self.comoplemento = complemento
+        self.complemento = complemento
 
     def comoDicionario(self):
         return {
@@ -34,7 +34,7 @@ class User:
             'rua': self.rua,
             'municipio': self.municipio,
             'estado': self.estado,
-            'complemento': self.comoplemento
+            'complemento': self.complemento
         }
 
 class UserManager:
