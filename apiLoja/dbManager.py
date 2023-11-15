@@ -53,6 +53,9 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
+    
+    def AtualizarUsuario(self, email, validador, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
+        pass
 
     def LimparCarrinho(self, idUsuario: int):
         try:
