@@ -71,6 +71,15 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
+    
+    def InsercaoCompletaProduto(self, nome: str, descricao: str, preco: int, quantidade: int):
+        try:
+            self.__cursor.execute(f"CALL InsercaoCompletaProduto({nome}, {descricao}, {preco}, {quantidade})")
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
 
 if __name__ == '__main__':
     a = DBManager()
