@@ -46,7 +46,8 @@ class VendaManager:
                 conn.close()
 
 # Exemplo de uso da classe
-data_venda = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-venda = VendaManager(1, data_venda, 101, 50.0, 150.0, 'Rua A, 123', 1, 'Alexandre')
+if __name__ == '__main__':
+    data_venda = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    venda = VendaManager(1, data_venda, 101, 50.0, 150.0, 'Rua A, 123', 1, 'Alexandre')
 
-venda.cadastrar_venda()
+    venda.cadastrar_venda()

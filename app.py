@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from apiLoja import loja, user, venda, produtos
 
 app = Flask(__name__)
@@ -14,6 +14,10 @@ def index():
 @app.route('/login', methods=['GET'])
 def login():
     return render_template('entrar.html')
+
+@app.route('/entrar', methods=['GET'])
+def entrar():
+    return redirect('login')
 
 @app.errorhandler(404)
 def rotaNaoEncontrada(Erro):
