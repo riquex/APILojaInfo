@@ -14,4 +14,5 @@ document.getElementById("submit_form").addEventListener("click", ()=>{
         document.getElementById("Mensagem").innerHTML= "usuario criado com sucesso" 
         console.log(json)
     })
+    
 })
