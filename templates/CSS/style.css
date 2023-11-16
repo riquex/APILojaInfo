@@ -199,3 +199,16 @@ footer{
     color: white; 
 }
 
+form{
+    position: absolute;
+    background-color:  rgb(19, 131, 192);
+    top: 600px;
+    left: 50%;
+    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
+    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    padding: 15px;
+    text-align: center;
+    color: white;
+
+
+}
