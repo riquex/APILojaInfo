@@ -1,6 +1,6 @@
 from .userManager import UserManager, validator
 from os.path import join as path_join
-from flask import Blueprint, request, Response
+from flask import Blueprint, request, Response, jsonify
 
 user = Blueprint('user', __name__)
 
@@ -15,7 +15,7 @@ def userCadastro():
                 valido = False
 
         if valido:
-            UserManager().novoUsuario(
+            code = UserManager().novoUsuario(
                 form['email'],
                 form['senha'],
                 form['nome'],
@@ -29,7 +29,7 @@ def userCadastro():
                 form['complemento']
             )
 
-    return Response(status=500)
+    return Response(status= 200 if code else 500)
 
 @user.route('/login', methods=['POST'])
 def userLogin():
@@ -40,13 +40,30 @@ def userLogin():
         for i in ('email', 'senha'):
             if not i in form:
                 valido = False
+        if valido:
+            chaveSecao = UserManager().iniciarSecaoUsuario(
+                email=form['email'], senha=form['senha']
+            )
 
-        print(form, valido)
-        return Response(status=200)
+            return jsonify(
+                chave=chaveSecao
+            )
+    return Response(500)
+
+@user.route('/atuazar', methods=['PUT', 'POST'])
+def userAtualizar():
+    if request.method == 'PUT' or request.method == 'POST':
+        form: dict = request.get_json()
+
+        if all (key in form for key in ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento')): ...
 
 @user.route('/userinfo/<id>', methods=['GET'])
 def getUserInfo(id):
-    raise NotImplementedError("to be updated")
+    email = UserManager().buscarEmailPorUsuarioId(id)
+    usuario = UserManager().buscarUsuarioPorEmail(email)
+    if usuario != -1:
+        return jsonify(**usuario.comoDicionario())
+    return Response(404)
 
 @user.route('/useraddress/<id>', methods=['GET'])
 def getUserAddress(id):

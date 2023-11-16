@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from apiLoja import loja, user, venda, produtos
 
 app = Flask(__name__)
@@ -7,9 +7,13 @@ app.register_blueprint(user.user)
 app.register_blueprint(venda.venda)
 app.register_blueprint(produtos.produtos)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return ''
+    return render_template('index.html')
+
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('entrar.html')
 
 @app.errorhandler(404)
 def rotaNaoEncontrada(Erro):

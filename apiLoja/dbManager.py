@@ -32,6 +32,13 @@ class DBManager:
     def VisualizarTodosUsuariosCompletos(self):
         self.__cursor.execute("SELECT * FROM TodosUsuariosCompletos")
         return self.__cursor.fetchall()
+    
+    def VisualizarUsuariosPorEmail(self, email: str):
+        self.__cursor.execute(f"SELECT * FROM todosusuarioscompletos WHERE email LIKE \"{email}\"")
+        result = self.__cursor.fetchone()
+        if result is not None:
+            return result
+        return -1
 
     def VerificarSeUsuarioExiste(self, email: str):
         """Verifica se um usuário existe
@@ -47,7 +54,7 @@ class DBManager:
 
     def InserirUsuario(self, email, validador, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
         try:
-            self.__cursor.execute(f"CALL InsercaoCompletaUsuario({email}, {validador}, {Nome}, {DataNascimento}, {Telefone}, {cpf}, {cep}, {rua}, {municipio}, {estado}, {complemento})")
+            self.__cursor.execute(f'CALL InsercaoCompletaUsuario("{email}", "{validador}", "{Nome}", "{DataNascimento}", "{Telefone}", "{cpf}", "{cep}", "{rua}", "{municipio}", "{estado}", "{complemento}")')
             self.__mydb.commit()
         except Exception:
             traceback.print_exc()
@@ -56,7 +63,7 @@ class DBManager:
 
     def AtualizacaoCompletaUsuario(self, IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
         try:
-            self.__cursor.execute(f"CALL AtualizacaoCompletaUsuario({IdUsuario}, {Nome}, {DataNascimento}, {Telefone}, {cpf}, {cep}, {rua}, {municipio}, {estado}, {complemento})")
+            self.__cursor.execute(f'CALL AtualizacaoCompletaUsuario({IdUsuario}, "{Nome}", "{DataNascimento}", "{Telefone}", "{cpf}", "{cep}", "{rua}", "{municipio}", "{estado}", "{complemento}")')
             self.__mydb.commit()
         except Exception:
             traceback.print_exc()
@@ -90,6 +97,20 @@ class DBManager:
 
     def PegarUsuarioPeloEmail(self, email: str) -> 'int':
         self.__cursor.execute(f'SELECT u.idUsuarios FROM Usuarios AS u WHERE u.email LIKE "{email}"')
+        result = self.__cursor.fetchone()
+        if result is not None:
+            return result[0]
+        return -1
+
+    def PegarEmailPeloUsuarioId(self, UsuarioId: int) -> 'str':
+        self.__cursor.execute(f'SELECT u.email FROM Usuarios AS u WHERE u.idUsuarios = {UsuarioId}')
+        result = self.__cursor.fetchone()
+        if result is not None:
+            return result[0]
+        return -1
+
+    def PegarSecaoPeloId(self, idUsuario: int) -> 'str':
+        self.__cursor.execute(f'SELECT SU.chaveDaSecao FROM secaousuario AS SU WHERE SU.idUsuario = {idUsuario}')
         result = self.__cursor.fetchone()
         if result is not None:
             return result[0]

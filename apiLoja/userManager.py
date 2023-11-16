@@ -47,7 +47,10 @@ class UserManager:
             cep, rua, municipio, estado,
             complemento):
         validador = validator(email, senha, '42')
-        return self.__dbm.InserirUsuario(email, validador, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+        return self.__dbm.InserirUsuario(
+            email, validador, Nome, DataNascimento,
+            Telefone, cpf, cep, rua, municipio, estado, complemento
+        )
 
     def iniciarSecaoUsuario(self, email: str, senha: str, horasLimite:int=24):
         validador = validator(email, senha, '42')
@@ -63,8 +66,19 @@ class UserManager:
 
             _code = self.__dbm.NovaSecaoDeUsuario(idUsuario, chaveSecao.hex, strLimite)
 
-            return chaveSecao.hex
+            return self.__dbm.PegarSecaoPeloId(self.__dbm.PegarUsuarioPeloEmail(email))
         return None
+
+    def buscarUsuarioPorEmail(self, email: str):
+        result = self.__dbm.VisualizarUsuariosPorEmail(email=email)
+        if result != -1:
+            idUsuario, Nome, DataNascimento, Telefone, cpf, email, idUsuario, cep, rua, municipio, estado, complemento = result
+            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            return usuario
+        return -1
+    
+    def buscarEmailPorUsuarioId(self, idUsuario: int):
+        return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)
 
 if __name__ == '__main__': # Testes
     a = UserManager()
