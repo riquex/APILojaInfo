@@ -67,4 +67,5 @@ def getUserInfo(id):
 
 @user.route('/useraddress/<id>', methods=['GET'])
 def getUserAddress(id):
-    raise NotImplementedError("to be updated")
+    return {"objeto":"0"}
+    #raise NotImplementedError("to be updated")

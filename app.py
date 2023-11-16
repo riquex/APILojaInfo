@@ -26,3 +26,5 @@ def rotaNaoEncontrada(Erro):
 @app.errorhandler(403)
 def erroDePermissao(Erro):
     return "Não tem permissão" + str(Erro)
+
+app.run()

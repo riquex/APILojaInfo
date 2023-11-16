@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuários</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="static/CSS/style.css">
 </head>
 <table class="table_1">
     <tr>
@@ -64,7 +64,10 @@
         <label for="complemento">Complemento:</label>
         <input type="text" name="complemento"><br>
 
-        <input type="submit" value="Cadastrar">
+        <input type="submit" value="Cadastrar" id="submit_form">
+        <div id="Mensagem" style="visibility: hidden;">  </div>
     </form>
+
+    <script src="static\js\entrar.js"></script>
 </body>
 </html>
