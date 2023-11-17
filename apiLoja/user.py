@@ -1,6 +1,6 @@
 from .userManager import UserManager, validator
 from os.path import join as path_join
-from flask import Blueprint, request, Response, jsonify
+from flask import Blueprint, request, Response, jsonify, make_response
 
 user = Blueprint('user', __name__)
 
@@ -41,13 +41,16 @@ def userLogin():
             if not i in form:
                 valido = False
         if valido:
-            chaveSecao = UserManager().iniciarSecaoUsuario(
+            chaveSessao = UserManager().iniciarSecaoUsuario(
                 email=form['email'], senha=form['senha']
             )
 
-            return jsonify(
-                chave=chaveSecao
-            )
+            response = make_response()
+            response.set_cookie(
+                'usersession', chaveSessao,
+                expires=UserManager().pegarExpiracaoDeSessaoUsuario(chaveSessao)
+                )
+            return response
     return Response(500)
 
 @user.route('/atuazar', methods=['PUT', 'POST'])

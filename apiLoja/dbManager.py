@@ -116,6 +116,13 @@ class DBManager:
             return result[0]
         return -1
 
+    def PegarExpiracaoPelaSessao(self, sessao: str) -> 'str':
+        self.__cursor.execute(f'SELECT SU.timeout FROM secaousuario AS SU WHERE SU.chaveDaSecao LIKE "{sessao}"')
+        result = self.__cursor.fetchone()
+        if result is not None:
+            return result[0]
+        return -1
+
     def LimparCarrinho(self, idUsuario: int):
         try:
             self.__cursor.execute(f"CALL LimparCarrinho({idUsuario})")

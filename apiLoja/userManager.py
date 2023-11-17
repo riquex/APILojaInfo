@@ -69,6 +69,9 @@ class UserManager:
             return self.__dbm.PegarSecaoPeloId(self.__dbm.PegarUsuarioPeloEmail(email))
         return None
 
+    def pegarExpiracaoDeSessaoUsuario(self, sessao: str):
+        return self.__dbm.PegarExpiracaoPelaSessao(sessao)
+
     def buscarUsuarioPorEmail(self, email: str):
         result = self.__dbm.VisualizarUsuariosPorEmail(email=email)
         if result != -1:
