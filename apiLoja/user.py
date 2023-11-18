@@ -1,20 +1,31 @@
 from .userManager import UserManager, validator
 from os.path import join as path_join
-from flask import Blueprint, request, Response, jsonify, make_response
+from flask import Blueprint, request, Response, jsonify, make_response, redirect, render_template
 
 user = Blueprint('user', __name__)
 
-@user.route('/cadastro', methods=['POST'])
+@user.route('/cadastro', methods=['GET', 'POST'])
 def userCadastro():
+    return render_template('cadastro.html')
+
+@user.route('/authenticate/cadastro', methods=['POST'])
+def userAuthenticateCadastro():
     if request.method == 'POST':
-        form: dict = request.get_json()
+        print(request.content_type)
+        if request.content_type.startswith('application/json'):
+            form: dict = request.get_json()
+        elif request.content_type.startswith('application/x-www-form-urlencoded'):
+            form = request.form
+        else:
+            form = dict()
+        print(form)
 
         valido = True
         for i in ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento'):
             if i not in form:
                 valido = False
 
-        if valido:
+        if valido and False:
             code = UserManager().novoUsuario(
                 form['email'],
                 form['senha'],
@@ -28,11 +39,17 @@ def userCadastro():
                 form['estado'],
                 form['complemento']
             )
+    
 
-    return Response(status= 200 if code else 500)
+    response = redirect('/login')
+    return response
 
-@user.route('/login', methods=['POST'])
-def userLogin():
+@user.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
+@user.route('/authenticate/login', methods=['POST'])
+def userAuthenticateLogin():
     if request.method == 'POST':
         form: dict = request.get_json()
 
@@ -45,7 +62,7 @@ def userLogin():
                 email=form['email'], senha=form['senha']
             )
 
-            response = make_response()
+            response = redirect('/')
             response.set_cookie(
                 'usersession', chaveSessao,
                 expires=UserManager().pegarExpiracaoDeSessaoUsuario(chaveSessao)
@@ -53,7 +70,7 @@ def userLogin():
             return response
     return Response(500)
 
-@user.route('/atuazar', methods=['PUT', 'POST'])
+@user.route('/atualizar', methods=['PUT', 'POST'])
 def userAtualizar():
     if request.method == 'PUT' or request.method == 'POST':
         form: dict = request.get_json()
