@@ -12,9 +12,9 @@ window.onload = function(){
         const cpf = document.getElementById("cpf");
         if (cpf instanceof HTMLInputElement) cpf_v = cpf.value;
 
-        let data_nascimento_v = "";
-        const data_nascimento = document.getElementById("data_nascimento");
-        if (data_nascimento instanceof HTMLInputElement) data_nascimento_v = data_nascimento.value;
+        let datanascimento_v = "";
+        const datanascimento = document.getElementById("datanascimento");
+        if (datanascimento instanceof HTMLInputElement) datanascimento_v = datanascimento.value;
 
         let telefone_v = "";
         const telefone = document.getElementById("telefone");
@@ -44,7 +44,7 @@ window.onload = function(){
         const complemento = document.getElementById("complemento");
         if (complemento instanceof HTMLInputElement) complemento_v = complemento.value;
 
-        console.log(email_v, senha_v, nome_v, cpf_v, rua_v, telefone_v, cep_v, data_nascimento_v, municipio_v, estado_v, complemento_v);
+        console.log(email_v, senha_v, nome_v, cpf_v, rua_v, telefone_v, cep_v, datanascimento_v, municipio_v, estado_v, complemento_v);
         const mensagem = document.getElementById("Mensagem");
         mensagem.style.visibility = "visible";
         mensagem.innerHTML = "usuario criado com sucesso"; 

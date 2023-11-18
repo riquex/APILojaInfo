@@ -3,6 +3,9 @@ from hashlib import sha256
 from .dbManager import DBManager
 from datetime import datetime, timedelta
 
+SINGUP_REQUIREMENTS = ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento')
+LOGIN_REQUIREMENTS = ('email', 'senha')
+
 def validator(email: str, password: str, key: str):
     return sha256(email.encode() + password.encode() + key.encode()).hexdigest()
 
@@ -20,6 +23,7 @@ class User:
         self.municipio = municipio
         self.estado = estado
         self.complemento = complemento
+        self.logado = False
 
     def comoDicionario(self):
         return {
@@ -75,11 +79,19 @@ class UserManager:
     def buscarUsuarioPorEmail(self, email: str):
         result = self.__dbm.VisualizarUsuariosPorEmail(email=email)
         if result != -1:
-            idUsuario, Nome, DataNascimento, Telefone, cpf, email, idUsuario, cep, rua, municipio, estado, complemento = result
+            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
             usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             return usuario
         return -1
     
+    def buscarUsuarioPorSessao(self, sessao: str):
+        result = self.__dbm.PegerUsuarioCompletoPorSessao(sessao)
+        if result != -1:
+            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
+            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            return usuario
+        return -1
+
     def buscarEmailPorUsuarioId(self, idUsuario: int):
         return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)
 

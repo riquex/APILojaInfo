@@ -12,8 +12,13 @@
                 <td><p></p></td>
                 <td><p></p></td>
                 <td>
-                    <a class="link_entrar" href="entrar">Entrar / Cadastrar</a>
-                    <a class="link_carrinho" href="carrinho">Meu carrinho</a>
+                    {% if username is defined %}
+                        <p>{{ username}}</p>
+                    {% else %}
+                        <a class="link_entrar" href="login">Entrar</a>
+                        <a class="link_entrar" href="cadastro">Cadastrar</a>
+                        <a class="link_carrinho" href="carrinho">Meu carrinho</a>
+                    {% endif %}
                 </td>
             </tr>
         </table>

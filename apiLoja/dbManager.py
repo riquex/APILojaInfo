@@ -34,7 +34,7 @@ class DBManager:
         return self.__cursor.fetchall()
     
     def VisualizarUsuariosPorEmail(self, email: str):
-        self.__cursor.execute("SELECT * FROM todosusuarioscompletos WHERE email LIKE \"%s\"", (email,))
+        self.__cursor.execute(f'SELECT * FROM todosusuarioscompletos WHERE email LIKE "{email}" LIMIT 1')
         result = self.__cursor.fetchone()
         if result is not None:
             return result
@@ -49,7 +49,7 @@ class DBManager:
         Returns:
             bool: Verdadeiro de usuário existir, Falso se não existir
         """        
-        self.__cursor.execute('SELECT COUNT(*) FROM Usuarios AS u WHERE u.email LIKE "%s"', (email,))
+        self.__cursor.execute(f'SELECT COUNT(*) FROM Usuarios AS u WHERE u.email LIKE "{email}" LIMIT 1')
         return any(self.__cursor.fetchone())
 
     def InserirUsuario(self, email, validador, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
@@ -80,47 +80,54 @@ class DBManager:
         return 1
 
     def VerificarValidador(self, validador:str, idUsuario:int=None, email:str=None):
-        if idUsuario or email:
-            if email:
-                self.__cursor.execute('SELECT validador FROM Usuarios AS u WHERE u.email LIKE "%s"', (email,))
-                result = self.__cursor.fetchone()[0]
-                if result == validador:
+        query = f'SELECT validador FROM Usuarios WHERE email LIKE "{email}" LIMIT 1' if email else \
+                f'SELECT validador FROM Usuarios WHERE idUsuarios = {idUsuario} LIMIT 1' if idUsuario else None
+
+        if query:
+            self.__cursor.execute(query)
+            result = self.__cursor.fetchone()
+            if result is not None:
+                if result[0] == validador:
                     return 1
-                return 0
-            if idUsuario:
-                self.__cursor.execute('SELECT validador FROM Usuarios AS u WHERE u.idUsuarios = %s', (idUsuario,))
-                result = self.__cursor.fetchone()[0]
-                if result == validador:
-                    return 1
-                return 0
+            return 0
         return 0
 
     def PegarUsuarioPeloEmail(self, email: str) -> 'int':
-        self.__cursor.execute('SELECT u.idUsuarios FROM Usuarios AS u WHERE u.email LIKE "%s"', (email,))
+        self.__cursor.execute(f'SELECT u.idUsuarios FROM Usuarios AS u WHERE u.email LIKE "{email}" LIMIT 1')
         result = self.__cursor.fetchone()
         if result is not None:
             return result[0]
         return -1
 
     def PegarEmailPeloUsuarioId(self, UsuarioId: int) -> 'str':
-        self.__cursor.execute('SELECT u.email FROM Usuarios AS u WHERE u.idUsuarios = %s', (UsuarioId,))
+        self.__cursor.execute(f'SELECT u.email FROM Usuarios AS u WHERE u.idUsuarios = {UsuarioId} LIMIT 1')
         result = self.__cursor.fetchone()
         if result is not None:
             return result[0]
         return -1
 
     def PegarSecaoPeloId(self, idUsuario: int) -> 'str':
-        self.__cursor.execute('SELECT SU.chaveDaSecao FROM secaousuario AS SU WHERE SU.idUsuario = %s', (idUsuario,))
+        self.__cursor.execute(f'SELECT SU.chaveDaSecao FROM secaousuario AS SU WHERE SU.idUsuario = {idUsuario} LIMIT 1')
         result = self.__cursor.fetchone()
         if result is not None:
             return result[0]
         return -1
 
     def PegarExpiracaoPelaSessao(self, sessao: str) -> 'str':
-        self.__cursor.execute('SELECT SU.timeout FROM secaousuario AS SU WHERE SU.chaveDaSecao LIKE "%s"', (sessao,))
+        self.__cursor.execute(f'SELECT SU.timeout FROM secaousuario AS SU WHERE SU.chaveDaSecao LIKE "{sessao}" LIMIT 1')
         result = self.__cursor.fetchone()
         if result is not None:
             return result[0]
+        return -1
+
+    def PegerUsuarioCompletoPorSessao(self, sessao: str):
+        self.__cursor.execute(f'SELECT idUsuario FROM secaousuario WHERE chaveDaSecao LIKE "{sessao}" LIMIT 1')
+        result = self.__cursor.fetchone()
+        if result is not None:
+            self.__cursor.execute(f'SELECT * FROM todosusuarioscompletos WHERE idUsuarios = {result[0]} LIMIT 1')
+            result = self.__cursor.fetchone()
+            if result is not None:
+                return result
         return -1
 
     def LimparCarrinho(self, idUsuario: int):

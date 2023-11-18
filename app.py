@@ -1,23 +1,13 @@
-from flask import Flask, render_template, redirect
 from apiLoja import loja, user, venda, produtos
+from flask import Flask, g, session
+import os
 
 app = Flask(__name__)
 app.register_blueprint(loja.loja)
 app.register_blueprint(user.user)
 app.register_blueprint(venda.venda)
 app.register_blueprint(produtos.produtos)
-
-@app.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
-
-@app.route('/login', methods=['GET'])
-def login():
-    return render_template('entrar.html')
-
-@app.route('/entrar', methods=['GET'])
-def entrar():
-    return redirect('login')
+app.secret_key = os.urandom(24)
 
 @app.errorhandler(404)
 def rotaNaoEncontrada(Erro):
@@ -26,3 +16,18 @@ def rotaNaoEncontrada(Erro):
 @app.errorhandler(403)
 def erroDePermissao(Erro):
     return "Não tem permissão" + str(Erro)
+
+@app.before_request
+def before_request():
+    g.username = None
+    g.userid = None
+
+    if 'username' in session:
+        g.username = session['username']
+    
+    if 'userid' in session:
+        g.userid = session['userid']
+
+@app.teardown_appcontext
+def teardown(_exeption):
+    ...

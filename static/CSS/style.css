@@ -1,3 +1,6 @@
+header *{
+    color: white !important;
+}
 
 body{
     background-color: black;
