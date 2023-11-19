@@ -13,7 +13,8 @@
                 <td><p></p></td>
                 <td>
                     {% if username is defined %}
-                        <p>{{ username}}</p>
+                        <a>{{ username }}</a>
+                        <a class="link_logoff" href="/logoff"> logoff</a>
                     {% else %}
                         <a class="link_entrar" href="login">Entrar</a>
                         <a class="link_entrar" href="cadastro">Cadastrar</a>

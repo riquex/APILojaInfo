@@ -157,6 +157,15 @@ class DBManager:
             return 0
         return 1
 
+    def FinalizarSecaoUsuario(self, idUsuario: int):
+        try:
+            self.__cursor.callproc('FinalizarSecaoUsuario', (idUsuario,))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
 if __name__ == '__main__':
     a = DBManager()
     print(a)

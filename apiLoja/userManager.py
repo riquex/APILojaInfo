@@ -49,7 +49,7 @@ class UserManager:
             self, email,  senha, Nome,
             DataNascimento, Telefone, cpf,
             cep, rua, municipio, estado,
-            complemento):
+            complemento, *args, **kwargs):
         validador = validator(email, senha, '42')
         return self.__dbm.InserirUsuario(
             email, validador, Nome, DataNascimento,
@@ -76,6 +76,11 @@ class UserManager:
     def pegarExpiracaoDeSessaoUsuario(self, sessao: str):
         return self.__dbm.PegarExpiracaoPelaSessao(sessao)
 
+    def pegarExpiracaoDeSessaoUsuarioDateTime(self, sessao: str):
+        expiracao = self.__dbm.PegarExpiracaoPelaSessao(sessao)
+        result = datetime.strptime(expiracao, '%Y-%m-%d %H:%M:%S')
+        return result
+
     def buscarUsuarioPorEmail(self, email: str):
         result = self.__dbm.VisualizarUsuariosPorEmail(email=email)
         if result != -1:
@@ -94,6 +99,10 @@ class UserManager:
 
     def buscarEmailPorUsuarioId(self, idUsuario: int):
         return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)
+
+    def finalizarSecaoUsuario(self, idUsuario: int):
+        code = self.__dbm.FinalizarSecaoUsuario(idUsuario)
+        return code
 
 if __name__ == '__main__': # Testes
     a = UserManager()

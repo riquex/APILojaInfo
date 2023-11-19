@@ -37,19 +37,7 @@ def userCadastro():
                 break
 
         if valido:
-            code = UserManager().novoUsuario(
-                form['email'],
-                form['senha'],
-                form['nome'],
-                form['datanascimento'],
-                form['telefone'],
-                form['cpf'],
-                form['cep'],
-                form['rua'],
-                form['municipio'],
-                form['estado'],
-                form['complemento']
-            )
+            code = UserManager().novoUsuario(**form)
 
             if code == 0:
                 flash('Algo deu errado!', 'error')
@@ -58,9 +46,28 @@ def userCadastro():
 
     return response
 
+@user.route('/logoff', methods=['GET', 'POST'])
+def logoff():
+    response = redirect('/')
+    response.set_cookie('usersession', '', expires=0)
+    if 'userid' in session:
+        UserManager().finalizarSecaoUsuario(session['userid'])
+    session.clear()
+    return response
+
 @user.route('/login', methods=['GET', 'POST'])
 def login():
     response = make_response(render_template('login.html'))
+
+    cookies = request.cookies
+    if 'usersession' in cookies:
+        user = UserManager().buscarUsuarioPorSessao(cookies['usersession'])
+        if user != -1:
+            session['username'] = user.Nome
+            session['userid'] = user.idUsuario
+            response = redirect('/')
+            return response
+
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
             form: dict = request.get_json()
@@ -82,7 +89,7 @@ def login():
                 response = redirect('/')
                 response.set_cookie(
                     'usersession', chaveSessao,
-                    expires=UserManager().pegarExpiracaoDeSessaoUsuario(chaveSessao)
+                    expires=UserManager().pegarExpiracaoDeSessaoUsuarioDateTime(chaveSessao)
                     )
 
                 user = UserManager().buscarUsuarioPorEmail(form['email'])
@@ -90,7 +97,6 @@ def login():
                 session['userid'] = user.idUsuario
 
     return response
-
 
 @user.route('/atualizar', methods=['PUT', 'POST'])
 def userAtualizar():
