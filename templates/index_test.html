@@ -2,11 +2,10 @@
 {% extends "base_nova.html" %}
 {% block content %}
 <section class="productSection">
-    {{ product('static/imagens/assets/asset 6.webp', 'nome0', 'oi', '100') }}
-    {{ product('static/imagens/assets/asset 6.webp', 'nome1', 'oi', '100') }}
-    {{ product('static/imagens/assets/asset 6.webp', 'nome2', 'oi', '100') }}
-    {{ product('static/imagens/assets/asset 6.webp', 'nome3', 'oi', '100') }}
-    {{ product('static/imagens/assets/asset 6.webp', 'nome4', 'oi', '100') }}
-    {{ product('static/imagens/assets/asset 6.webp', 'nome5', 'oi', '100') }}
+    {% for i in range(2) %}
+        {% for j in range(4) %}
+            {{ product('static/imagens/assets/asset 6.webp', 'nome %d %d' % (i, j), 'oi', '100') }}
+        {% endfor %}
+    {% endfor %}
 </section>
 {% endblock %}

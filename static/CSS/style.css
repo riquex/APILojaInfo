@@ -89,7 +89,7 @@ head{
 
 /* Estilos para a imagem do logo */
 .img_logo {
-    width: 20vw;
+    width: 12vw;
     /* Adicione outros estilos conforme necessário */
 }
 
@@ -248,8 +248,7 @@ form{
 }
   
 .product .prodImage img{
-    height: 50vh;
-    min-height: 50vh;
+    min-height: 20vh;
     background-color: #ffffff;
     border-radius: 7%;
 }
