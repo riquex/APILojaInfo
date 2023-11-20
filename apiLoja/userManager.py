@@ -10,11 +10,11 @@ def validator(email: str, password: str, key: str):
     return sha256(email.encode() + password.encode() + key.encode()).hexdigest()
 
 class User:
-    def __init__(self, idUsuario, email, validador,Nome, DataNascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
+    def __init__(self, idUsuario, email, validador,Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
         self.idUsuario = idUsuario
         self.Nome = Nome
         self.cpf = cpf
-        self.DataNascimento = DataNascimento
+        self.datanascimento = datanascimento
         self.telefone = telefone
         self.email = email
         self.validador = validador
@@ -30,7 +30,7 @@ class User:
             'idUsuario': self.idUsuario,
             'nome': self.Nome,
             'cpf': self.cpf,
-            'dataNascimento': self.DataNascimento,
+            'dataNascimento': self.datanascimento,
             'telefone': self.telefone,
             'email': self.email,
             'validor': self.validador,
@@ -46,14 +46,14 @@ class UserManager:
         self.__dbm = DBManager()
 
     def novoUsuario(
-            self, email,  senha, Nome,
-            DataNascimento, Telefone, cpf,
+            self, email,  senha, nome,
+            datanascimento, telefone, cpf,
             cep, rua, municipio, estado,
             complemento, *args, **kwargs):
         validador = validator(email, senha, '42')
         return self.__dbm.InserirUsuario(
-            email, validador, Nome, DataNascimento,
-            Telefone, cpf, cep, rua, municipio, estado, complemento
+            email, validador, nome, datanascimento,
+            telefone, cpf, cep, rua, municipio, estado, complemento
         )
 
     def iniciarSecaoUsuario(self, email: str, senha: str, horasLimite:int=24):

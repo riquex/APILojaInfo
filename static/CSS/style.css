@@ -7,6 +7,12 @@ body{
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
     padding-top: 25vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: stretch;
 }
 
 /* head */
@@ -156,8 +162,6 @@ head{
     color: white;
 }
 footer{
-    position: relative;
-    bottom: -300vh;
     text-align: center;
     color: white;
 }
