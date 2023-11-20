@@ -1,0 +1,12 @@
+{% from 'macros.html' import product %}
+{% extends "base_nova.html" %}
+{% block content %}
+<section class="productSection">
+    {{ product('', 'nome0', 'oi', '100') }}
+    {{ product('', 'nome1', 'oi', '100') }}
+    {{ product('', 'nome2', 'oi', '100') }}
+    {{ product('', 'nome3', 'oi', '100') }}
+    {{ product('', 'nome4', 'oi', '100') }}
+    {{ product('', 'nome5', 'oi', '100') }}
+</section>
+{% endblock %}

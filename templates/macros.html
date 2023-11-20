@@ -1,0 +1,8 @@
+{% macro product(link='', prodTitle='', prodDescription='', prodPrice='') %}
+<div  class="product">
+    <div class="prodImage"> <img src="{{ link }}" alt="" srcset=""></div>
+    <div class="prodTitle"> {{ prodTitle }} </div>
+    <div class="prodDescription"> {{ prodDescription }} </div>
+    <div class="prodPrice"> {{ prodPrice }} </div>
+</div>
+{% endmacro %}
