@@ -1,11 +1,13 @@
 {% from 'macros.html' import product %}
 {% extends "base_nova.html" %}
 {% block content %}
-<section class="productSection">
-    {% for i in range(2) %}
-        {% for j in range(4) %}
+
+    {% for i in range(4) %}
+        <section class="productSection">
+        {% for j in range(3) %}
             {{ product('static/imagens/assets/asset 6.webp', 'nome %d %d' % (i, j), 'oi', '100') }}
         {% endfor %}
+        </section>
     {% endfor %}
-</section>
+
 {% endblock %}

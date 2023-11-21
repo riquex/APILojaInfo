@@ -230,7 +230,7 @@ form{
 }
 
 .product {
-    background-color: #0000ff;
+    background-color: rgb(19, 131, 192);
     border-radius: 7%;
     padding: 3px;
     display: flex;
@@ -249,6 +249,7 @@ form{
   
 .product .prodImage img{
     min-height: 20vh;
+    max-width: 20vw;
     background-color: #ffffff;
     border-radius: 7%;
 }
