@@ -60,8 +60,26 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
-
-    def AtualizacaoCompletaUsuario(self, IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
+    
+    def InserirImagem(self, idproduto: int, staticlink: str):
+        try:
+            self.__cursor.callproc('novaImagem', (idproduto,staticlink))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+    
+    def DeletarTodasImagens(self, idproduto: int):
+        try:
+            self.__cursor.callproc('RemoverTodasImagensDoProduto',(idproduto))
+            self.mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+    
+        def AtualizacaoCompletaUsuario(self, IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
         try:
             self.__cursor.callproc('AtualizacaoCompletaUsuario', (IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento))
             self.__mydb.commit()

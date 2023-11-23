@@ -32,6 +32,12 @@
         #content {
             margin-left: 220px;
             padding: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            align-items: center;
         }
     </style>
 </head>
@@ -57,9 +63,9 @@
     <!-- Conteúdo da página vai aqui -->
     <h1>Bem-vindo à Área de Administração</h1>
     <p>Selecione uma opção no menu à esquerda.</p>
+    {% block content %}
+    {% endblock %}
 </div>
-{% block content %}
-{% endblock %}
 
 </body>
 </html>
