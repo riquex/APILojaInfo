@@ -10,15 +10,22 @@
             margin: 0;
             padding: 0;
             background-color: black;
+            display: flex;
+            flex-direction: column; /* Arranja os elementos verticalmente */
+        }
+
+        header {
+            display: flex;
+            align-items: center; /* Centraliza verticalmente os itens do header */
+            padding: 20px;
         }
 
         #menu {
             width: 200px;
             background-color: #333;
             color: #fff;
-            position: fixed;
-            height: 100%;
             padding-top: 20px;
+            order: 2; /* Define a ordem na qual aparece (2 para aparecer após o header) */
         }
 
         #menu a {
@@ -30,19 +37,34 @@
         }
 
         #content {
-            margin-left: 220px;
+            flex: 1;
             padding: 20px;
+            order: 1; /* Define a ordem na qual aparece (1 para aparecer antes do menu) */
+        }
+
+        #formulario {
+            flex: 1; /* Ocupa o mesmo espaço que o conteúdo */
+            padding: 20px;
+            order: 3; /* Define a ordem na qual aparece (3 para aparecer após o menu) */
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header">
-            <img src="{{ url_for('static', filename='imagens/kilobyte1.png') }}" alt="Logo" class="img_logo">
+            <img src="C:\Users\art0060362\Documents\ESA\APILojaInfo\static\imagens\kilobyte1.png" alt="Logo" class="img_logo">
             <nav class="menu_sup">
             </nav>
         </div>
     </header>
+
+    <div id="content">
+        <!-- Conteúdo da página vai aqui -->
+        <h1>Bem-vindo à Área de Administração</h1>
+        <p>Selecione uma opção no menu à esquerda.</p>
+        {% block content %}
+        {% endblock %}
+    </div>
 
     <div id="menu">
         <a href="#">Cadastrar Usuário</a>
@@ -53,12 +75,18 @@
         <a href="#">Excluir</a>
     </div>
 
-    <div id="content">
-        <!-- Conteúdo da página vai aqui -->
-        <h1>Bem-vindo à Área de Administração</h1>
-        <p>Selecione uma opção no menu à esquerda.</p>
-        {% block content %}
-        {% endblock %}
+    <div id="formulario">
+        <!-- Formulário vai aqui -->
+        <!-- Exemplo de formulário -->
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome">
+            <br>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email">
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
     </div>
 
 </body>

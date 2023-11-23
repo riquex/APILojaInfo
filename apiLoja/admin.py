@@ -8,5 +8,5 @@ def indexAdmin():
     return render_template('admin.html')
 
 @admin.route('/admin/cadastroproduto')
-def cadastroProdutos():
+def cadastroProduto():
     return render_template('cadastrarproduto.html')
