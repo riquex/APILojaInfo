@@ -1,10 +1,11 @@
-from apiLoja import loja, user, venda, produtos
+from apiLoja import loja, user, venda, produtos, admin
 from flask import Flask, g, session
 import os
 
 app = Flask(__name__)
 app.register_blueprint(loja.loja)
 app.register_blueprint(user.user)
+app.register_blueprint(admin.admin)
 app.register_blueprint(venda.venda)
 app.register_blueprint(produtos.produtos)
 app.secret_key = os.urandom(24)
