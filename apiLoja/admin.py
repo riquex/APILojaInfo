@@ -1,5 +1,6 @@
-from flask import Blueprint
 from flask import render_template
+from flask import Blueprint
+from flask import g
 
 admin = Blueprint('admin', __name__)
 

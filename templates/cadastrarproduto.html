@@ -5,7 +5,7 @@
     {% block content %}
 
     <h1>Cadastro de Usuários</h1>
-    <form action="/login" method="post">
+    <form method="post">
         <label for="email">E-mail:</label>
         <input type="email" name="email" id="email" required><br>
 
@@ -14,6 +14,4 @@
 
         <input type="submit" value="Login" id="submit_form">
     </form>
-
-    <script src="static\js\cadastro.js"></script>
     {% endblock %}

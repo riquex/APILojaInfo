@@ -3,69 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
     <title> {% block titulo %} {% endblock %}Menu de Administração</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: black;
-        }
-
-        #menu {
-            width: 200px;
-            background-color: #333;
-            color: #fff;
-            position: fixed;
-            height: 100%;
-            padding-top: 20px;
-        }
-
-        #menu a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #fff;
-            border-bottom: 1px solid #555;
-        }
-
-        #content {
-            margin-left: 220px;
-            padding: 20px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            align-content: stretch;
-            align-items: center;
-        }
-    </style>
 </head>
-<body>
-    <header>
-        <div class="header">
-            <img src="{{ url_for('static', filename='.imagens/kilobyte1.png') }}" alt = "Logo" class="img_logo">
-            <nav class="menu_sup">
-            </nav>
-        </div>
-    </header>
+<body class="b_admin">
+<div class="adm_page">
+    <div class="adm_menu">
+        <img src="{{ url_for('static', filename='imagens/kilobyte_alpha1.png') }}" alt = "Logo" class="img_logo">
+        <a href="#">Cadastrar Usuário</a>
+        <a href="#">Descadastrar Usuário</a>
+        <a href="#">Cadastrar Produto</a>
+        <a href="#">Descadastrar Produto</a>
+        <a href="#">Inserir Link das Imagens dos Produtos</a>
+        <a href="#">Excluir</a>
+    </div>
 
-<div id="menu">
-    <a href="#">Cadastrar Usuário</a>
-    <a href="#">Descadastrar Usuário</a>
-    <a href="#">Cadastrar Produto</a>
-    <a href="#">Descadastrar Produto</a>
-    <a href="#">Inserir Link das Imagens dos Produtos</a>
-    <a href="#">Excluir</a>
+    <div class="adm_content">
+        <!-- Conteúdo da página vai aqui -->
+        <h1>Bem-vindo à Área de Administração</h1>
+        <p>Selecione uma opção no menu à esquerda.</p>
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
-
-<div id="content">
-    <!-- Conteúdo da página vai aqui -->
-    <h1>Bem-vindo à Área de Administração</h1>
-    <p>Selecione uma opção no menu à esquerda.</p>
-    {% block content %}
-    {% endblock %}
-</div>
-
 </body>
 </html>

@@ -216,22 +216,16 @@ footer{
 }
 
 form{
-    position: absolute;
     background-color:  rgb(19, 131, 192);
-    top: 600px;
-    left: 50%;
-    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
     border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
     padding: 15px;
     text-align: center;
     color: white;
-
-
 }
 
 .product {
     background-color: rgb(19, 131, 192);
-    border-radius: 7%;
+    border-radius: 15px;
     padding: 3px;
     display: flex;
     flex-direction: column;
@@ -251,7 +245,7 @@ form{
     min-height: 20vh;
     max-width: 20vw;
     background-color: #ffffff;
-    border-radius: 7%;
+    border-radius: 15px;
 }
 
 .productSection {
@@ -261,4 +255,64 @@ form{
     justify-content: space-evenly;
     align-items: center;
     align-content: center;
+}
+
+.adm_menu {
+    text-align: center;
+    display: flex;
+    max-width: 20vw;
+    background-color: #333;
+    color: #fff;
+    /* position: fixed; */
+    height: 100%;
+    padding-top: 20px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.adm_menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #555;
+}
+
+.adm_content {
+    text-align: center;
+    /* margin-left: 220px; */
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    align-items: center;
+}
+
+body.b_admin {
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    padding-top: 0vh;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.adm_page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
 }
