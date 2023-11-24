@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
-    <title> {% block titulo %} {% endblock %}Menu de Administração</title>
+    <title> {% block titulo %}Dashboard{% endblock %} - Menu de Administração</title>
 </head>
 <body class="b_admin">
 <div class="adm_page">
@@ -12,17 +12,17 @@
         <img src="{{ url_for('static', filename='imagens/kilobyte_alpha1.png') }}" alt = "Logo" class="img_logo">
         <a href="#">Cadastrar Usuário</a>
         <a href="#">Descadastrar Usuário</a>
-        <a href="#">Cadastrar Produto</a>
+        <a href="/admin/cadastroproduto">Cadastrar Produto</a>
         <a href="#">Descadastrar Produto</a>
         <a href="#">Inserir Link das Imagens dos Produtos</a>
         <a href="#">Excluir</a>
     </div>
 
     <div class="adm_content">
+        {% block content %}
         <!-- Conteúdo da página vai aqui -->
         <h1>Bem-vindo à Área de Administração</h1>
         <p>Selecione uma opção no menu à esquerda.</p>
-        {% block content %}
         {% endblock %}
     </div>
 </div>

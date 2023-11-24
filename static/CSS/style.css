@@ -220,11 +220,45 @@ footer{
 }
 
 form{
-    background-color:  rgb(19, 131, 192);
-    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    display: flex;
+    background-color: rgb(19, 131, 192);
+    border-radius: 15px;
     padding: 15px;
     text-align: center;
     color: white;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+form input[type="submit"]{
+    width: 100%;
+    flex: 1;
+}
+
+form input[type="file"] {
+    display: none;
+}
+
+form div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+form .label-image{
+    /* padding: 0px 20px 0px 20px; */
+    /* width: 50dvw; */
+    background-color: #1a4cbe;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    /* margin-top: 10px; */
+    cursor: pointer;
 }
 
 .product {
