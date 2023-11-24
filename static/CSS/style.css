@@ -2,6 +2,10 @@ header *{
     color: white !important;
 }
 
+html{
+    min-height: 100vh;
+}
+
 body{
     background-color: black;
     font-family: 'Courier New', Courier, monospace;
@@ -261,6 +265,7 @@ form{
     text-align: center;
     display: flex;
     max-width: 20vw;
+    min-height: 100vh;
     background-color: #333;
     color: #fff;
     /* position: fixed; */
@@ -271,6 +276,7 @@ form{
     align-content: center;
     justify-content: center;
     align-items: center;
+    padding: 0px 5px 0px 5px;
     flex: 1;
 }
 
@@ -285,13 +291,15 @@ form{
 .adm_content {
     text-align: center;
     /* margin-left: 220px; */
-    padding: 20px;
+    min-height: 100vh;
     color: white;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: stretch;
     align-items: center;
+    justify-content: center;
+    flex: 1;
 }
 
 body.b_admin {
@@ -301,18 +309,22 @@ body.b_admin {
     padding-top: 0vh;
     display: flex;
     flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    flex-direction: column;
 }
 
 .adm_page {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: center;
-    align-items: center;
+    align-content: center;
+    justify-content: flex-start;
     flex: 1;
-    height: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
+    align-items: center;
 }
