@@ -428,7 +428,7 @@ body.b_admin {
 }
 
 .kilobyte-table th, .kilobyte-table td{
-    border: 1px var(--kilobyte-gray) solid;
+    border: 1px solid var(--kilobyte-gray);
 }
 .kilobyte-table tr{
     background-color: var(--kilobyte-light-gray);
@@ -440,4 +440,8 @@ body.b_admin {
 
 .kilobyte-table tr:nth-child(even){
     background-color: var(--kilobyte-blue);
+}
+
+.clickble{
+    cursor: pointer;
 }

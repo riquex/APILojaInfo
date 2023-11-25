@@ -10,19 +10,19 @@
         <input type="text" placeholder="Search..">
     </div>
 </div>
-<table class="kilobyte-table">
+<table class="kilobyte-table" id="tabela-gerencimento-usuarios">
     <tr>
-        <th>id</th>
-        <th>nome</th>
-        <th>nascimento</th>
-        <th>telefone</th>
-        <th>cpf</th>
-        <th>email</th>
-        <th>cep</th>
-        <th>rua</th>
-        <th>municipio</th>
-        <th>estado</th>
-        <th>complemento</th>
+        <th class="clickble" id="id">id</th>
+        <th class="clickble" id="nome">nome</th>
+        <th class="clickble" id="nascimento">nascimento</th>
+        <th class="clickble" id="telefone">telefone</th>
+        <th class="clickble" id="cpf">cpf</th>
+        <th class="clickble" id="email">email</th>
+        <th class="clickble" id="cap">cep</th>
+        <th class="clickble" id="rua">rua</th>
+        <th class="clickble" id="municipio">municipio</th>
+        <th class="clickble" id="estado">estado</th>
+        <th class="clickble" id="complemento">complemento</th>
     </tr>
     {% if datarows is defined %}
         {% for row in datarows %}
@@ -34,4 +34,5 @@
         {% endfor %}
     {% endif %}
 </table>
+<script src="{{ url_for('static', filename='js/gerenciamentousuarios.js') }}"></script>
 {% endblock %}
