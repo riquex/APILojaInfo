@@ -2,6 +2,7 @@
     --side-bar-max-width: 20vw;
     --kilobyte-blue: rgb(19, 131, 192);
     --kilobyte-gray: rgb(51 51 51);
+    --kilobyte-light-gray: rgb(85 85 85);
 }
 
 header *{
@@ -420,4 +421,23 @@ body.b_admin {
 
 .full-width {
     width: 100%;
+}
+
+.kilobyte-table {
+    border-spacing: 0px;
+}
+
+.kilobyte-table th, .kilobyte-table td{
+    border: 1px var(--kilobyte-gray) solid;
+}
+.kilobyte-table tr{
+    background-color: var(--kilobyte-light-gray);
+}
+
+.kilobyte-table th {
+    font-weight: bolder;
+}
+
+.kilobyte-table tr:nth-child(even){
+    background-color: var(--kilobyte-blue);
 }

@@ -10,4 +10,28 @@
         <input type="text" placeholder="Search..">
     </div>
 </div>
+<table class="kilobyte-table">
+    <tr>
+        <th>id</th>
+        <th>nome</th>
+        <th>nascimento</th>
+        <th>telefone</th>
+        <th>cpf</th>
+        <th>email</th>
+        <th>cep</th>
+        <th>rua</th>
+        <th>municipio</th>
+        <th>estado</th>
+        <th>complemento</th>
+    </tr>
+    {% if datarows is defined %}
+        {% for row in datarows %}
+        <tr>
+            {% for data in row %}
+            <td>{{ data }}</td>
+            {% endfor%}
+        </tr>
+        {% endfor %}
+    {% endif %}
+</table>
 {% endblock %}

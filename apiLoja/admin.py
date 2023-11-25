@@ -1,4 +1,5 @@
 from flask import render_template
+from .dbManager import DBManager
 from flask import Blueprint
 from flask import g
 
@@ -14,4 +15,6 @@ def cadastroProduto():
 
 @admin.route('/admin/gerenciarusuarios')
 def gerenciarUsuarios():
-    return render_template('gerenciarusuarios.html')
+    context = dict()
+    context['datarows'] = DBManager().VisualizarTodosUsuariosCompletos()
+    return render_template('gerenciarusuarios.html', **context)
