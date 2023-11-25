@@ -11,3 +11,7 @@ def indexAdmin():
 @admin.route('/admin/cadastroproduto')
 def cadastroProduto():
     return render_template('cadastrarproduto.html')
+
+@admin.route('/admin/gerenciarusuarios')
+def gerenciarUsuarios():
+    return render_template('gerenciarusuarios.html')

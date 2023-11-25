@@ -15,12 +15,13 @@
         <a href="#">Cadastrar Usuário</a>
         <a href="#">Descadastrar Usuário</a>
         <a href="/admin/cadastroproduto">Cadastrar Produto</a>
+        <a href="/admin/gerenciarusuarios">Gerenciar Usuários</a>
         <a href="#">Descadastrar Produto</a>
         <a href="#">Inserir Link das Imagens dos Produtos</a>
         <a href="#">Excluir</a>
     </div>
 
-    <div class="adm_content">
+    <div class="adm_content {% block content_additional_classes %}{% endblock %}">
         {% block content %}
         <!-- Conteúdo da página vai aqui -->
         <h1>Bem-vindo à Área de Administração</h1>

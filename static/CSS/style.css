@@ -1,3 +1,9 @@
+:root{
+    --side-bar-max-width: 20vw;
+    --kilobyte-blue: rgb(19, 131, 192);
+    --kilobyte-gray: rgb(51 51 51);
+}
+
 header *{
     color: white !important;
 }
@@ -22,7 +28,7 @@ body{
 /* head */
 
 head{
-    background-color: #333;
+    background-color: var(--kilobyte-gray);
     color: white;
     font-size: 20px;
     font-weight: 700; /*negrito*/
@@ -96,7 +102,7 @@ div.header{
 
 /* Estilos para o menu superior */
 .menu_sup {
-    background-color: #333; /* Mantém a cor de fundo original para o menu superior */
+    background-color: var(--kilobyte-gray); /* Mantém a cor de fundo original para o menu superior */
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     color: white;
@@ -130,7 +136,7 @@ div.header{
 }
 .ofertas{
     position: absolute;
-    background-color: rgb(19, 131, 192);
+    background-color: var(--kilobyte-blue);
     top: 750px;
     left: 50%;
     transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
@@ -141,7 +147,7 @@ div.header{
 }
 .placasDeVideo{
     position: absolute;
-    background-color:  rgb(19, 131, 192);
+    background-color:  var(--kilobyte-blue);
     top: 1200px;
     left: 50%;
     transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
@@ -153,7 +159,7 @@ div.header{
 }
 .placasMae{
     position: absolute;
-    background-color:  rgb(19, 131, 192);
+    background-color:  var(--kilobyte-blue);
     top: 1650px;
     left: 50%;
     transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
@@ -210,7 +216,7 @@ footer{
 
 /* Estilos para o menu superior */
 .menu_sup {
-    background-color: #333;
+    background-color: var(--kilobyte-gray);
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     color: white; 
@@ -218,7 +224,7 @@ footer{
 
 form{
     display: flex;
-    background-color: rgb(19, 131, 192);
+    background-color: var(--kilobyte-blue);
     border-radius: 15px;
     padding: 15px;
     text-align: center;
@@ -248,7 +254,7 @@ form div{
 }
 
 form .label-image{
-    background-color: #333;
+    background-color: var(--kilobyte-gray);
     border-radius: 7px;
     color: #FFF;
     text-transform: uppercase;
@@ -276,7 +282,7 @@ div#formsection{
 }
 
 .product {
-    background-color: rgb(19, 131, 192);
+    background-color: var(--kilobyte-blue);
     border-radius: 15px;
     padding: 3px;
     display: flex;
@@ -312,28 +318,25 @@ div#formsection{
 .adm_menu {
     text-align: center;
     display: flex;
-    max-width: 20vw;
+    max-width: var(--side-bar-max-width);
     min-height: 100vh;
-    background-color: #333;
+    background-color: var(--kilobyte-gray);
     color: #fff;
-    /* position: fixed; */
-    height: 100%;
-    padding-top: 20px;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: center;
     justify-content: center;
     align-items: center;
-    padding: 0px 5px 0px 5px;
     flex: 1;
 }
 
 .adm_menu a {
     display: block;
-    padding: 10px;
     text-decoration: none;
     color: #fff;
     border-bottom: 1px solid #555;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
 }
 
 .adm_content {
@@ -376,4 +379,45 @@ body.b_admin {
     min-width: 100vw;
     min-height: 100vh;
     align-items: center;
+}
+
+.topnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    background-color: var(--kilobyte-gray);
+    padding: 10px 0px 10px 0px;
+}
+
+.topnav a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-top {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
 }

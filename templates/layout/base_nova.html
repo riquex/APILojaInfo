@@ -13,7 +13,9 @@
 <body>
     {% block header %}
         <div class="header">
-            <img src="{{ url_for('static', filename='imagens/kilobyte1.png') }}" alt="Logo" class="img_logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='imagens/kilobyte1.png') }}" alt="Logo" class="img_logo">
+            </a>
             {% if username is defined %}
                 <a>{{ username }}</a>
                 <a class="link_logoff" href="/logoff"> logoff</a>
