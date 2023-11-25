@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-
-    {% extends "base_limpa.html" %}
-    {% block content %}
-
-    <h1>Cadastro de Usuários</h1>
+{% extends "base_limpa.html" %}
+{% block content %}
+<div id="formsection">
+    <h1>Login</h1>
     <form action="/login" method="post">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" required><br>
-
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required><br>
-
-        <input type="submit" value="Login" id="submit_form">
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required><br>
+        </div>
+        <div>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required><br>
+        </div>
+        <div>
+            <input type="submit" value="Login" id="submit_form">
+        </div>
     </form>
-
-    <script src="static\js\cadastro.js"></script>
-    {% endblock %}
-</body>
-</html>
+</div>
+<script src="static\js\cadastro.js"></script>
+{% endblock %}

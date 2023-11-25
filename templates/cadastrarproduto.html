@@ -1,29 +1,28 @@
-    {% block titulo %} CADASTRO DE PRODUTOS {% endblock %}
-
-
-    {% extends "admin.html" %}
-    {% block content %}
-
-    <h1>Cadastro de Produtos</h1>
-    <form method="post">
-        <div>
-            <label for="nomeproduto">Nome:</label>
-            <input type="text" name="nomeproduto" id="nomeproduti" required>
-        </div>
-        <div>
-            <label for="descricao">Descrição:</label>
-            <input type="text" name="descricao" id="descricao" required>
-        </div>
-        <div>
-            <label for="preco">Preço:</label>
-            <input type="number" name="preco" id="preco" required>
-        </div>
-        <div>
-            <label for="imagem" class="label-image">Imagem</label>
-            <input type="file" name="imagem" id="imagem" accept="image/*">
-            <input type="text" name="" id="image-text" disabled>
-        </div>
-        <input type="submit" value="Login" id="submit_form">
-    </form>
-    <script src="{{ url_for('static', filename='js/cadastroproduto.js') }}"></script>
-    {% endblock %}
+{% extends "admin.html" %}
+{% block titulo %} CADASTRO DE PRODUTOS {% endblock %}
+{% block content %}
+<h1>Cadastro de Produtos</h1>
+<form method="post">
+    <div>
+        <label for="nomeproduto">Nome:</label>
+        <input type="text" name="nomeproduto" id="nomeproduti" required>
+    </div>
+    <div>
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao" id="descricao" required>
+    </div>
+    <div>
+        <label for="preco">Preço:</label>
+        <input type="number" name="preco" id="preco" required>
+    </div>
+    <div>
+        <label for="imagem" class="label-image">Imagem</label>
+        <input type="file" name="imagem" id="imagem" accept="image/*">
+        <input type="text" name="" id="image-text" disabled>
+    </div>
+    <div id="imagesection">
+    </div>
+    <input type="submit" value="Login" id="submit_form">
+</form>
+<script src="{{ url_for('static', filename='js/cadastroproduto.js') }}"></script>
+{% endblock %}

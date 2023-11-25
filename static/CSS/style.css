@@ -10,13 +10,13 @@ body{
     background-color: black;
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
-    padding-top: 25vh;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: stretch;
     justify-content: center;
     align-items: stretch;
+    margin: 0px;
 }
 
 /* head */
@@ -73,10 +73,8 @@ head{
 /* --------------------------------------------------------------------------*/
 
 /* Estilos para o cabeçalho */
-.header{
+div.header{
     background-color: #000000;
-    position: absolute;
-    top: 0px;
     color: #ffffff;
     font-size: 20px;
     font-weight: 700;
@@ -88,7 +86,6 @@ head{
     flex-wrap: nowrap;
     align-content: center;
     align-items: center;
-    width: 100%;
 }
 
 /* Estilos para a imagem do logo */
@@ -251,14 +248,31 @@ form div{
 }
 
 form .label-image{
-    /* padding: 0px 20px 0px 20px; */
-    /* width: 50dvw; */
-    background-color: #1a4cbe;
+    background-color: #333;
+    border-radius: 7px;
     color: #FFF;
     text-transform: uppercase;
     text-align: center;
-    /* margin-top: 10px; */
     cursor: pointer;
+    padding: 3px 12px 3px 12px;
+}
+
+div#content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+div#formsection{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .product {
@@ -349,6 +363,7 @@ body.b_admin {
     min-height: 100vh;
     min-width: 100vw;
     flex-direction: column;
+    margin: 0px;
 }
 
 .adm_page {
