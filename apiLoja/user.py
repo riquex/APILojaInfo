@@ -18,31 +18,58 @@ from flask import g
 
 user = Blueprint('user', __name__)
 
+@user.route('/cadastro/massivo', methods=["POST"])
+def userCadastroMassivo():
+    if request.method == 'POST':
+        code = 0
+        um = UserManager()
+
+        if request.content_type.startswith('application/json'):
+            form: dict|list[dict] = request.get_json()
+            print(type(form))
+        else:
+            form = dict()
+
+        response = make_response(str(form))
+        response.status = '200'
+
+        if isinstance(form, list):
+            for row in form:
+                valido = all(key in SINGUP_REQUIREMENTS for key in row)
+                if valido:
+                    code += um.novoUsuario(**row)
+        if code != 0:
+            response.status = '409'
+        return response
+    return redirect('/')
+
 @user.route('/cadastro', methods=['GET', 'POST'])
 def userCadastro():
     response = make_response(render_template('cadastro.html'))
 
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
-            form: dict = request.get_json()
+            form: dict | list[dict] = request.get_json()
         elif request.content_type.startswith('application/x-www-form-urlencoded'):
             form = request.form
         else:
             form = dict()
 
         valido = True
-        for i in SINGUP_REQUIREMENTS:
-            if i not in form:
-                valido = False
-                break
+        if isinstance(form, dict):
+            valido = all(key in SINGUP_REQUIREMENTS for key in form)
+        else: valido = False
 
         if valido:
             code = UserManager().novoUsuario(**form)
 
             if code == 0:
                 flash('Algo deu errado!', 'error')
+                response.status = "409"
             else:
-                response = redirect(url_for('user.login'))
+                response = redirect(url_for('user.login'), code=201)
+        else:
+            response.status = "409"
 
     return response
 

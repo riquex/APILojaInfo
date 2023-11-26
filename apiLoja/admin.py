@@ -1,6 +1,7 @@
 from flask import render_template
-from .dbManager import DBManager
+from .userManager import UserManager
 from flask import Blueprint
+from flask import jsonify
 from flask import g
 
 admin = Blueprint('admin', __name__)
@@ -13,8 +14,13 @@ def indexAdmin():
 def cadastroProduto():
     return render_template('cadastrarproduto.html')
 
+@admin.route('/admin/fetchusersall', methods=['GET', 'POST'])
+def fetchUsersAll():
+    return jsonify(
+            [user.comoDicionario() for user in UserManager().pegarTodosUsuarios()]
+        )
+
 @admin.route('/admin/gerenciarusuarios')
 def gerenciarUsuarios():
     context = dict()
-    context['datarows'] = DBManager().VisualizarTodosUsuariosCompletos()
     return render_template('gerenciarusuarios.html', **context)

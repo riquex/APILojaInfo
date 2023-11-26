@@ -1,7 +1,8 @@
-import uuid
-from hashlib import sha256
-from .dbManager import DBManager
 from datetime import datetime, timedelta
+from .dbManager import DBManager
+from typing import Iterable
+from hashlib import sha256
+import uuid
 
 SINGUP_REQUIREMENTS = ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento')
 LOGIN_REQUIREMENTS = ('email', 'senha')
@@ -10,7 +11,7 @@ def validator(email: str, password: str, key: str):
     return sha256(email.encode() + password.encode() + key.encode()).hexdigest()
 
 class User:
-    def __init__(self, idUsuario, email, validador,Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
+    def __init__(self, idUsuario, email, validador, Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
         self.idUsuario = idUsuario
         self.Nome = Nome
         self.cpf = cpf
@@ -96,6 +97,12 @@ class UserManager:
             usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             return usuario
         return -1
+
+    def pegarTodosUsuarios(self) -> Iterable[User]:
+        for userData in self.__dbm.VisualizarTodosUsuariosCompletos():
+            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
+            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            yield usuario
 
     def buscarEmailPorUsuarioId(self, idUsuario: int):
         return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)

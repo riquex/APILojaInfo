@@ -342,7 +342,6 @@ div#formsection{
 
 .adm_content {
     text-align: center;
-    /* margin-left: 220px; */
     min-height: 100vh;
     color: white;
     display: flex;
@@ -351,7 +350,6 @@ div#formsection{
     align-content: stretch;
     align-items: center;
     justify-content: center;
-    flex: 1;
 }
 
 body.b_admin {
@@ -446,6 +444,14 @@ body.b_admin {
     cursor: pointer;
 }
 
-.overflow-scroll {
+.overflow-scroll-x {
     overflow: scroll;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+.grow{
+    flex: 1;
 }

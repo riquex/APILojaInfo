@@ -10,74 +10,145 @@ window.onload = () => {
     const municipio = document.getElementById("municipio");
     const estado = document.getElementById("estado");
     const complemento = document.getElementById("complemento");
+    const clickEvent = new Event("click");
 
-    sortTable = (column=0, inverse=false) => {
-        const table = document.getElementById("tabela-gerencimento-usuarios");
-        let done = false;
-        let swap = false;
-        let i = 0;
+    let orberby = ['id', 'asc', (a, b) => 0]
 
-        if (table instanceof HTMLTableElement){
-            const rows = table.rows;
-            while (!done){
-                done = true;
-                swap = false;
-
-                for(i=1; i < (rows.length - 1); ++i){
-                    const x = rows[i    ].getElementsByTagName("td")[column];
-                    const y = rows[i + 1].getElementsByTagName("td")[column];
-
-                    if (inverse){
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLocaleLowerCase()){
-                            swap = true;
-                            break;
-                        }
-                    }else if (x.innerHTML.toLowerCase() > y.innerHTML.toLocaleLowerCase()){
-                        swap = true;
-                        break;
-                    }
-                }
-
-                if (swap){
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    done = false;
-                }
-            }
+    const numSort = (a, b) => a[orberby[0]] - b[orberby[0]];
+    const strSort = (a, b) => {
+        const nomeA = a[orberby[0]].toLocaleLowerCase();
+        const nomeB = b[orberby[0]].toLocaleLowerCase();
+        if (nomeA < nomeB){
+            return -1;
         }
-        
+        if (nomeB > nomeB){
+            return 1;
+        }
+        return 0;
     };
 
     id.onclick = () => {
-        sortTable(0, false);
+        orberby[0] = "idUsuario";
+        orberby[3] = numSort;
+        update.dispatchEvent(clickEvent);
     };
+
     nome.onclick = () => {
-        sortTable(1, false);
+        orberby[0] = "nome";
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
+
     nascimento.onclick = () => {
-        sortTable(2, false);
+        orberby[0] = "dataNascimento"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     telefone.onclick = () => {
-        sortTable(3, false);
+        orberby[0] = "telefone"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     cpf.onclick = () => {
-        sortTable(4, false);
+        orberby[0] = "cpf"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     email.onclick = () => {
-        sortTable(5, false);
+        orberby[0] = "email"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     cep.onclick = () => {
-        sortTable(6, false);
+        orberby[0] = "cep"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     rua.onclick = () => {
-        sortTable(7, false);
+        orberby[0] = "rua"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     municipio.onclick = () => {
-        sortTable(8, false);
+        orberby[0] = "municipio"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     estado.onclick = () => {
-        sortTable(9, false);
+        orberby[0] = "estado"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
     };
     complemento.onclick = () => {
-        sortTable(10, false);
+        orberby[0] = "complemento"
+        orberby[3] = strSort;
+        update.dispatchEvent(clickEvent);
+    };
+
+    // ANCHOR HANDLER
+    const update = document.getElementById("update");
+    update.onclick = async () => {
+        const headersList = {
+            "Accept": "application/json",
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+        }
+
+        const response = await fetch("/admin/fetchusersall", { 
+            method: "GET",
+            headers: headersList
+        });
+
+        const data = await response.json();
+
+        const table = document.getElementById("tabela-gerencimento-usuarios");
+        
+        if (table instanceof HTMLTableElement){
+            while (table.rows.length > 1){
+                table.deleteRow(1);
+            }
+
+            if (data instanceof Array){
+
+                data.sort(orberby[3])
+                console.log(data);
+
+                for(let i = 0; i < data.length; ++i){
+                    let row = table.insertRow();
+                    
+                    const idcell = row.insertCell();
+                    idcell.innerHTML = data[i].idUsuario;
+
+                    const nomecell = row.insertCell();
+                    nomecell.innerHTML = data[i].nome;
+
+                    const nascimentocell = row.insertCell();
+                    nascimentocell.innerHTML = data[i].dataNascimento;
+
+                    const telefonecell = row.insertCell();
+                    telefonecell.innerHTML = data[i].telefone;
+
+                    const cpfcell = row.insertCell();
+                    cpfcell.innerHTML = data[i].cpf;
+
+                    const emailcell = row.insertCell();
+                    emailcell.innerHTML = data[i].email;
+
+                    const cepcell = row.insertCell();
+                    cepcell.innerHTML = data[i].cep;
+
+                    const ruacell = row.insertCell();
+                    ruacell.innerHTML = data[i].rua;
+
+                    const municipiocell = row.insertCell();
+                    municipiocell.innerHTML = data[i].municipio;
+
+                    const estadocell = row.insertCell();
+                    estadocell.innerHTML = data[i].estado;
+
+                    const complementocell = row.insertCell();
+                    complementocell.innerHTML = data[i].complemento;
+                }
+            }
+        }
     };
 };
