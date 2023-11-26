@@ -348,7 +348,7 @@ div#formsection{
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: stretch;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
 }
 
@@ -377,7 +377,7 @@ body.b_admin {
     flex: 1;
     min-width: 100vw;
     min-height: 100vh;
-    align-items: center;
+    align-items: stretch;
 }
 
 .topnav {
@@ -423,6 +423,8 @@ body.b_admin {
 
 .kilobyte-table {
     border-spacing: 0px;
+    display: block;
+    overflow-x: auto;
 }
 
 .kilobyte-table th, .kilobyte-table td{
@@ -445,7 +447,7 @@ body.b_admin {
 }
 
 .overflow-scroll-x {
-    overflow: scroll;
+    overflow-x: auto;
 }
 
 .wrap{
@@ -454,4 +456,13 @@ body.b_admin {
 
 .grow{
     flex: 1;
+}
+
+.align-center {
+    align-items: center;
+}
+
+div#menu {
+    top: 0;
+    position: fixed;
 }

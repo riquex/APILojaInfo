@@ -9,16 +9,18 @@
 <body class="b_admin">
 <div class="adm_page">
     <div class="adm_menu">
-        <a href="/admin">
-            <img src="{{ url_for('static', filename='imagens/kilobyte_alpha1.png') }}" alt = "Logo" class="img_logo">
-        </a>
-        <a href="#">Cadastrar Usuário</a>
-        <a href="#">Descadastrar Usuário</a>
-        <a href="/admin/cadastroproduto">Cadastrar Produto</a>
-        <a href="/admin/gerenciarusuarios">Gerenciar Usuários</a>
-        <a href="#">Descadastrar Produto</a>
-        <a href="#">Inserir Link das Imagens dos Produtos</a>
-        <a href="#">Excluir</a>
+        <div id="menu">
+            <a href="/admin">
+                <img src="{{ url_for('static', filename='imagens/kilobyte_alpha1.png') }}" alt = "Logo" class="img_logo">
+            </a>
+            <a href="#">Cadastrar Usuário</a>
+            <a href="#">Descadastrar Usuário</a>
+            <a href="/admin/cadastroproduto">Cadastrar Produto</a>
+            <a href="/admin/gerenciarusuarios">Gerenciar Usuários</a>
+            <a href="#">Descadastrar Produto</a>
+            <a href="#">Inserir Link das Imagens dos Produtos</a>
+            <a href="#">Excluir</a>
+        </div>
     </div>
 
     <div class="adm_content {% block content_additional_classes %}grow{% endblock %}">
