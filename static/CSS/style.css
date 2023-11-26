@@ -445,3 +445,7 @@ body.b_admin {
 .clickble{
     cursor: pointer;
 }
+
+.overflow-scroll {
+    overflow: scroll;
+}
