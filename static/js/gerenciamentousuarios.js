@@ -94,7 +94,6 @@ window.onload = () => {
         update.dispatchEvent(clickEvent);
     };
 
-    // ANCHOR HANDLER
     const update = document.getElementById("update");
     update.onclick = async () => {
         const headersList = {
@@ -159,6 +158,16 @@ window.onload = () => {
                     complementocell.innerHTML = data[i].complemento;
                 }
             }
+        }
+    };
+
+    const mainrow = document.getElementById("linha-com-nomes");
+    const sticky = mainrow.offsetTop;
+    window.onscroll = () => {
+        if (window.scrollY - 41 >= sticky){
+            mainrow.classList.add("top-sticky");
+        } else {
+            mainrow.classList.remove("top-sticky");
         }
     };
 };

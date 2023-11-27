@@ -462,7 +462,7 @@ body.b_admin {
     align-items: center;
 }
 
-div#menu {
+.top-sticky {
     top: 0;
     position: fixed;
 }

@@ -1,0 +1,32 @@
+{% extends "layout/neo_admin.html" %}
+{% block title %}CADASTRO DE PRODUTOS{% endblock %}
+{% block style%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+{% endblock %}
+{% block current %}cadastroproduto{% endblock %}
+{% block content %}
+<h1 style="text-align: center; font-family: sans-serif;">Cadastrar Produto</h1>
+<div class="kilobyte-container">
+    <form action="" method="post" class="kilobyte-form">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+
+        <label for="preco">Preço</label>
+        <input type="number" name="preco" id="preco">
+        
+        <label for="descricao">Descrição</label>
+        <textarea name="descricao" id="descricao" rows="10" maxlength="4096"></textarea>
+
+        <label for="imagem" class="clickble label-btn">Selecionar Imagem</label>
+        <input type="file" name="imagem" id="imagem" accept="image/png, image/jpg, image/gif, image/jpeg">
+        <input type="text" name="" id="image-text" class="inp-text-not-apparently-disable" disabled>
+        <div id="imagesection">
+            <img src="#" alt="" srcset="" id="previewimage" class="previewimage">
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script src="{{ url_for('static', filename='js/admin/cadastroproduto.js') }}" defer></script>
+{% endblock %}

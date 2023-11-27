@@ -24,3 +24,11 @@ def fetchUsersAll():
 def gerenciarUsuarios():
     context = dict()
     return render_template('gerenciarusuarios.html', **context)
+
+@admin.route('/admin/test')
+def test():
+    return render_template('layout/neo_admin.html')
+
+@admin.route('/admin/test/cadastroproduto')
+def testCadastropoduto():
+    return render_template('neo_cadastroproduto.html')
