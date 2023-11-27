@@ -60,7 +60,3 @@ input[type=submit]:hover {
 input[type="file"]{
     display: none;
 }
-
-.clickble {
-    cursor: pointer;
-}

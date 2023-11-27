@@ -39,6 +39,7 @@ body {
 
 .sidebar a:hover:not(.active) {
     background-color: var(--kilobyte-light-gray);
+    transition: all 150ms linear;
 }
 
 img.img_logo {
@@ -91,4 +92,8 @@ div.content {
     left: 50%;
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
+}
+
+.clickble {
+    cursor: pointer;
 }

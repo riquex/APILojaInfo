@@ -32,3 +32,7 @@ def test():
 @admin.route('/admin/test/cadastroproduto')
 def testCadastropoduto():
     return render_template('neo_cadastroproduto.html')
+
+@admin.route('/admin/test/gerenciarusuarios')
+def testGerenciarUsuarios():
+    return render_template('neo_gerenciarusuarios.html')

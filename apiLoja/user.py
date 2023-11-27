@@ -35,7 +35,7 @@ def userCadastroMassivo():
 
         if isinstance(form, list):
             for row in form:
-                valido = all(key in SINGUP_REQUIREMENTS for key in row)
+                valido = all(key in row for key in SINGUP_REQUIREMENTS)
                 if valido:
                     code += um.novoUsuario(**row)
         if code != 0:
@@ -57,7 +57,7 @@ def userCadastro():
 
         valido = True
         if isinstance(form, dict):
-            valido = all(key in SINGUP_REQUIREMENTS for key in form)
+            valido = all(key in form for key in SINGUP_REQUIREMENTS)
         else: valido = False
 
         if valido:
@@ -94,6 +94,8 @@ def login():
             session['userid'] = user.idUsuario
             response = redirect('/')
             return response
+        else:
+            response.set_cookie('usersession', '', expires=0)
 
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
@@ -130,7 +132,7 @@ def userAtualizar():
     if request.method == 'PUT' or request.method == 'POST':
         form: dict = request.get_json()
 
-        if all (key in form for key in ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento')): ...
+        if all (key in form for key in SINGUP_REQUIREMENTS): ...
 
 @user.route('/userinfo/<id>', methods=['GET'])
 def getUserInfo(id):
@@ -140,8 +142,3 @@ def getUserInfo(id):
         if usuario != -1:
             return jsonify(**usuario.comoDicionario())
     return Response(404)
-
-@user.route('/useraddress/<id>', methods=['GET'])
-def getUserAddress(id):
-    return {"objeto":"0"}
-    #raise NotImplementedError("to be updated")

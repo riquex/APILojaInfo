@@ -108,7 +108,7 @@ window.onload = () => {
 
         const data = await response.json();
 
-        const table = document.getElementById("tabela-gerencimento-usuarios");
+        const table = document.getElementById("kilobyte-clients");
 
         if (table instanceof HTMLTableElement){
             while (table.rows.length > 1){
@@ -160,14 +160,4 @@ window.onload = () => {
             }
         }
     };
-
-    const mainrow = document.getElementById("linha-com-nomes");
-    const sticky = mainrow.offsetTop;
-    window.onscroll = () => {
-        if (window.scrollY - 41 >= sticky){
-            mainrow.classList.add("top-sticky");
-        } else {
-            mainrow.classList.remove("top-sticky");
-        }
-    };
-};
+}
