@@ -22,7 +22,6 @@ def fetchUsersAll():
             form: dict = request.get_json()
 
             valido = all(key in form for key in ('column', 'stringlike'))
-            print(form)
             if valido:
                 return jsonify(
                     [user.comoDicionario() for user in UserManager().pegarTodosUsuarios(form['column'], form['stringlike'])]
