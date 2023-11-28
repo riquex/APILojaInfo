@@ -98,11 +98,17 @@ class UserManager:
             return usuario
         return -1
 
-    def pegarTodosUsuarios(self) -> Iterable[User]:
-        for userData in self.__dbm.VisualizarTodosUsuariosCompletos():
-            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
-            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
-            yield usuario
+    def pegarTodosUsuarios(self, column='', stringlike='') -> Iterable[User]:
+        if (column and stringlike):
+            for userData in self.__dbm.VisualizarTodosUsuariosWhereLikeCompletos(column,stringlike):
+                idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
+                usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+                yield usuario
+        else:
+            for userData in self.__dbm.VisualizarTodosUsuariosCompletos():
+                idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
+                usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+                yield usuario
 
     def buscarEmailPorUsuarioId(self, idUsuario: int):
         return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)

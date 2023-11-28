@@ -33,6 +33,10 @@ class DBManager:
         self.__cursor.execute("SELECT * FROM TodosUsuariosCompletos")
         return self.__cursor.fetchall()
     
+    def VisualizarTodosUsuariosWhereLikeCompletos(self, column, stringlike):
+        self.__cursor.execute(f"SELECT * FROM TodosUsuariosCompletos WHERE {column} LIKE \"%{stringlike}%\"")
+        return self.__cursor.fetchall()
+    
     def VisualizarUsuariosPorEmail(self, email: str):
         self.__cursor.execute(f'SELECT * FROM todosusuarioscompletos WHERE email LIKE "{email}" LIMIT 1')
         result = self.__cursor.fetchone()

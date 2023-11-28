@@ -2,6 +2,7 @@ from flask import render_template
 from .userManager import UserManager
 from flask import Blueprint
 from flask import jsonify
+from flask import request
 from flask import g
 
 admin = Blueprint('admin', __name__)
@@ -16,6 +17,17 @@ def cadastroProduto():
 
 @admin.route('/admin/fetchusersall', methods=['GET', 'POST'])
 def fetchUsersAll():
+    if request.method == "POST":
+        if request.content_type.startswith('application/json'):
+            form: dict = request.get_json()
+
+            valido = all(key in form for key in ('column', 'stringlike'))
+            print(form)
+            if valido:
+                return jsonify(
+                    [user.comoDicionario() for user in UserManager().pegarTodosUsuarios(form['column'], form['stringlike'])]
+                )
+
     return jsonify(
             [user.comoDicionario() for user in UserManager().pegarTodosUsuarios()]
         )

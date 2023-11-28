@@ -1,4 +1,24 @@
 window.onload = () => {
+    const columntrans = {
+        id: "idUsuarios",
+        nascimento: "DataNascimento",
+        nome: "Nome",
+        telefone: "Telefone",
+        cpf: "cpf",
+        email: "email",
+        cep: "cep",
+        rua: "rua",
+        municipio: "municipio",
+        estado: "estado",
+        complemento: "complemento"
+    };
+
+    let post_obj = {
+        column: "",
+        stringlike: ""
+    }
+    let current_column = "";
+
     const id = document.getElementById("id");
     const nome = document.getElementById("nome");
     const nascimento = document.getElementById("nascimento");
@@ -95,15 +115,25 @@ window.onload = () => {
     };
 
     const update = document.getElementById("update");
+    const search_bar = document.getElementById("search-bar");
+    const search_inp = document.getElementById("seachInp");
+
     update.onclick = async () => {
         const headersList = {
             "Accept": "application/json",
-            "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+            "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+            "Content-Type": "application/json"
         }
 
+        if (search_inp instanceof HTMLInputElement)
+            post_obj["stringlike"] = search_inp.value;
+
         const response = await fetch("/admin/fetchusersall", { 
-            method: "GET",
-            headers: headersList
+            method: "POST",
+            headers: headersList,
+            body: JSON.stringify(
+                post_obj
+            )
         });
 
         const data = await response.json();
@@ -161,8 +191,6 @@ window.onload = () => {
         }
     };
 
-    const search_bar = document.getElementById("search-bar");
-
     const change_active = (event=undefined) => {
         for (const i in search_bar.children){
             if (search_bar.children[i] instanceof HTMLButtonElement){
@@ -172,6 +200,8 @@ window.onload = () => {
 
         if (event instanceof Event){
             event.target.classList.add("active");
+            post_obj["column"] = columntrans[event.target.innerHTML];
+            console.log(post_obj);
         }
     };
 
