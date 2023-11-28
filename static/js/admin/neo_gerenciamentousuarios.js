@@ -160,4 +160,24 @@ window.onload = () => {
             }
         }
     };
+
+    const search_bar = document.getElementById("search-bar");
+
+    const change_active = (event=undefined) => {
+        for (const i in search_bar.children){
+            if (search_bar.children[i] instanceof HTMLButtonElement){
+                search_bar.children[i].classList.remove("active");
+            }
+        }
+
+        if (event instanceof Event){
+            event.target.classList.add("active");
+        }
+    };
+
+    for (const i in search_bar.children){
+        if (search_bar.children[i] instanceof HTMLButtonElement){
+            search_bar.children[i].onclick = change_active;
+        }
+    }
 }

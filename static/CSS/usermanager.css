@@ -35,6 +35,11 @@
     color: rgb(255, 255, 255);
 }
 
+.search-btn:hover:not(.active) {
+    background-color: var(--kilobyte-light-gray);
+    transition: all 150ms linear;
+}
+
 button.active {
     background-color: var(--kilobyte-blue);
 }
@@ -53,4 +58,13 @@ button.active {
 
 .kilobyte-table th, .kilobyte-table td{
     border-right: 1px solid var(--kilobyte-gray);
+    text-align: center;
+}
+
+.kilobyte-table th:hover, .kilobyte-table td:hover{
+    filter: brightness(0.67);
+}
+
+.table-container{
+    overflow: auto;
 }
