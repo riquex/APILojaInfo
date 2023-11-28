@@ -22,6 +22,7 @@ user = Blueprint('user', __name__)
 def userCadastroMassivo():
     if request.method == 'POST':
         code = 0
+        size = 0
         um = UserManager()
 
         if request.content_type.startswith('application/json'):
@@ -30,18 +31,18 @@ def userCadastroMassivo():
         else:
             form = dict()
 
-        response = make_response(str(form))
-        response.status = '200'
+        response = Response(status=200)
 
         if isinstance(form, list):
+            size = len(form)
             for row in form:
                 valido = all(key in row for key in SINGUP_REQUIREMENTS)
                 if valido:
                     code += um.novoUsuario(**row)
-        if code != 0:
-            response.status = '409'
+        if code != size:
+            response = Response(status=409)
         return response
-    return redirect('/')
+    return Response(status=404)
 
 @user.route('/cadastro', methods=['GET', 'POST'])
 def userCadastro():
