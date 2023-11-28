@@ -14,10 +14,9 @@ window.onload = () => {
     };
 
     let post_obj = {
-        column: "",
+        column: "Nome",
         stringlike: ""
     }
-    let current_column = "";
 
     const id = document.getElementById("id");
     const nome = document.getElementById("nome");
