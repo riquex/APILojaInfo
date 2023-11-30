@@ -1,6 +1,6 @@
 # KILOBYTE INFOSHOP
 <div align="center">
-  <img src="https://raw.githubusercontent.com/riquex/APILojaInfo/desenv/static/imagens/kilobyte_alpha.png">
+  <img src="static/imagens/kilobyte.png">
 </div>
 
 Bem-vindo ao repositório oficial do projeto Kilobyte Infoshop!
