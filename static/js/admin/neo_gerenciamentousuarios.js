@@ -1,117 +1,68 @@
 window.onload = () => {
+    const columns = ["idUsuario","nome","dataNascimento","telefone","cpf","email","cep","rua","municipio","estado","complemento"];
     const columntrans = {
-        id: "idUsuarios",
-        nascimento: "DataNascimento",
-        nome: "Nome",
-        telefone: "Telefone",
-        cpf: "cpf",
-        email: "email",
-        cep: "cep",
-        rua: "rua",
-        municipio: "municipio",
-        estado: "estado",
-        complemento: "complemento"
+        id:         "idUsuario",
+        nascimento: "dataNascimento",
+        nome:       "nome",
+        telefone:   "telefone",
+        cpf:        "cpf",
+        email:      "email",
+        cep:        "cep",
+        rua:        "rua",
+        municipio:  "municipio",
+        estado:     "estado",
+        complemento:"complemento"
     };
 
     let post_obj = {
         column: "Nome",
-        stringlike: ""
+        stringlike: "",
+        start: -1
     }
 
-    const id = document.getElementById("id");
-    const nome = document.getElementById("nome");
-    const nascimento = document.getElementById("nascimento");
-    const telefone = document.getElementById("telefone");
-    const cpf = document.getElementById("cpf");
-    const email = document.getElementById("email");
-    const cep = document.getElementById("cep");
-    const rua = document.getElementById("rua");
-    const municipio = document.getElementById("municipio");
-    const estado = document.getElementById("estado");
-    const complemento = document.getElementById("complemento");
+    const table = document.getElementById("kilobyte-clients");
+
     const clickEvent = new Event("click");
 
-    const numSort = (a, b) => a[orberby[0]] - b[orberby[0]];
-    const strSort = (a, b) => {
-        const nomeA = a[orberby[0]].toLocaleLowerCase();
-        const nomeB = b[orberby[0]].toLocaleLowerCase();
-        if (nomeA < nomeB){
-            return -1;
-        }
-        if (nomeB > nomeB){
-            return 1;
+    let orberby = ['idUsuario', false];
+    const jackSort = (a, b) => {
+        if (a instanceof Object && b instanceof Object){
+            let valueA = a[orberby[0]];
+            let valueB = b[orberby[0]];
+            if (valueA instanceof String && valueB instanceof String){
+                valueA = valueA.toLocaleLowerCase();
+                valueB = valueB.toLocaleUpperCase();
+            }
+            if (valueA < valueB){
+                return -1;
+            }
+            if (valueA > valueB){
+                return 1;
+            }
         }
         return 0;
     };
 
-    let orberby = ['idUsuario', false, numSort];
+    const table_header_click_handle = (event) => {
+        if (event instanceof Event){
+            const column_name = columntrans[event.target.innerHTML];
+            orberby[1] = orberby[0] == column_name ? !orberby[1]: false;
+            orberby[0] = column_name;
+            update.dispatchEvent(clickEvent);
+        }
+    };
 
-    id.onclick = () => {
-        orberby[2] = orberby[0] == "idUsuario" ? !orberby[2]: false;
-        orberby[0] = "idUsuario";
-        orberby[3] = numSort;
-        update.dispatchEvent(clickEvent);
-    };
-    nome.onclick = () => {
-        orberby[2] = orberby[0] == "nome" ? !orberby[2]: false;
-        orberby[0] = "nome";
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    nascimento.onclick = () => {
-        orberby[2] = orberby[0] == "dataNascimento" ? !orberby[2]: false;
-        orberby[0] = "dataNascimento"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    telefone.onclick = () => {
-        orberby[2] = orberby[0] == "telefone" ? !orberby[2]: false;
-        orberby[0] = "telefone"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    cpf.onclick = () => {
-        orberby[2] = orberby[0] == "cpf" ? !orberby[2]: false;
-        orberby[0] = "cpf"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    email.onclick = () => {
-        orberby[2] = orberby[0] == "email" ? !orberby[2]: false;
-        orberby[0] = "email"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    cep.onclick = () => {
-        orberby[2] = orberby[0] == "cep" ? !orberby[2]: false;
-        orberby[0] = "cep"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    rua.onclick = () => {
-        orberby[2] = orberby[0] == "rua" ? !orberby[2]: false;
-        orberby[0] = "rua"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    municipio.onclick = () => {
-        orberby[2] = orberby[0] == "municipio" ? !orberby[2]: false;
-        orberby[0] = "municipio"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    estado.onclick = () => {
-        orberby[2] = orberby[0] == "estado" ? !orberby[2]: false;
-        orberby[0] = "estado"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
-    complemento.onclick = () => {
-        orberby[2] = orberby[0] == "complemento" ? !orberby[2]: false;
-        orberby[0] = "complemento"
-        orberby[3] = strSort;
-        update.dispatchEvent(clickEvent);
-    };
+    if (table instanceof HTMLTableElement){
+        const rows = table.rows;
+        const firt_row = rows.item(0);
+        const childrens = firt_row.children;
+        for(let i=0; i < childrens.length; ++i){
+            const th = childrens[i]
+            if (th instanceof HTMLTableCellElement){
+                th.onclick = table_header_click_handle;
+            }
+        }
+    }
 
     const update = document.getElementById("update");
     const search_bar = document.getElementById("search-bar");
@@ -137,54 +88,25 @@ window.onload = () => {
 
         const data = await response.json();
 
-        const table = document.getElementById("kilobyte-clients");
-
         if (table instanceof HTMLTableElement){
             while (table.rows.length > 1){
                 table.deleteRow(1);
             }
 
             if (data instanceof Array){
-
-                data.sort(orberby[3])
-                if (orberby[2])
+                //console.log(data[0]);
+                data.sort(jackSort)
+                if (orberby[1])
                     data.reverse();
 
                 for(let i = 0; i < data.length; ++i){
                     let row = table.insertRow();
 
-                    const idcell = row.insertCell();
-                    idcell.innerHTML = data[i].idUsuario;
-
-                    const nomecell = row.insertCell();
-                    nomecell.innerHTML = data[i].nome;
-
-                    const nascimentocell = row.insertCell();
-                    nascimentocell.innerHTML = data[i].dataNascimento;
-
-                    const telefonecell = row.insertCell();
-                    telefonecell.innerHTML = data[i].telefone;
-
-                    const cpfcell = row.insertCell();
-                    cpfcell.innerHTML = data[i].cpf;
-
-                    const emailcell = row.insertCell();
-                    emailcell.innerHTML = data[i].email;
-
-                    const cepcell = row.insertCell();
-                    cepcell.innerHTML = data[i].cep;
-
-                    const ruacell = row.insertCell();
-                    ruacell.innerHTML = data[i].rua;
-
-                    const municipiocell = row.insertCell();
-                    municipiocell.innerHTML = data[i].municipio;
-
-                    const estadocell = row.insertCell();
-                    estadocell.innerHTML = data[i].estado;
-
-                    const complementocell = row.insertCell();
-                    complementocell.innerHTML = data[i].complemento;
+                    for (let j = 0; j < columns.length; ++j){
+                        const cell = row.insertCell();
+                        //console.log(data[i], columns[j]);
+                        cell.innerHTML = data[i][columns[j]]
+                    }
                 }
             }
         }
@@ -209,4 +131,5 @@ window.onload = () => {
             search_bar.children[i].onclick = change_active;
         }
     }
+    update.dispatchEvent(clickEvent)
 }

@@ -32,9 +32,17 @@ class DBManager:
     def VisualizarTodosUsuariosCompletos(self):
         self.__cursor.execute("SELECT * FROM TodosUsuariosCompletos")
         return self.__cursor.fetchall()
+
+    def VisualizarTodosUsuariosCompletosLimiteCem(self, start):
+        self.__cursor.execute(f"SELECT * FROM TodosUsuariosCompletos LIMIT {start}, 100")
+        return self.__cursor.fetchall()
     
     def VisualizarTodosUsuariosWhereLikeCompletos(self, column, stringlike):
         self.__cursor.execute(f"SELECT * FROM TodosUsuariosCompletos WHERE {column} LIKE \"%{stringlike}%\"")
+        return self.__cursor.fetchall()
+    
+    def VisualizarTodosUsuariosWhereLikeCompletosLimiteCem(self, column, stringlike, start):
+        self.__cursor.execute(f"SELECT * FROM TodosUsuariosCompletos WHERE {column} LIKE \"%{stringlike}%\" LIMIT {start}, 100")
         return self.__cursor.fetchall()
     
     def VisualizarUsuariosPorEmail(self, email: str):

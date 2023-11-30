@@ -12,18 +12,18 @@ def validator(email: str, password: str, key: str):
 
 class User:
     def __init__(self, idUsuario, email, validador, Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
-        self.idUsuario = idUsuario
-        self.Nome = Nome
-        self.cpf = cpf
-        self.datanascimento = datanascimento
-        self.telefone = telefone
-        self.email = email
-        self.validador = validador
-        self.cep = cep
-        self.rua = rua
-        self.municipio = municipio
-        self.estado = estado
-        self.complemento = complemento
+        self.idUsuario: int = idUsuario
+        self.Nome: str = Nome
+        self.cpf: str = cpf
+        self.datanascimento: str | datetime = datanascimento
+        self.telefone: str = telefone
+        self.email: str = email
+        self.validador: str = validador
+        self.cep: str = cep
+        self.rua: str = rua
+        self.municipio: str = municipio
+        self.estado: str = estado
+        self.complemento: str = complemento
         self.logado = False
 
     def comoDicionario(self):
@@ -98,17 +98,21 @@ class UserManager:
             return usuario
         return -1
 
-    def pegarTodosUsuarios(self, column='', stringlike='') -> Iterable[User]:
-        if (column and stringlike):
-            for userData in self.__dbm.VisualizarTodosUsuariosWhereLikeCompletos(column,stringlike):
-                idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
-                usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
-                yield usuario
+    def pegarTodosUsuarios(self, column='', stringlike='', start=-1) -> Iterable[User]:
+        if column and stringlike:
+            if start > -1:
+                resultado_busca = self.__dbm.VisualizarTodosUsuariosWhereLikeCompletosLimiteCem(column, stringlike, start)
+            else:
+                resultado_busca = self.__dbm.VisualizarTodosUsuariosWhereLikeCompletos(column, stringlike)
+        elif column and start > -1:
+            resultado_busca = self.__dbm.VisualizarTodosUsuariosCompletosLimiteCem(start)
         else:
-            for userData in self.__dbm.VisualizarTodosUsuariosCompletos():
-                idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
-                usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
-                yield usuario
+            resultado_busca = self.__dbm.VisualizarTodosUsuariosCompletos()
+
+        for userData in resultado_busca:
+            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
+            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            yield usuario
 
     def buscarEmailPorUsuarioId(self, idUsuario: int):
         return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)
@@ -116,7 +120,3 @@ class UserManager:
     def finalizarSecaoUsuario(self, idUsuario: int):
         code = self.__dbm.FinalizarSecaoUsuario(idUsuario)
         return code
-
-if __name__ == '__main__': # Testes
-    a = UserManager()
-    print(a.IniciarSecaoUsuario("jdudmarsh8@wordpress.com", "$2a$04$KdsWiQ/t.X4/pO33WzrbFuYcb7DnfbA3UIK15nzzOcDz0Op1bOkFi", 2400))

@@ -17,18 +17,17 @@ def cadastroProduto():
 
 @admin.route('/admin/fetchusersall', methods=['GET', 'POST'])
 def fetchUsersAll():
+    argumentos_pesquisa = dict()
     if request.method == "POST":
         if request.content_type.startswith('application/json'):
-            form: dict = request.get_json()
+            form: dict[str | list, str|int|list] = request.get_json()
 
-            valido = all(key in form for key in ('column', 'stringlike'))
-            if valido:
-                return jsonify(
-                    [user.comoDicionario() for user in UserManager().pegarTodosUsuarios(form['column'], form['stringlike'])]
-                )
+            chaves_validas = [key for key in form if key in ('column', 'stringlike', 'start')]
+            for key in chaves_validas:
+                argumentos_pesquisa[key] = form[key]
 
     return jsonify(
-            [user.comoDicionario() for user in UserManager().pegarTodosUsuarios()]
+            [user.comoDicionario() for user in UserManager().pegarTodosUsuarios(**argumentos_pesquisa)]
         )
 
 @admin.route('/admin/gerenciarusuarios')
