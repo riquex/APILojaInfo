@@ -11,8 +11,8 @@ def validator(email: str, password: str, key: str):
     return sha256(email.encode() + password.encode() + key.encode()).hexdigest()
 
 class User:
-    def __init__(self, idUsuario, email, validador, Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
-        self.idUsuario: int = idUsuario
+    def __init__(self, idUsuarios, email, validador, Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
+        self.idUsuarios: int = idUsuarios
         self.Nome: str = Nome
         self.cpf: str = cpf
         self.datanascimento: str | datetime = datanascimento
@@ -28,7 +28,7 @@ class User:
 
     def comoDicionario(self):
         return {
-            'idUsuario': self.idUsuario,
+            'idUsuarios': self.idUsuarios,
             'nome': self.Nome,
             'cpf': self.cpf,
             'dataNascimento': self.datanascimento,
@@ -64,12 +64,12 @@ class UserManager:
             strLimite = limite.strftime('%Y-%m-%d %H:%M:%S')
 
             chaveSecao = uuid.uuid4()
-            idUsuario = self.__dbm.PegarUsuarioPeloEmail(email=email)
+            idUsuarios = self.__dbm.PegarUsuarioPeloEmail(email=email)
 
-            if idUsuario == -1:
+            if idUsuarios == -1:
                 raise ValueError(f'There is no user with {email =}')
 
-            _code = self.__dbm.NovaSecaoDeUsuario(idUsuario, chaveSecao.hex, strLimite)
+            _code = self.__dbm.NovaSecaoDeUsuario(idUsuarios, chaveSecao.hex, strLimite)
 
             return self.__dbm.PegarSecaoPeloId(self.__dbm.PegarUsuarioPeloEmail(email))
         return None
@@ -85,16 +85,16 @@ class UserManager:
     def buscarUsuarioPorEmail(self, email: str):
         result = self.__dbm.VisualizarUsuariosPorEmail(email=email)
         if result != -1:
-            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
-            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            idUsuarios, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
+            usuario = User(idUsuarios, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             return usuario
         return -1
     
     def buscarUsuarioPorSessao(self, sessao: str):
         result = self.__dbm.PegerUsuarioCompletoPorSessao(sessao)
         if result != -1:
-            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
-            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            idUsuarios, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
+            usuario = User(idUsuarios, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             return usuario
         return -1
 
@@ -110,13 +110,13 @@ class UserManager:
             resultado_busca = self.__dbm.VisualizarTodosUsuariosCompletos()
 
         for userData in resultado_busca:
-            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
-            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            idUsuarios, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
+            usuario = User(idUsuarios, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             yield usuario
 
-    def buscarEmailPorUsuarioId(self, idUsuario: int):
-        return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)
+    def buscarEmailPorUsuarioId(self, idUsuarios: int):
+        return self.__dbm.PegarEmailPeloUsuarioId(idUsuarios)
 
-    def finalizarSecaoUsuario(self, idUsuario: int):
-        code = self.__dbm.FinalizarSecaoUsuario(idUsuario)
+    def finalizarSecaoUsuario(self, idUsuarios: int):
+        code = self.__dbm.FinalizarSecaoUsuario(idUsuarios)
         return code

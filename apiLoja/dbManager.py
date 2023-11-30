@@ -29,6 +29,22 @@ class DBManager:
         self.__cursor.execute("SELECT * FROM carrinhopreco")
         return self.__cursor.fetchall()
 
+    def VisualizaProdutosCompletos(self):
+        self.__cursor.execute("SELECT * FROM ProdutosCompletos")
+        return self.__cursor.fetchall()
+
+    def VisualizaProdutosCompletosLimiteCem(self, start):
+        self.__cursor.execute(f"SELECT * FROM ProdutosCompletos LIMIT {start}, 100")
+        return self.__cursor.fetchall()
+
+    def VisualizaProdutosWhereLikeCompletos(self, column, stringlike):
+        self.__cursor.execute(f"SELECT * FROM ProdutosCompletos WHERE {column} LIKE \"%{stringlike}%\"")
+        return self.__cursor.fetchall()
+
+    def VisualizaProdutosWhereLikeCompletosLimiteCem(self, column, stringlike, start):
+        self.__cursor.execute(f"SELECT * FROM ProdutosCompletos WHERE {column} LIKE \"%{stringlike}%\" LIMIT {start}, 100")
+        return self.__cursor.fetchall()
+
     def VisualizarTodosUsuariosCompletos(self):
         self.__cursor.execute("SELECT * FROM TodosUsuariosCompletos")
         return self.__cursor.fetchall()

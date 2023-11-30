@@ -6,3 +6,13 @@
     <div class="prodPrice"> {{ prodPrice }} </div>
 </div>
 {% endmacro %}
+
+{% macro product_test(link='', prodTitle='', prodDescription='', prodPrice='') %}
+<div class="card">
+    <img src="{{ link }}" style="width:100%">
+    <h1>{{ prodTitle }}</h1>
+    <p class="price">{{ prodPrice }}</p>
+    <p>{{ prodDescription }}</p>
+    <p><button>Adicionar ao Carrinho</button></p>
+  </div>
+{% endmacro %}

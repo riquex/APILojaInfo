@@ -1,7 +1,7 @@
 window.onload = () => {
-    const columns = ["idUsuario","nome","dataNascimento","telefone","cpf","email","cep","rua","municipio","estado","complemento"];
+    const columns = ["idUsuarios","nome","dataNascimento","telefone","cpf","email","cep","rua","municipio","estado","complemento"];
     const columntrans = {
-        id:         "idUsuario",
+        id:         "idUsuarios",
         nascimento: "dataNascimento",
         nome:       "nome",
         telefone:   "telefone",
@@ -66,7 +66,7 @@ window.onload = () => {
 
     const update = document.getElementById("update");
     const search_bar = document.getElementById("search-bar");
-    const search_inp = document.getElementById("seachInp");
+    const search_inp = document.getElementById("searchInp");
 
     update.onclick = async () => {
         const headersList = {
@@ -130,5 +130,14 @@ window.onload = () => {
             search_bar.children[i].onclick = change_active;
         }
     }
+
+    search_inp.onkeydown = (event = undefined) => {
+        if (event instanceof Event){
+            if (event.key === 'Enter'){
+                update.dispatchEvent(clickEvent);
+            }
+        }
+    }
+
     update.dispatchEvent(clickEvent)
 }

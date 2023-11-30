@@ -39,10 +39,14 @@ def gerenciarUsuarios():
 def test():
     return render_template('layout/neo_admin.html')
 
-@admin.route('/admin/test/cadastroproduto')
+@admin.route('/admin/test/cadastroproduto', methods=['GET', 'POST'])
 def testCadastropoduto():
     return render_template('neo_cadastroproduto.html')
 
 @admin.route('/admin/test/gerenciarusuarios')
 def testGerenciarUsuarios():
     return render_template('neo_gerenciarusuarios.html')
+
+@admin.route('/admin/test/gerenciarprodutos')
+def testGerenciarProdutos():
+    return render_template('neo_gerenciarprodutos.html')
