@@ -1,4 +1,7 @@
 # KILOBYTE INFOSHOP
+<div align="center">
+  <img src="https://raw.githubusercontent.com/riquex/APILojaInfo/desenv/static/imagens/kilobyte_alpha.png">
+</div>
 
 Bem-vindo ao repositório oficial do projeto Kilobyte Infoshop!
 Este projeto é dedicado à construção de uma plataforma web, que é integrada via API'S, proporcionando uma experiência aprimorada para os clientes ao gerenciar informações relacionadas aos produtos, pedidos e muito mais.
