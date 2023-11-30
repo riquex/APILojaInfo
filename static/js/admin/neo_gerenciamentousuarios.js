@@ -29,9 +29,9 @@ window.onload = () => {
         if (a instanceof Object && b instanceof Object){
             let valueA = a[orberby[0]];
             let valueB = b[orberby[0]];
-            if (valueA instanceof String && valueB instanceof String){
+            if (typeof(valueA) === 'string' && typeof(valueB) === 'string'){
                 valueA = valueA.toLocaleLowerCase();
-                valueB = valueB.toLocaleUpperCase();
+                valueB = valueB.toLocaleLowerCase();
             }
             if (valueA < valueB){
                 return -1;
@@ -122,7 +122,6 @@ window.onload = () => {
         if (event instanceof Event){
             event.target.classList.add("active");
             post_obj["column"] = columntrans[event.target.innerHTML];
-            console.log(post_obj);
         }
     };
 
