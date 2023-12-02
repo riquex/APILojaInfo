@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     {% block head %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block style %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+        {% endblock %}
     {% endblock %}
     <title>
         {% block title %}{% endblock %} KiloByte Info Shop
@@ -15,20 +16,26 @@
     {% block header %}
         <div class="header">
             <a href="/">
-                <img src="{{ url_for('static', filename='imagens/kilobyte1.png') }}" alt="Logo" class="img_logo">
+                <img src="{{ url_for('static', filename='imagens/kilobyte_alpha1.png') }}" alt="Logo" class="img_logo">
             </a>
+
+            <div class="search-div">
+                <input type="text" name="" id="">
+                <button type="submit" id="update">&#x1F50D</button>
+            </div>
+
             {% if username is defined %}
                 <a>{{ username }}</a>
                 <a class="link_logoff" href="/logoff"> logoff</a>
+                <a href="#">&#128722</a>
             {% else %}
-                <a class="link_entrar" href="login">Entrar</a>
-                <a class="link_entrar" href="cadastro">Cadastrar</a>
-                <a class="link_carrinho" href="carrinho">Meu carrinho</a>
+            <a class="link_entrar" href="login">Entrar</a>
+            <a href="#">&#128722</a>
             {% endif %}
         </div>
     {% endblock %}
     <div id="content">{% block content %}{% endblock %}</div>
-    <footer>
+    <footer style="text-align: center;">
         {% block footer %}
         <p>Desenvolvido por Eduardo S. Addum</p>
         <p>Projeto final Curso Back-End Senai</p>

@@ -1,3 +1,5 @@
+const is_string = value => typeof value === 'string' || value instanceof String;
+
 window.onload = () => {
     const columns = ["idUsuarios","nome","dataNascimento","telefone","cpf","email","cep","rua","municipio","estado","complemento"];
     const columntrans = {
@@ -14,7 +16,7 @@ window.onload = () => {
         complemento:"complemento"
     };
 
-    let post_obj = {
+    let search_data = {
         column: "Nome",
         stringlike: "",
         start: -1
@@ -29,7 +31,7 @@ window.onload = () => {
         if (a instanceof Object && b instanceof Object){
             let valueA = a[orberby[0]];
             let valueB = b[orberby[0]];
-            if (typeof(valueA) === 'string' && typeof(valueB) === 'string'){
+            if (is_string(valueA) && is_string(valueB)){
                 valueA = valueA.toLocaleLowerCase();
                 valueB = valueB.toLocaleLowerCase();
             }
@@ -53,13 +55,12 @@ window.onload = () => {
     };
 
     if (table instanceof HTMLTableElement){
-        const rows = table.rows;
-        const firt_row = rows.item(0);
-        const childrens = firt_row.children;
-        for(let i=0; i < childrens.length; ++i){
-            const th = childrens[i]
-            if (th instanceof HTMLTableCellElement){
-                th.onclick = table_header_click_handle;
+        const firt_row = table.rows.item(0);
+        if (firt_row != null){
+            for(const element of firt_row.children){
+                if (element instanceof HTMLTableCellElement){
+                    element.onclick = table_header_click_handle;
+                }
             }
         }
     }
@@ -76,13 +77,13 @@ window.onload = () => {
         }
 
         if (search_inp instanceof HTMLInputElement)
-            post_obj["stringlike"] = search_inp.value;
+            search_data["stringlike"] = search_inp.value;
 
         const response = await fetch("/admin/fetchusersall", { 
             method: "POST",
             headers: headersList,
             body: JSON.stringify(
-                post_obj
+                search_data
             )
         });
 
@@ -99,13 +100,12 @@ window.onload = () => {
                 if (orberby[1])
                     data.reverse();
 
-                for(let i = 0; i < data.length; ++i){
-                    let row = table.insertRow();
+                for(const data_obj of data){
+                    const row = table.insertRow();
 
-                    for (let j = 0; j < columns.length; ++j){
+                    for (const name of columns){
                         const cell = row.insertCell();
-                        //console.log(data[i], columns[j]);
-                        cell.innerHTML = data[i][columns[j]]
+                        cell.innerHTML = data_obj[name]
                     }
                 }
             }
@@ -113,21 +113,19 @@ window.onload = () => {
     };
 
     const change_active = (event=undefined) => {
-        for (const i in search_bar.children){
-            if (search_bar.children[i] instanceof HTMLButtonElement){
-                search_bar.children[i].classList.remove("active");
-            }
+        for (const element in search_bar.children){
+            element.classList.remove("active");
         }
 
         if (event instanceof Event){
             event.target.classList.add("active");
-            post_obj["column"] = columntrans[event.target.innerHTML];
+            search_data["column"] = columntrans[event.target.innerHTML];
         }
     };
 
-    for (const i in search_bar.children){
-        if (search_bar.children[i] instanceof HTMLButtonElement){
-            search_bar.children[i].onclick = change_active;
+    for (const element of search_bar.children){
+        if (element instanceof HTMLButtonElement){
+            element.onclick = change_active;
         }
     }
 

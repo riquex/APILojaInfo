@@ -22,9 +22,10 @@ def fetchUsersAll():
         if request.content_type.startswith('application/json'):
             form: dict[str | list, str|int|list] = request.get_json()
 
-            chaves_validas = [key for key in form if key in ('column', 'stringlike', 'start')]
-            for key in chaves_validas:
-                argumentos_pesquisa[key] = form[key]
+            if isinstance(form, dict):
+                chaves_validas = [key for key in form if key in ('column', 'stringlike', 'start')]
+                for key in chaves_validas:
+                    argumentos_pesquisa[key] = form[key]
 
     return jsonify(
             [user.comoDicionario() for user in UserManager().pegarTodosUsuarios(**argumentos_pesquisa)]
