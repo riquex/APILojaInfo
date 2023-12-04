@@ -150,3 +150,4 @@ Agradecemos sinceramente por dedicar seu tempo à visualização do nosso projet
 - [Perfil de Henrique Messias](https://github.com/riquex)
 - [Perfil de Rafael Biscaia](https://github.com/Biscaia021)
 - [Perfil de Jorge Wallace](https://github.com/JorgeWallaceBR)
+- [Perfil de Eduardo Addum](https://github.com/ESADDUM)
