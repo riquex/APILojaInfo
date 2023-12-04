@@ -5,27 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+    {% endblock %}
     <title>
         {% block title %}{% endblock %} KiloByte Info Shop
     </title>
-    {% endblock %}
 </head>
 <body>
-    <header>
-        {% block header %}
-            <div class="header">
+    {% block header %}
+        <div class="header">
+            <a href="/">
                 <img src="{{ url_for('static', filename='imagens/kilobyte1.png') }}" alt="Logo" class="img_logo">
-                {% if username is defined %}
-                    <a>{{ username }}</a>
-                    <a class="link_logoff" href="/logoff"> logoff</a>
-                {% else %}
-                    <a class="link_entrar" href="login">Entrar</a>
-                    <a class="link_entrar" href="cadastro">Cadastrar</a>
-                    <a class="link_carrinho" href="carrinho">Meu carrinho</a>
-                {% endif %}
-            </div>
-        {% endblock %}
-    </header>
+            </a>
+            {% if username is defined %}
+                <a>{{ username }}</a>
+                <a class="link_logoff" href="/logoff"> logoff</a>
+            {% else %}
+                <a class="link_entrar" href="login">Entrar</a>
+                <a class="link_entrar" href="cadastro">Cadastrar</a>
+                <a class="link_carrinho" href="carrinho">Meu carrinho</a>
+            {% endif %}
+        </div>
+    {% endblock %}
     <div id="content">{% block content %}{% endblock %}</div>
     <footer>
         {% block footer %}

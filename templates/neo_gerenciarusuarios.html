@@ -1,0 +1,45 @@
+{% extends "layout/neo_admin.html" %}
+{% block title %}Gerenciar Usuários{% endblock %}
+{% block style%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/usermanager.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block current %}gerenciarusuarios{% endblock %}
+{% block content %}
+<div class="search-bar" id="search-bar">
+    <button class="search-btn toggle-btn">id</button>
+    <button class="search-btn toggle-btn active">nome</button>
+    <button class="search-btn toggle-btn">nascimento</button>
+    <button class="search-btn toggle-btn">telefone</button>
+    <button class="search-btn toggle-btn">cpf</button>
+    <button class="search-btn toggle-btn">email</button>
+    <button class="search-btn toggle-btn">cep</button>
+    <button class="search-btn toggle-btn">rua</button>
+    <button class="search-btn toggle-btn">municipio</button>
+    <button class="search-btn toggle-btn">estado</button>
+    <button class="search-btn toggle-btn">complemento</button>
+    <div class="search-inp-container">
+        <input type="text" name="search" id="searchInp">
+        <button type="submit" id="update"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+<div class="table-container">
+    <table class="kilobyte-table" id="kilobyte-clients">
+        <tr id="linha-com-nomes">
+            <th class="clickble" id="id">id</th>
+            <th class="clickble" id="nome">nome</th>
+            <th class="clickble" id="nascimento">nascimento</th>
+            <th class="clickble" id="telefone">telefone</th>
+            <th class="clickble" id="cpf">cpf</th>
+            <th class="clickble" id="email">email</th>
+            <th class="clickble" id="cep">cep</th>
+            <th class="clickble" id="rua">rua</th>
+            <th class="clickble" id="municipio">municipio</th>
+            <th class="clickble" id="estado">estado</th>
+            <th class="clickble" id="complemento">complemento</th>
+        </tr>
+    </table>
+</div>
+<script src="{{ url_for('static', filename='js/admin/neo_gerenciamentousuarios.js') }}"></script>
+{% endblock %}

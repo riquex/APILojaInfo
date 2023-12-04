@@ -1,24 +1,35 @@
+:root{
+    --side-bar-max-width: 20vw;
+    --kilobyte-blue: rgb(19, 131, 192);
+    --kilobyte-gray: rgb(51 51 51);
+    --kilobyte-light-gray: rgb(85 85 85);
+}
+
 header *{
     color: white !important;
+}
+
+html{
+    min-height: 100vh;
 }
 
 body{
     background-color: black;
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
-    padding-top: 25vh;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: stretch;
     justify-content: center;
     align-items: stretch;
+    margin: 0px;
 }
 
 /* head */
 
 head{
-    background-color: #333;
+    background-color: var(--kilobyte-gray);
     color: white;
     font-size: 20px;
     font-weight: 700; /*negrito*/
@@ -69,10 +80,8 @@ head{
 /* --------------------------------------------------------------------------*/
 
 /* Estilos para o cabeçalho */
-.header{
+div.header{
     background-color: #000000;
-    position: absolute;
-    top: 0px;
     color: #ffffff;
     font-size: 20px;
     font-weight: 700;
@@ -84,7 +93,6 @@ head{
     flex-wrap: nowrap;
     align-content: center;
     align-items: center;
-    width: 100%;
 }
 
 /* Estilos para a imagem do logo */
@@ -95,7 +103,7 @@ head{
 
 /* Estilos para o menu superior */
 .menu_sup {
-    background-color: #333; /* Mantém a cor de fundo original para o menu superior */
+    background-color: var(--kilobyte-gray); /* Mantém a cor de fundo original para o menu superior */
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     color: white;
@@ -129,7 +137,7 @@ head{
 }
 .ofertas{
     position: absolute;
-    background-color: rgb(19, 131, 192);
+    background-color: var(--kilobyte-blue);
     top: 750px;
     left: 50%;
     transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
@@ -140,7 +148,7 @@ head{
 }
 .placasDeVideo{
     position: absolute;
-    background-color:  rgb(19, 131, 192);
+    background-color:  var(--kilobyte-blue);
     top: 1200px;
     left: 50%;
     transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
@@ -152,7 +160,7 @@ head{
 }
 .placasMae{
     position: absolute;
-    background-color:  rgb(19, 131, 192);
+    background-color:  var(--kilobyte-blue);
     top: 1650px;
     left: 50%;
     transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
@@ -209,29 +217,74 @@ footer{
 
 /* Estilos para o menu superior */
 .menu_sup {
-    background-color: #333;
+    background-color: var(--kilobyte-gray);
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     color: white; 
 }
 
 form{
-    position: absolute;
-    background-color:  rgb(19, 131, 192);
-    top: 600px;
-    left: 50%;
-    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
-    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    display: flex;
+    background-color: var(--kilobyte-blue);
+    border-radius: 15px;
     padding: 15px;
     text-align: center;
     color: white;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
 
+form input[type="submit"]{
+    width: 100%;
+    flex: 1;
+}
 
+form input[type="file"] {
+    display: none;
+}
+
+form div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+form .label-image{
+    background-color: var(--kilobyte-gray);
+    border-radius: 7px;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    padding: 3px 12px 3px 12px;
+}
+
+div#content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+div#formsection{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .product {
-    background-color: rgb(19, 131, 192);
-    border-radius: 7%;
+    background-color: var(--kilobyte-blue);
+    border-radius: 15px;
     padding: 3px;
     display: flex;
     flex-direction: column;
@@ -251,7 +304,7 @@ form{
     min-height: 20vh;
     max-width: 20vw;
     background-color: #ffffff;
-    border-radius: 7%;
+    border-radius: 15px;
 }
 
 .productSection {
@@ -261,4 +314,155 @@ form{
     justify-content: space-evenly;
     align-items: center;
     align-content: center;
+}
+
+.adm_menu {
+    text-align: center;
+    display: flex;
+    max-width: var(--side-bar-max-width);
+    min-height: 100vh;
+    background-color: var(--kilobyte-gray);
+    color: #fff;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.adm_menu a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #555;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+}
+
+.adm_content {
+    text-align: center;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    align-items: stretch;
+    justify-content: center;
+}
+
+body.b_admin {
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    padding-top: 0vh;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.adm_page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    flex: 1;
+    min-width: 100vw;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.topnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    background-color: var(--kilobyte-gray);
+    padding: 10px 0px 10px 0px;
+}
+
+.topnav a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-top {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.kilobyte-table {
+    border-spacing: 0px;
+    display: block;
+    overflow-x: auto;
+}
+
+.kilobyte-table th, .kilobyte-table td{
+    border: 1px solid var(--kilobyte-gray);
+}
+.kilobyte-table tr{
+    background-color: var(--kilobyte-light-gray);
+}
+
+.kilobyte-table th {
+    font-weight: bolder;
+}
+
+.kilobyte-table tr:nth-child(even){
+    background-color: var(--kilobyte-blue);
+}
+
+.clickble{
+    cursor: pointer;
+}
+
+.overflow-scroll-x {
+    overflow-x: auto;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+.grow{
+    flex: 1;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.top-sticky {
+    top: 0;
+    position: fixed;
 }

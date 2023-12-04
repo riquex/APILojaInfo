@@ -1,7 +1,8 @@
-import uuid
-from hashlib import sha256
-from .dbManager import DBManager
 from datetime import datetime, timedelta
+from .dbManager import DBManager
+from typing import Iterable
+from hashlib import sha256
+import uuid
 
 SINGUP_REQUIREMENTS = ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento')
 LOGIN_REQUIREMENTS = ('email', 'senha')
@@ -10,24 +11,24 @@ def validator(email: str, password: str, key: str):
     return sha256(email.encode() + password.encode() + key.encode()).hexdigest()
 
 class User:
-    def __init__(self, idUsuario, email, validador,Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
-        self.idUsuario = idUsuario
-        self.Nome = Nome
-        self.cpf = cpf
-        self.datanascimento = datanascimento
-        self.telefone = telefone
-        self.email = email
-        self.validador = validador
-        self.cep = cep
-        self.rua = rua
-        self.municipio = municipio
-        self.estado = estado
-        self.complemento = complemento
+    def __init__(self, idUsuarios, email, validador, Nome, datanascimento, telefone, cpf, cep, rua, municipio, estado, complemento):
+        self.idUsuarios: int = idUsuarios
+        self.Nome: str = Nome
+        self.cpf: str = cpf
+        self.datanascimento: str | datetime = datanascimento
+        self.telefone: str = telefone
+        self.email: str = email
+        self.validador: str = validador
+        self.cep: str = cep
+        self.rua: str = rua
+        self.municipio: str = municipio
+        self.estado: str = estado
+        self.complemento: str = complemento
         self.logado = False
 
     def comoDicionario(self):
         return {
-            'idUsuario': self.idUsuario,
+            'idUsuarios': self.idUsuarios,
             'nome': self.Nome,
             'cpf': self.cpf,
             'dataNascimento': self.datanascimento,
@@ -63,12 +64,12 @@ class UserManager:
             strLimite = limite.strftime('%Y-%m-%d %H:%M:%S')
 
             chaveSecao = uuid.uuid4()
-            idUsuario = self.__dbm.PegarUsuarioPeloEmail(email=email)
+            idUsuarios = self.__dbm.PegarUsuarioPeloEmail(email=email)
 
-            if idUsuario == -1:
+            if idUsuarios == -1:
                 raise ValueError(f'There is no user with {email =}')
 
-            _code = self.__dbm.NovaSecaoDeUsuario(idUsuario, chaveSecao.hex, strLimite)
+            _code = self.__dbm.NovaSecaoDeUsuario(idUsuarios, chaveSecao.hex, strLimite)
 
             return self.__dbm.PegarSecaoPeloId(self.__dbm.PegarUsuarioPeloEmail(email))
         return None
@@ -84,26 +85,38 @@ class UserManager:
     def buscarUsuarioPorEmail(self, email: str):
         result = self.__dbm.VisualizarUsuariosPorEmail(email=email)
         if result != -1:
-            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
-            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            idUsuarios, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
+            usuario = User(idUsuarios, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             return usuario
         return -1
     
     def buscarUsuarioPorSessao(self, sessao: str):
         result = self.__dbm.PegerUsuarioCompletoPorSessao(sessao)
         if result != -1:
-            idUsuario, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
-            usuario = User(idUsuario, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            idUsuarios, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = result
+            usuario = User(idUsuarios, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             return usuario
         return -1
 
-    def buscarEmailPorUsuarioId(self, idUsuario: int):
-        return self.__dbm.PegarEmailPeloUsuarioId(idUsuario)
+    def pegarTodosUsuarios(self, column='', stringlike='', start=-1) -> Iterable[User]:
+        if column and stringlike:
+            if start > -1:
+                resultado_busca = self.__dbm.VisualizarTodosUsuariosWhereLikeCompletosLimiteCem(column, stringlike, start)
+            else:
+                resultado_busca = self.__dbm.VisualizarTodosUsuariosWhereLikeCompletos(column, stringlike)
+        elif column and start > -1:
+            resultado_busca = self.__dbm.VisualizarTodosUsuariosCompletosLimiteCem(start)
+        else:
+            resultado_busca = self.__dbm.VisualizarTodosUsuariosCompletos()
 
-    def finalizarSecaoUsuario(self, idUsuario: int):
-        code = self.__dbm.FinalizarSecaoUsuario(idUsuario)
+        for userData in resultado_busca:
+            idUsuarios, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
+            usuario = User(idUsuarios, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
+            yield usuario
+
+    def buscarEmailPorUsuarioId(self, idUsuarios: int):
+        return self.__dbm.PegarEmailPeloUsuarioId(idUsuarios)
+
+    def finalizarSecaoUsuario(self, idUsuarios: int):
+        code = self.__dbm.FinalizarSecaoUsuario(idUsuarios)
         return code
-
-if __name__ == '__main__': # Testes
-    a = UserManager()
-    print(a.IniciarSecaoUsuario("jdudmarsh8@wordpress.com", "$2a$04$KdsWiQ/t.X4/pO33WzrbFuYcb7DnfbA3UIK15nzzOcDz0Op1bOkFi", 2400))

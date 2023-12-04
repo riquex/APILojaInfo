@@ -1,55 +1,58 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuários</title>
-</head>
-</head>
-<body>
-    {% extends "base_limpa.html" %}
-    {% block content %}
-    <h1>Cadastro de Usuários</h1>
+{% extends "layout/base_limpa.html" %}
+{% block content %}
+<div id="formsection">
+    <h1>Cadastro de Usuário</h1>
     <form action="/cadastro" method="post">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" required><br>
-
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required><br>
-
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" required><br>
-
-        <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" id="cpf" required><br>
-
-        <label for="datanascimento">Data de Nascimento:</label>
-        <input type="date" name="datanascimento" id="datanascimento" required><br>
-
-        <label for="telefone">Telefone:</label>
-        <input type="tel" name="telefone" id="telefone" required><br>
-
-        <label for="cep">CEP:</label>
-        <input type="text" name="cep" id="cep" required><br>
-
-        <label for="rua">Rua:</label>
-        <input type="text" name="rua" id="rua" required><br>
-
-        <label for="municipio">Município:</label>
-        <input type="text" name="municipio" id="municipio" required><br>
-
-        <label for="estado">Estado:</label>
-        <input type="text" name="estado" id="estado" required><br>
-
-        <label for="complemento">Complemento:</label>
-        <input type="text" name="complemento" id="complemento"><br>
-
-        <input type="submit" value="Cadastrar" id="submit_form">
-        <div id="Mensagem" style="visibility: hidden;">  </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required>
+        </div>
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required>
+        </div>
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" id="cpf" required>
+        </div>
+        <div>
+            <label for="datanascimento">Data de Nascimento:</label>
+            <input type="date" name="datanascimento" id="datanascimento" pattern="\d{1,2}/\d{1,2}/\d{4}" required>
+        </div>
+        <div>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" name="telefone" id="telefone" required>
+        </div>
+        <div>
+            <label for="cep">CEP:</label>
+            <input type="text" name="cep" id="cep" required>
+        </div>
+        <div>
+            <label for="rua">Rua:</label>
+            <input type="text" name="rua" id="rua" required>
+        </div>
+        <div>
+            <label for="municipio">Município:</label>
+            <input type="text" name="municipio" id="municipio" required>
+        </div>
+        <div>
+            <label for="estado">Estado:</label>
+            <input type="text" name="estado" id="estado" required>
+        </div>
+        <div>
+            <label for="complemento">Complemento:</label>
+            <input type="text" name="complemento" id="complemento">
+        </div>
+        <div>
+            <input type="submit" value="Cadastrar" id="submit_form">
+            <div id="Mensagem" style="visibility: hidden;">  </div>
+        </div>
     </form>
 
     <script src="static\js\cadastro.js"></script>
-    {% endblock %}
-</body>
-</html>
-
+</div>
+{% endblock %}

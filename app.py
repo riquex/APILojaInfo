@@ -1,5 +1,6 @@
 from apiLoja import loja, user, venda, produtos, admin
 from flask import Flask, g, session
+from datetime import timedelta
 import os
 
 app = Flask(__name__)
@@ -9,6 +10,7 @@ app.register_blueprint(admin.admin)
 app.register_blueprint(venda.venda)
 app.register_blueprint(produtos.produtos)
 app.secret_key = os.urandom(24)
+app.permanent_session_lifetime = timedelta(hours=24)
 
 @app.errorhandler(404)
 def rotaNaoEncontrada(Erro):

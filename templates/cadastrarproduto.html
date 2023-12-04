@@ -1,19 +1,30 @@
-    {% block titulo %} CADASTRO DE PRODUTOS {% endblock %}
-
-
-    {% extends "admin.html" %}
-    {% block content %}
-
-    <h1>Cadastro de Usuários</h1>
-    <form action="/login" method="post">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email" required><br>
-
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required><br>
-
-        <input type="submit" value="Login" id="submit_form">
-    </form>
-
-    <script src="static\js\cadastro.js"></script>
-    {% endblock %}
+{% extends "admin.html" %}
+{% block titulo %} CADASTRO DE PRODUTOS {% endblock %}
+{% block content_additional_classes%}grow align-center{% endblock %}
+{% block content %}
+<h1>Cadastro de Produtos</h1>
+<form method="post">
+    <div>
+        <label for="nomeproduto">Nome:</label>
+        <input type="text" name="nomeproduto" id="nomeproduti" required>
+    </div>
+    <div>
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao" id="descricao" required>
+    </div>
+    <div>
+        <label for="preco">Preço:</label>
+        <input type="number" name="preco" id="preco" required>
+    </div>
+    <div>
+        <label for="imagem" class="label-image">Imagem</label>
+        <input type="file" name="imagem" id="imagem" accept="image/*">
+        <input type="text" name="" id="image-text" disabled>
+    </div>
+    <div id="imagesection">
+        <img src="#" alt="" srcset="" id="previewimage" style="max-width: 25vw;">
+    </div>
+    <input type="submit" value="Login" id="submit_form">
+</form>
+<script src="{{ url_for('static', filename='js/cadastroproduto.js') }}"></script>
+{% endblock %}

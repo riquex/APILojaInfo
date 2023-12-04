@@ -18,31 +18,59 @@ from flask import g
 
 user = Blueprint('user', __name__)
 
+@user.route('/cadastro/massivo', methods=["POST"])
+def userCadastroMassivo():
+    if request.method == 'POST':
+        code = 0
+        size = 0
+        um = UserManager()
+
+        if request.content_type.startswith('application/json'):
+            form: dict|list[dict] = request.get_json()
+            print(type(form))
+        else:
+            form = dict()
+
+        response = Response(status=200)
+
+        if isinstance(form, list):
+            size = len(form)
+            for row in form:
+                valido = all(key in row for key in SINGUP_REQUIREMENTS)
+                if valido:
+                    code += um.novoUsuario(**row)
+        if code != size:
+            response = Response(status=409)
+        return response
+    return Response(status=404)
+
 @user.route('/cadastro', methods=['GET', 'POST'])
 def userCadastro():
     response = make_response(render_template('cadastro.html'))
 
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
-            form: dict = request.get_json()
+            form: dict | list[dict] = request.get_json()
         elif request.content_type.startswith('application/x-www-form-urlencoded'):
             form = request.form
         else:
             form = dict()
 
         valido = True
-        for i in SINGUP_REQUIREMENTS:
-            if i not in form:
-                valido = False
-                break
+        if isinstance(form, dict):
+            valido = all(key in form for key in SINGUP_REQUIREMENTS)
+        else: valido = False
 
         if valido:
             code = UserManager().novoUsuario(**form)
 
             if code == 0:
                 flash('Algo deu errado!', 'error')
+                response.status = "409"
             else:
-                response = redirect(url_for('user.login'))
+                response = redirect(url_for('user.login'), code=201)
+        else:
+            response.status = "409"
 
     return response
 
@@ -67,6 +95,8 @@ def login():
             session['userid'] = user.idUsuario
             response = redirect('/')
             return response
+        else:
+            response.set_cookie('usersession', '', expires=0)
 
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
@@ -103,7 +133,7 @@ def userAtualizar():
     if request.method == 'PUT' or request.method == 'POST':
         form: dict = request.get_json()
 
-        if all (key in form for key in ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento')): ...
+        if all (key in form for key in SINGUP_REQUIREMENTS): ...
 
 @user.route('/userinfo/<id>', methods=['GET'])
 def getUserInfo(id):
@@ -113,8 +143,3 @@ def getUserInfo(id):
         if usuario != -1:
             return jsonify(**usuario.comoDicionario())
     return Response(404)
-
-@user.route('/useraddress/<id>', methods=['GET'])
-def getUserAddress(id):
-    return {"objeto":"0"}
-    #raise NotImplementedError("to be updated")

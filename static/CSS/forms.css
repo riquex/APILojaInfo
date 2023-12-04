@@ -1,0 +1,62 @@
+:root{
+    --kilobyte-blue: rgb(19, 131, 192);
+    --kilobyte-dark-blue: rgb(22 70 120);
+    --kilobyte-gray: rgb(51 51 51);
+    --kilobyte-light-gray: rgb(85 85 85);
+    --kilobyte-almost-white: rgb(222, 222, 222);
+    --kilobyte-background-color: rgb(0, 0, 0);
+}
+
+img.previewimage {
+    width: 100%;
+}
+
+input[type=text].inp-text-not-apparently-disable {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.label-btn{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--kilobyte-blue);
+}
+
+.label-btn:hover{
+    background-color: var(--kilobyte-dark-blue);
+    transition: background-color 150ms linear;
+}
+
+div.kilobyte-container {
+    border-radius: 7px;
+    background-color: var(--kilobyte-gray);
+    padding: 20px;
+}
+
+input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--kilobyte-light-gray);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: var(--kilobyte-blue);
+    color: var(--kilobyte-almost-white);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: var(--kilobyte-dark-blue);
+}
+
+input[type="file"]{
+    display: none;
+}

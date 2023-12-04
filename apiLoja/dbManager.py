@@ -29,8 +29,36 @@ class DBManager:
         self.__cursor.execute("SELECT * FROM carrinhopreco")
         return self.__cursor.fetchall()
 
+    def VisualizaProdutosCompletos(self):
+        self.__cursor.execute("SELECT * FROM ProdutosCompletos")
+        return self.__cursor.fetchall()
+
+    def VisualizaProdutosCompletosLimiteCem(self, start):
+        self.__cursor.execute(f"SELECT * FROM ProdutosCompletos LIMIT {start}, 100")
+        return self.__cursor.fetchall()
+
+    def VisualizaProdutosWhereLikeCompletos(self, column, stringlike):
+        self.__cursor.execute(f"SELECT * FROM ProdutosCompletos WHERE {column} LIKE \"%{stringlike}%\"")
+        return self.__cursor.fetchall()
+
+    def VisualizaProdutosWhereLikeCompletosLimiteCem(self, column, stringlike, start):
+        self.__cursor.execute(f"SELECT * FROM ProdutosCompletos WHERE {column} LIKE \"%{stringlike}%\" LIMIT {start}, 100")
+        return self.__cursor.fetchall()
+
     def VisualizarTodosUsuariosCompletos(self):
         self.__cursor.execute("SELECT * FROM TodosUsuariosCompletos")
+        return self.__cursor.fetchall()
+
+    def VisualizarTodosUsuariosCompletosLimiteCem(self, start):
+        self.__cursor.execute(f"SELECT * FROM TodosUsuariosCompletos LIMIT {start}, 100")
+        return self.__cursor.fetchall()
+    
+    def VisualizarTodosUsuariosWhereLikeCompletos(self, column, stringlike):
+        self.__cursor.execute(f"SELECT * FROM TodosUsuariosCompletos WHERE {column} LIKE \"%{stringlike}%\"")
+        return self.__cursor.fetchall()
+    
+    def VisualizarTodosUsuariosWhereLikeCompletosLimiteCem(self, column, stringlike, start):
+        self.__cursor.execute(f"SELECT * FROM TodosUsuariosCompletos WHERE {column} LIKE \"%{stringlike}%\" LIMIT {start}, 100")
         return self.__cursor.fetchall()
     
     def VisualizarUsuariosPorEmail(self, email: str):
@@ -60,7 +88,25 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
-
+    
+    def InserirImagem(self, idproduto: int, staticlink: str):
+        try:
+            self.__cursor.callproc('novaImagem', (idproduto, staticlink))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+    
+    def DeletarTodasImagens(self, idproduto: int):
+        try:
+            self.__cursor.callproc('RemoverTodasImagensDoProduto', (idproduto,))
+            self.mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+    
     def AtualizacaoCompletaUsuario(self, IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
         try:
             self.__cursor.callproc('AtualizacaoCompletaUsuario', (IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento))
