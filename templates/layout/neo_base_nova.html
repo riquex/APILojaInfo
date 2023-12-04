@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block style %}
         <link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/navbar.css') }}">
         {% endblock %}
     {% endblock %}
     <title>
@@ -14,14 +15,23 @@
 </head>
 <body>
     {% block header %}
-        <div class="header">
+        <div class="navbar">
             <a href="/">
                 <img src="{{ url_for('static', filename='imagens/kilobyte_alpha1.png') }}" alt="Logo" class="img_logo">
             </a>
 
             <div class="search-div">
-                <input type="text" name="" id="">
-                <button type="submit" id="update">&#x1F50D</button>
+                <input type="search" name="">
+                <div class="hamburger-lines" id="hamburger">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div id="drop-down" class="dropdown-content">
+                    <a href="#">Lorem</a>
+                    <a href="#">Lorem</a>
+                    <a href="#">Lorem</a>
+                </div>
             </div>
 
             {% if username is defined %}
@@ -29,7 +39,7 @@
                 <a class="link_logoff" href="/logoff"> logoff</a>
                 <a href="#">&#128722</a>
             {% else %}
-            <a class="link_entrar" href="login">Entrar</a>
+            <a class="border-btn" href="login">Entrar</a>
             <a href="#">&#128722</a>
             {% endif %}
         </div>
@@ -43,5 +53,6 @@
         <p>Todos os direitos reservados - Senai Maracanã - 2023</p>
         {% endblock %}
     </footer>
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 </body>
 </html>

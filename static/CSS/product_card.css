@@ -1,3 +1,5 @@
+@import url();
+
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: rgb(0, 28, 56);
@@ -5,6 +7,10 @@
     margin: auto;
     text-align: center;
     font-family: arial;
+    border-radius: 7px;
+}
+
+.card img {
     border-radius: 7px;
 }
 
