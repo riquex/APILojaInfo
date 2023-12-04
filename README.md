@@ -97,3 +97,56 @@ Interação Tecnológica:
   <img src="static/imagens/Cadastro de usuários.png">
 </div>
 
+# Plataforma Kilobyte Inforshop - Login de Usuários
+
+Bem vindo à sua porta de entrada personalizada! Nossa tela de login e senha foi projetada para garantir a segurança e facilitar o acesso à sua conta. Aqui está como você pode usar esta interface:
+
+Nome do Usuário:
+
+Insira o nome de usuário exclusivo que você escolheu durante o cadastro. Este é o seu identificador único na plataforma.
+
+Senha Segura:
+
+Digite sua senha segura para acessar sua conta. Certifique-se de usar uma combinação de letras, números e caracteres especiais para garantir a segurança.
+Nossa tela de login utiliza medidas avançadas de segurança, incluindo criptografia de ponta a ponta, para proteger suas informações pessoais. A proteção de seus dados é nossa prioridade.
+
+<div align="center">
+  <img src="static/imagens/Página de login de clientes.png">
+</div>
+
+# Plataforma Kilobyte - Pagina de Produtos
+
+Explore nossa emocionante tela de exposição de produtos, onde a variedade encontra a conveniência. Aqui, apresentamos uma experiência de compra envolvente, repleta de opções e facilidades. 
+
+## Veja como você pode aproveitar ao máximo:
+
+Exploração de Produtos:
+
+Navegue por categorias cuidadosamente organizadas e descubra uma ampla gama de produtos de alta qualidade. Deixe-se encantar pelas imagens nítidas e específicas.
+
+Adicionar ao Carrinho:
+
+Encontrou algo que ama? Basta clicar em "Meu Carrinho" para acumular seus itens desejados.
+
+Opções de conta:
+
+Entrar: Para usuários cadastrados, clique em "Entrar" e seja redirecionado à tela de login e senha para acesso rápido à sua conta personalizada.
+Cadastrar: Se é sua primeira visita, clique em "Cadastrar" e siga os passos para criar uma conta, desbloqueando vantagens exclusivas e simplificando compras futuras.
+
+Visualizar Carrinho:
+
+Acesse seu carrinho a qualquer momento para revisar, ajustar detalhes ou finalizar suas escolhas. Uma jornada de compras totalmente personalizada está ao seu alcance.
+
+<div align="center">
+  <img src="static/imagens/Página inicial do Site.png">
+</div>
+
+# AGRADECIMENTOS
+
+Agradecemos sinceramente por dedicar seu tempo à visualização do nosso projeto. Foi uma honra compartilhar nossa visão e funcionalidades com você. Se você tiver comentários ou dúvidas, ficaremos gratos em recebê-los, pois seu envolvimento é fundamental para o aprimoramento contínuo de nossa plataforma. Esperamos ansiosamente oferecer a você uma experiência completa e satisfatória em breve. Obrigado pela oportunidade de nos conectar!
+
+# Administradores 
+
+- [Perfil de Henrique Messias]([https://github.com/joao123](https://github.com/riquex))
+- [Perfil de Rafael Biscaia]([https://github.com/maria456](https://github.com/Biscaia021))
+- [Perfil de Jorge Wallace]([https://github.com/pedro789](https://github.com/JorgeWallaceBR)https://github.com/JorgeWallaceBR)
