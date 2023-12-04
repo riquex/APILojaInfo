@@ -40,20 +40,24 @@ Adicione uma imagem para proporcionar uma experiência visual impactante. Faça 
 
 # Plaforma Kilobyte Infoshop - Gerenciamento de Usuários
 
-Bem-vindo à nossa página dedicada aos dados cadastrais dos clientes! Aqui, fornecemos uma visão abrangente e organizada das informações essenciais para uma gestão eficiente. 
+Bem-vindo à página dedicada aos dados cadastrais dos clientes! Aqui, fornecemos uma visão abrangente e organizada das informações essenciais para uma gestão eficiente. 
 
 ## Veja como utilizar cada recurso:
 
 Nome, Nascimento e Contato:
+
 Encontre o nome completo do cliente, sua data de nascimento e informações de contato, incluindo número de telefone e e-mail. Esses detalhes são cruciais para personalizar e aprimorar o atendimento.
 
 Documentação Pessoal:
+
 Visualize de forma segura a identidade do cliente através dos campos de Identidade (RG) e CPF. Esses dados são protegidos com medidas robustas de segurança para garantir a confidencialidade.
 
 Endereço Residencial:
+
 Conheça o endereço do cliente com detalhes específicos, como CEP, rua, município e estado. Essas informações são valiosas para envios, correspondências e estratégias de logística.
 
 Complemento:
+
 O campo de complemento permite adicionar informações adicionais sobre o endereço, garantindo uma precisão ainda maior.
 Utilizando a Pesquisa:
 
@@ -66,4 +70,31 @@ Os dados utilizados para visualizão desta experiencia são meremente ilustrativ
   <img src="static/imagens/Gerenciar os Usuários.png">
 </div>
 
+# Plaforma Kilobyte Infoshop - Cadastro de Usuários
+
+Bem-vindo à nossa plataforma. Esta tela é dedicada ao cadastro de usuários! Aqui, simplificamos o processo de cadastro para proporcionar a você uma experiência rápida e segura. Siga os passos abaixo para se cadastrar:
+
+## Preenchimento de Dados Pessoais:
+
+Comece fornecendo seus dados básicos, incluindo Nome, Data de Nascimento, Telefone, Identidade (RG), CPF, E-mail, CEP e Endereço. Essas informações são essenciais para personalizar sua experiência na plataforma.
+
+Configuração da Conta:
+
+Escolha um nome de usuário único e uma senha segura. Essas credenciais garantirão que apenas você tenha acesso à sua conta, mantendo seus dados protegidos.
+
+Verificação de Identidade:
+
+Em alguns casos, podemos solicitar informações adicionais para verificar sua identidade e garantir a segurança de todas as transações.
+
+Conclusão do Cadastro:
+
+Após preencher todos os campos necessários, revise as informações e clique em "Cadastrar". Pronto! Você agora faz parte da nossa comunidade.
+
+Interação Tecnológica:
+
+É importante destacar que os dados fornecidos durante o cadastro são integrados à nossa plataforma por meio de tecnologia avançada. Isso permite uma comunicação eficiente entre as informações cadastradas por você e os dados acessíveis pelos administradores. Essa sincronização garante uma gestão eficaz e segura dos dados, promovendo uma experiência confiável para todos os usuários.
+
+<div align="center">
+  <img src="static/imagens/Cadastro de usuários.png">
+</div>
 
