@@ -12,4 +12,9 @@ A infraestrutura da API foi construída utilizando o MySQL como banco de dados p
 
 ## Metodologia Ágil - Kanban
 
+<div align="center">
+  <img src="static/imagens/trello.png">
+</div>
+
+
 Para garantir um desenvolvimento eficiente e flexível, adotamos a metodologia ágil com ênfase no framework Kanban. Esta abordagem permite uma gestão transparente e contínua do fluxo de trabalho, proporcionando uma visão clara das tarefas em andamento, pendentes e concluídas. O uso do Kanban nos ajuda a adaptar e priorizar as atividades de forma dinâmica, otimizando o processo de desenvolvimento.
