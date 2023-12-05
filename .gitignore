@@ -163,3 +163,4 @@ cython_debug/
 # Peotry
 poetry.lock
 temp.json
+.vscode/

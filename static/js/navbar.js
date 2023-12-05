@@ -1,11 +1,15 @@
 window.onload = () => {
+    const drop_down = document.getElementById("drop-down");
+
     window.onclick = (event) => {
-        const drop_down = document.getElementById("drop-down");
         if (event instanceof Event){
-            if(event.target == drop_down){
-                drop_down.classList.add("show");
-            } else {
-                drop_down.classList.remove("show");
+            const target = event.target;
+            if(target instanceof HTMLElement){
+                if(target.matches('.drop-down-link, .hambuger-lines, .line, .dropdown-content')){
+                    drop_down.classList.add("show");
+                } else {
+                    drop_down.classList.remove("show");
+                }
             }
         }
     };
