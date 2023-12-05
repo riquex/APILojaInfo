@@ -8,7 +8,7 @@
 {% block content %}
 <h1 style="text-align: center; font-family: sans-serif;">Cadastrar Produto</h1>
 <div class="kilobyte-container">
-    <form action="" method="post" class="kilobyte-form">
+    <div class="kilobyte-form">
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome">
 
@@ -20,13 +20,13 @@
 
         <label for="imagem" class="clickble label-btn">Selecionar Imagem</label>
         <input type="file" name="imagem" id="imagem" accept="image/png, image/jpg, image/gif, image/jpeg">
-        <input type="text" name="" id="image-text" class="inp-text-not-apparently-disable" disabled>
+        <input type="text" name="image-text" id="image-text" class="inp-text-not-apparently-disable" disabled>
         <div id="imagesection">
             <img src="#" alt="" srcset="" id="previewimage" class="previewimage">
         </div>
 
-        <input type="submit" value="Submit">
-    </form>
+        <input name="submit" type="submit" value="Submit" id="submit">
+    </div>
 </div>
 <script src="{{ url_for('static', filename='js/admin/cadastroproduto.js') }}" defer></script>
 {% endblock %}

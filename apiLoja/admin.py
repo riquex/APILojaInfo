@@ -3,7 +3,10 @@ from .userManager import UserManager
 from flask import Blueprint
 from flask import jsonify
 from flask import request
+from io import BytesIO
+from PIL import Image
 from flask import g
+import base64
 
 admin = Blueprint('admin', __name__)
 
@@ -42,6 +45,22 @@ def test():
 
 @admin.route('/admin/test/cadastroproduto', methods=['GET', 'POST'])
 def testCadastropoduto():
+    if request.method == "POST":
+        if request.content_type.startswith('application/json'):
+            form: dict[str | list, str|int|list] = request.get_json()
+        elif request.content_type.startswith('application/x-www-form-urlencoded'):
+            form = request.form
+        else:
+            form = dict()
+        
+        valido = all(key in form for key in ('nome', 'preco', 'image-text', 'image64', 'descricao'))
+        if valido:
+            image64 = form['image64']
+            imagebytes = base64.b64decode(image64, validate=True)
+            img = Image.open(BytesIO(imagebytes))
+            img.save('gg.png')
+
+        print(form.keys(),)
     return render_template('neo_cadastroproduto.html')
 
 @admin.route('/admin/test/gerenciarusuarios')
