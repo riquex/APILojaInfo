@@ -1,6 +1,8 @@
-from flask import render_template
 from .userManager import UserManager
+from flask import render_template
+from flask import make_response
 from flask import Blueprint
+from flask import Response
 from flask import jsonify
 from flask import request
 from io import BytesIO
@@ -45,6 +47,7 @@ def test():
 
 @admin.route('/admin/test/cadastroproduto', methods=['GET', 'POST'])
 def testCadastropoduto():
+    response = make_response(render_template('neo_cadastroproduto.html'))
     if request.method == "POST":
         if request.content_type.startswith('application/json'):
             form: dict[str | list, str|int|list] = request.get_json()
@@ -56,13 +59,15 @@ def testCadastropoduto():
         valido = all(key in form for key in ('nome', 'preco', 'image-text', 'image64', 'descricao'))
         if valido:
             image64 = form['image64']
+            hearder, image64 = image64.split(',')
+            form['image64'] = hearder
             imagebytes = base64.b64decode(image64, validate=True)
-            img = Image.open(BytesIO(imagebytes))
-            img.save('gg.png')
+            img = Image.open(BytesIO(imagebytes)).convert('RGB')
+            img.save('gg.webp', 'WEBP')
+        response = Response(status=200)
 
-        print(form.keys(),)
-    return render_template('neo_cadastroproduto.html')
-
+        print(form)
+    return response
 @admin.route('/admin/test/gerenciarusuarios')
 def testGerenciarUsuarios():
     return render_template('neo_gerenciarusuarios.html')

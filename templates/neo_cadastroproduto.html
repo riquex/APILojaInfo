@@ -3,6 +3,7 @@
 {% block style%}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
 {% endblock %}
 {% block current %}cadastroproduto{% endblock %}
 {% block content %}
@@ -24,9 +25,21 @@
         <div id="imagesection">
             <img src="#" alt="" srcset="" id="previewimage" class="previewimage">
         </div>
-
-        <input name="submit" type="submit" value="Submit" id="submit">
+        
+        <div style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: nowrap;
+        ">
+            <input name="submit" type="submit" value="Submit" id="submit">
+            <div class="lds-facebook"><div></div><div></div><div></div></div>
+        </div>
     </div>
 </div>
+<div class="snackbar success"> Registro Bem sucedido</div>
+<div class="snackbar fail"> Registro Mal sucedido</div>
 <script src="{{ url_for('static', filename='js/admin/cadastroproduto.js') }}" defer></script>
 {% endblock %}

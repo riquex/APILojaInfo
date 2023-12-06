@@ -1,8 +1,8 @@
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
     reader.onerror = reject;
+    reader.readAsDataURL(file);
 });
 
 window.onload = function(){
@@ -27,7 +27,7 @@ window.onload = function(){
         })
     }
 
-    submit.onclick = async (event) => {
+    submit.onclick = async () => {
         let post_obj = {};
         for (const input of document.getElementsByTagName("input")){
             post_obj[input.name] = input.value;
@@ -40,19 +40,21 @@ window.onload = function(){
             if (files instanceof FileList){
                 const file = files.item(0);
                 if (file instanceof File){
-                    const buf = await file.arrayBuffer();
-                    const b64 = btoa(new Uint8Array(buf).reduce((data, byte) => data + String.fromCharCode(byte), ''));
-                    
+                    const b64 = await toBase64(file);
                     post_obj["image64"] = b64;
                 }
             }
         }
 
-
         const headersList = {
             "Accept": "application/json",
             "User-Agent": "Thunder Client (https://www.thunderclient.com)",
             "Content-Type": "application/json"
+        }
+
+        let load = document.querySelector(".lds-facebook")
+        if (load != null){
+            load.classList.add("inline-block");
         }
 
         const response = await fetch("/admin/test/cadastroproduto", { 
@@ -62,5 +64,16 @@ window.onload = function(){
                 post_obj
             )
         });
+
+        const snackbar_type = (response.status === 200) ? "success" : "fail";
+        const success = document.querySelector(`.snackbar.${snackbar_type}`);
+        if (success instanceof HTMLDivElement){
+            success.classList.add("show");
+            setTimeout(()=>{success.classList.remove("show")}, 3000);
+        }
+
+        if (load != null){
+            load.classList.remove("inline-block");
+        }
     };
 }
