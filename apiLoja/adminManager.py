@@ -7,11 +7,16 @@ class AdminManager():
     def __init__(self):
         self.__dbm = DBManager()
 
-    def InsercaoCompletaProduto(self, nome: str, descricao: str, preco: int, quantidade: int, imagem: Image): ...
+    def InsercaoCompletaProduto(self, nome: str, descricao: str, preco: int, quantidade: int, imagem: Image):
+        if isinstance(imagem, Image):
+            img_name = path.join('static','prodimages', f'{uuid4()}.webp')
+            imagem.save(img_name, 'WEBP')
+            #self.__dbm.InsercaoCompletaProduto(nome, descricao, preco, 9999999, img_name)
+            return img_name
 
     def imagemProdutoInserir(self, id: int, image: Image):
         if isinstance(image, Image):
-            img_name = path.join('static','prodimages', f'{uuid4()}.webp')
+            img_name = path.join('static', 'prodimages', f'{uuid4()}.webp')
             image.save(img_name, 'WEBP')
             self.__dbm.InserirImagemProduto(id, img_name)
             return img_name

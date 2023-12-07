@@ -57,7 +57,7 @@ def testCadastropoduto():
             form = request.form
         else:
             form = dict()
-        
+
         valido = all(key in form for key in ('nome', 'preco', 'image-text', 'image64', 'descricao'))
         if valido:
             try:
@@ -68,6 +68,14 @@ def testCadastropoduto():
                 img = Image.open(BytesIO(imagebytes)).convert('RGB')
                 #saveProductImage(img)
                 response = Response(status=200)
+                result = AdminManager().InsercaoCompletaProduto(
+                    form['nome'],
+                    form['descricao'],
+                    form['preco'],
+                    9999999,
+                    img
+                )
+                print(result)
             except:
                 print_exc()
                 response = Response(status=500)
