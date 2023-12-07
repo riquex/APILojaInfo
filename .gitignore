@@ -164,3 +164,4 @@ cython_debug/
 poetry.lock
 temp.json
 .vscode/
+static/prodimages/*
