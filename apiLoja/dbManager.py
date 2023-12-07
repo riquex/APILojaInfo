@@ -89,9 +89,9 @@ class DBManager:
             return 0
         return 1
     
-    def InserirImagem(self, idproduto: int, staticlink: str):
+    def InserirImagemProduto(self, idproduto: int, staticlink: str):
         try:
-            self.__cursor.callproc('novaImagem', (idproduto, staticlink))
+            self.__cursor.callproc('NovaImagemProduto', (idproduto, staticlink))
             self.__mydb.commit()
         except Exception:
             traceback.print_exc()
@@ -204,9 +204,9 @@ class DBManager:
             return 0
         return 1
 
-    def InsercaoCompletaProduto(self, nome: str, descricao: str, preco: int, quantidade: int):
+    def InsercaoCompletaProduto(self, nome: str, descricao: str, preco: int, quantidade: int, staticklink: str):
         try:
-            self.__cursor.execute("InsercaoCompletaProduto", (nome, descricao, preco, quantidade))
+            self.__cursor.execute("InsercaoCompletaProduto", (nome, descricao, preco, quantidade, staticklink))
             self.__mydb.commit()
         except Exception:
             traceback.print_exc()

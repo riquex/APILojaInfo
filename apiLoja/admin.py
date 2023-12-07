@@ -1,6 +1,8 @@
+from .adminManager import AdminManager
 from .userManager import UserManager
 from flask import render_template
 from flask import make_response
+from traceback import print_exc
 from flask import Blueprint
 from flask import Response
 from flask import jsonify
@@ -58,15 +60,19 @@ def testCadastropoduto():
         
         valido = all(key in form for key in ('nome', 'preco', 'image-text', 'image64', 'descricao'))
         if valido:
-            image64 = form['image64']
-            hearder, image64 = image64.split(',')
-            form['image64'] = hearder
-            imagebytes = base64.b64decode(image64, validate=True)
-            img = Image.open(BytesIO(imagebytes)).convert('RGB')
-            img.save('gg.webp', 'WEBP')
-        response = Response(status=200)
-
-        print(form)
+            try:
+                image64 = form['image64']
+                hearder, image64 = image64.split(',')
+                form['image64'] = hearder
+                imagebytes = base64.b64decode(image64, validate=True)
+                img = Image.open(BytesIO(imagebytes)).convert('RGB')
+                #saveProductImage(img)
+                response = Response(status=200)
+            except:
+                print_exc()
+                response = Response(status=500)
+        else:
+            response = Response(status=400)
     return response
 @admin.route('/admin/test/gerenciarusuarios')
 def testGerenciarUsuarios():
