@@ -48,6 +48,10 @@
     background-color: rgb(132, 0, 0);
 }
 
-.br-green, .success {
+.bg-green, .success {
     background-color: rgb(61, 157, 61);
+}
+
+.bg-blue, .wait {
+  background-color: rgb(19, 131, 192);
 }

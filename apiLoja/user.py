@@ -40,7 +40,7 @@ def userCadastroMassivo():
                 if valido:
                     code += um.novoUsuario(**row)
         if code != size:
-            response = Response(status=409)
+            response = Response(status=400)
         return response
     return Response(status=404)
 
@@ -62,15 +62,18 @@ def userCadastro():
         else: valido = False
 
         if valido:
-            code = UserManager().novoUsuario(**form)
+            try:
+                if len(form['cep']) > 8:
+                    response.status = "400"
+                    code = 0#UserManager().novoUsuario(**form)
+                if code == 0:
+                    response.status = "400"
+                else:
+                    response = redirect(url_for('user.login'), code=201)
+            except: pass
 
-            if code == 0:
-                flash('Algo deu errado!', 'error')
-                response.status = "409"
-            else:
-                response = redirect(url_for('user.login'), code=201)
         else:
-            response.status = "409"
+            response.status = "400"
 
     return response
 
@@ -86,14 +89,16 @@ def logoff():
 @user.route('/login', methods=['GET', 'POST'])
 def login():
     response = make_response(render_template('login.html'))
+    response.status = "200"
 
     cookies = request.cookies
     if 'usersession' in cookies:
         user = UserManager().buscarUsuarioPorSessao(cookies['usersession'])
         if user != -1:
             session['username'] = user.Nome
-            session['userid'] = user.idUsuario
-            response = redirect('/')
+            session['userid'] = user.idUsuarios
+            response = redirect(url_for('loja.index'))
+            print('loja.index')
             return response
         else:
             response.set_cookie('usersession', '', expires=0)
@@ -124,7 +129,9 @@ def login():
 
                 user = UserManager().buscarUsuarioPorEmail(form['email'])
                 session['username'] = user.Nome
-                session['userid'] = user.idUsuario
+                session['userid'] = user.idUsuarios
+            else:
+                response = Response(status=400)
 
     return response
 
