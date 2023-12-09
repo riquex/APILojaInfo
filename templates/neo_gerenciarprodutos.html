@@ -12,19 +12,22 @@
     <button class="search-btn toggle-btn active">nome</button>
     <button class="search-btn toggle-btn">descricao</button>
     <button class="search-btn toggle-btn">valor</button>
+    <button class="search-btn toggle-btn">quantidade</button>
     <div class="search-inp-container">
         <input type="text" name="search" id="seachInp">
         <button type="submit" id="update"><i class="fa fa-search"></i></button>
     </div>
 </div>
 <div class="table-container">
-    <table class="kilobyte-table" id="kilobyte-clients">
+    <table class="kilobyte-table" id="kilobyte-products">
         <tr id="linha-com-nomes">
             <th class="clickble" id="id">id</th>
             <th class="clickble" id="nome">nome</th>
             <th class="clickble" id="descricao">descricao</th>
             <th class="clickble" id="valor">valor</th>
+            <th class="clickble" id="quantidade">quantidade</th>
         </tr>
     </table>
 </div>
+<script src="{{ url_for('static', filename='js/admin/neo_gerencimentoprodutos.js') }}"></script>
 {% endblock %}

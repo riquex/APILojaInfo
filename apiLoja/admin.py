@@ -1,3 +1,4 @@
+from .produtosManager import ProdutosManager
 from .adminManager import AdminManager
 from .userManager import UserManager
 from flask import render_template
@@ -38,6 +39,13 @@ def fetchUsersAll():
     return jsonify(
             [user.comoDicionario() for user in UserManager().pegarTodosUsuarios(**argumentos_pesquisa)]
         )
+
+@admin.route('/admin/fetchproductsall', methods=['GET', 'POST'])
+def fetchProductsAll():
+    argumentos_pesquisa = dict()
+    return jsonify(
+        [prod.comoDicionario() for prod in ProdutosManager().pegarTodosProdutos(**argumentos_pesquisa)]
+    )
 
 @admin.route('/admin/gerenciarusuarios')
 def gerenciarUsuarios():
