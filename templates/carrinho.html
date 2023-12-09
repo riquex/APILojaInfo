@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/CSS/carrinho.css">
+    <title>Meu Carrinho</title>
+</head>
+<body>
+
+    <div class="carrinho">
+        <h2>Meu Carrinho</h2>
+
+        <ul id="lista-itens">
+            <!-- Itens do carrinho serão adicionados dinamicamente aqui -->
+        </ul>
+
+        <div id="resumo-compra">
+            <p>Subtotal: R$ <span id="subtotal">0.00</span></p>
+            <p>Frete: R$ <span id="frete">0.00</span></p>
+            <p>Total: R$ <span id="total">0.00</span></p>
+        </div>
+
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+
+    <script src="/static/js/carrinho.js"></script>
+</body>
+</html>
