@@ -1,5 +1,5 @@
 from apiLoja import loja, user, venda, produtos, admin
-from flask import Flask, g, session
+from flask import Flask, g, session, render_template
 from datetime import timedelta
 import os
 
@@ -14,7 +14,7 @@ app.permanent_session_lifetime = timedelta(hours=24)
 
 @app.errorhandler(404)
 def rotaNaoEncontrada(Erro):
-    return "Rota não Encontrada" + str(Erro)
+    return render_template('notfound.html')
 
 @app.errorhandler(403)
 def erroDePermissao(Erro):

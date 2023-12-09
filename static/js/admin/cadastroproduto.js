@@ -1,3 +1,32 @@
+const wait = () => {
+    const waitv = document.querySelector("div.snackbar.wait");
+    if (waitv != null){
+        waitv.classList.add("show");
+        setTimeout(()=>{waitv.classList.remove("show")}, 3000);
+    }
+}
+
+const success = () => {
+    const successv = document.querySelector("div.snackbar.success");
+    if (successv != null){
+        successv.classList.add("show");
+        setTimeout(()=>{successv.classList.remove("show")}, 3000);
+    }
+}
+
+const fail = () => {
+    const failv = document.querySelector("body > div.snackbar.fail");
+    if (failv != null){
+        failv.classList.add("show");
+        setTimeout(()=>{failv.classList.remove("show")}, 3000);
+    }
+}
+
+/**
+ * Read a file and return its base64 form.
+ * @param {File} file file
+ * @returns {Promise<string>}
+ */
 const toBase64 = file => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
@@ -5,10 +34,26 @@ const toBase64 = file => new Promise((resolve, reject) => {
     reader.readAsDataURL(file);
 });
 
+/**
+ * format current 1234567 to 12,345.67
+ * @param {string} n value
+ * @returns {string}
+ */
+const formatCurrency = (n) => {
+    let val = n.replace(/\D/g, "");
+    if (val.length > 2){
+        const left = val.substring(0, val.length -2).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        const right = val.substring(val.length -2);
+        val = left + "," + right;
+    }
+    return val
+  }
+
 window.onload = function(){
     const submit = document.getElementById("submit");
     const image_preview = document.getElementById("previewimage");
     const image_input = document.getElementById("imagem");
+    const preco_input = document.querySelector("input.preco");
 
     if (image_input instanceof HTMLInputElement){
         image_input.addEventListener("change", () => {
@@ -25,6 +70,17 @@ window.onload = function(){
                 image_preview.src = "#";
             }
         })
+    }
+
+    if (preco_input instanceof HTMLInputElement){
+        preco_input.onkeyup =
+        preco_input.onkeydown =
+        preco_input.onchange = 
+        preco_input.onblur =
+        preco_input.onfocus = (event) => {
+            const new_value = formatCurrency(preco_input.value);
+            preco_input.value = "R$"+ new_value;
+        };
     }
 
     submit.onclick = async () => {
@@ -65,11 +121,10 @@ window.onload = function(){
             )
         });
 
-        const snackbar_type = (response.status === 200) ? "success" : "fail";
-        const success = document.querySelector(`.snackbar.${snackbar_type}`);
-        if (success instanceof HTMLDivElement){
-            success.classList.add("show");
-            setTimeout(()=>{success.classList.remove("show")}, 3000);
+        if (response.ok){
+            success();
+        }else{
+            fail();
         }
 
         if (load != null){

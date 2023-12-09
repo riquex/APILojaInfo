@@ -61,6 +61,7 @@ input[type="file"]{
     display: none;
 }
 
+
 .lds-facebook {
     display: none;
     position: relative;
@@ -111,11 +112,15 @@ input[type="file"]{
   align-items: center;
 }
 
-.kilobyte-form div {
+.kilobyte-form div:not(.lds-facebook) {
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: center;
   padding: 2px;
+}
+
+.dp-block {
+  display: block;
 }

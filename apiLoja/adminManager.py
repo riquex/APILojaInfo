@@ -11,8 +11,8 @@ class AdminManager():
         if isinstance(imagem, Image):
             img_name = path.join('static','prodimages', f'{uuid4()}.webp')
             imagem.save(img_name, 'WEBP')
-            #self.__dbm.InsercaoCompletaProduto(nome, descricao, preco, 9999999, img_name)
-            return img_name
+            code = self.__dbm.InsercaoCompletaProduto(nome, descricao, preco, 9999999, img_name)
+            return code
 
     def imagemProdutoInserir(self, id: int, image: Image):
         if isinstance(image, Image):

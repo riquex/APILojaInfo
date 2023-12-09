@@ -33,6 +33,10 @@ class DBManager:
         self.__cursor.execute("SELECT * FROM ProdutosCompletos")
         return self.__cursor.fetchall()
 
+    def VisualizaProdutosCompletosRandom(self):
+        self.__cursor.execute("SELECT * FROM ProdutosCompletos ORDER BY RAND()")
+        return self.__cursor.fetchall()
+
     def VisualizaProdutosCompletosLimiteCem(self, start):
         self.__cursor.execute(f"SELECT * FROM ProdutosCompletos LIMIT {start}, 100")
         return self.__cursor.fetchall()
@@ -185,6 +189,13 @@ class DBManager:
             if result is not None:
                 return result
         return -1
+    
+    def PegarProdutoCompleto(self, idProduto: int):
+        self.__cursor.execute(f'SELECT * FROM produtoscompletos WHERE idProduto = {idProduto}')
+        result = self.__cursor.fetchone()
+        if result is not None:
+            return result
+        return -1
 
     def LimparCarrinho(self, idUsuario: int):
         try:
@@ -206,7 +217,7 @@ class DBManager:
 
     def InsercaoCompletaProduto(self, nome: str, descricao: str, preco: int, quantidade: int, staticklink: str):
         try:
-            self.__cursor.execute("InsercaoCompletaProduto", (nome, descricao, preco, quantidade, staticklink))
+            self.__cursor.callproc("InsercaoCompletaProduto", (nome, descricao, preco, quantidade, staticklink))
             self.__mydb.commit()
         except Exception:
             traceback.print_exc()

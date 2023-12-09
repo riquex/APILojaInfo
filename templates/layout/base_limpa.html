@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>kILOBYTE SHOP a Preferida dos Gamers - Grandes Ofertas</title>
     {% block style %}
-    <link rel="stylesheet" href="/static/CSS/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
     {% endblock %}
 </head>
 <body>
     <header>
         <div class="header">
             <a href="/">
-                <img src="static/imagens/kilobyte1.png" alt="Logo" class="img_logo">
+                <img src="{{ url_for('static', filename='imagens/kilobyte1.png') }}" alt="Logo" class="img_logo">
             </a>
         </div>
     </header>

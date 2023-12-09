@@ -11,6 +11,7 @@ from io import BytesIO
 from PIL import Image
 from flask import g
 import base64
+import re
 
 admin = Blueprint('admin', __name__)
 
@@ -66,16 +67,19 @@ def testCadastropoduto():
                 form['image64'] = hearder
                 imagebytes = base64.b64decode(image64, validate=True)
                 img = Image.open(BytesIO(imagebytes)).convert('RGB')
-                #saveProductImage(img)
-                response = Response(status=200)
-                result = AdminManager().InsercaoCompletaProduto(
-                    form['nome'],
-                    form['descricao'],
-                    form['preco'],
+
+                price = re.sub(pattern=r'\D', repl='', string=form['preco'])
+
+                code = AdminManager().InsercaoCompletaProduto(
+                    form['nome'][:128],
+                    form['descricao'][:512],
+                    price,
                     9999999,
                     img
                 )
-                print(result)
+
+                response = Response(status=200) if code == 1 else Response(500)
+                print('product registration: ', code)
             except:
                 print_exc()
                 response = Response(status=500)
