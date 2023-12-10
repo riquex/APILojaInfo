@@ -33,7 +33,14 @@ div.kilobyte-container {
     padding: 20px;
 }
 
-input[type=text], input[type=number], select, textarea {
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=password],
+input[type=tel],
+input[type=date],
+select,
+textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid var(--kilobyte-light-gray);
@@ -110,6 +117,13 @@ input[type="file"]{
   border-radius: 7px;
   flex-direction: column;
   align-items: center;
+  width: 66vw;
+}
+
+.kilobyte-form * label {
+  max-width: 200px;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
 }
 
 .kilobyte-form div:not(.lds-facebook) {

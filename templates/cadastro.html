@@ -1,8 +1,14 @@
 {% extends "layout/base_limpa.html" %}
+{% block style%}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+{% endblock %}
 {% block content %}
 <div id="formsection">
     <h1>Cadastro de Usuário</h1>
-    <form action="/cadastro" method="post">
+    <div id="cadastro" class="kilobyte-form">
         <div>
             <label for="email">E-mail:</label>
             <input type="email" name="email" id="email" required>
@@ -29,7 +35,7 @@
         </div>
         <div>
             <label for="cep">CEP:</label>
-            <input type="text" name="cep" id="cep" required>
+            <input type="text" name="cep" id="cep" maxlength="8" required>
         </div>
         <div>
             <label for="rua">Rua:</label>
@@ -49,10 +55,11 @@
         </div>
         <div>
             <input type="submit" value="Cadastrar" id="submit_form">
-            <div id="Mensagem" style="visibility: hidden;">  </div>
         </div>
-    </form>
-
+    </div>
+    <div class="snackbar wait">Aguarde ...</div>
+    <div class="snackbar success">Boas Vindas</div>
+    <div class="snackbar fail">Algo está faltando ou Registro já existe</div>
     <script src="static\js\cadastro.js"></script>
 </div>
 {% endblock %}

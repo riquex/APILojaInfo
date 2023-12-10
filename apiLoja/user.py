@@ -49,6 +49,7 @@ def userCadastro():
     response = make_response(render_template('cadastro.html'))
 
     if request.method == 'POST':
+        response = Response(status='200')
         if request.content_type.startswith('application/json'):
             form: dict | list[dict] = request.get_json()
         elif request.content_type.startswith('application/x-www-form-urlencoded'):
@@ -56,20 +57,35 @@ def userCadastro():
         else:
             form = dict()
 
-        valido = True
+        valido = False
         if isinstance(form, dict):
             valido = all(key in form for key in SINGUP_REQUIREMENTS)
-        else: valido = False
 
         if valido:
             try:
-                if len(form['cep']) > 8:
-                    response.status = "400"
-                    code = 0#UserManager().novoUsuario(**form)
-                if code == 0:
-                    response.status = "400"
+                valid_data = \
+                    3 < len(form['cep']) <= 8 and \
+                    3 < len(form['cpf']) <= 45 and \
+                    3 < len(form['email']) <= 128 and \
+                    3 < len(form['nome']) <= 128 and \
+                    3 < len(form['datanascimento']) <= 45 and \
+                    3 < len(form['rua']) <= 128 and \
+                    3 < len(form['municipio']) <= 45 and \
+                    3 < len(form['estado']) <= 45 and \
+                    len(form['complemento']) <= 45 and \
+                    3 < len(form['telefone']) <= 128 and \
+                    3 < len(form['senha'])
+
+                print(valid_data)
+                if valid_data:
+                    response.status = "201"
+                    code = UserManager().novoUsuario(**form)
+                    if code == 0:
+                        response.status = "400"
+                    else:
+                        response = redirect(url_for('user.login'), code=201)
                 else:
-                    response = redirect(url_for('user.login'), code=201)
+                    response.status = "400"
             except: pass
 
         else:
