@@ -1,4 +1,5 @@
 from .userManager import SINGUP_REQUIREMENTS
+from .userManager import UPDATE_REQUIREMENTS
 from .userManager import LOGIN_REQUIREMENTS
 from os.path import join as path_join
 from .userManager import UserManager
@@ -13,6 +14,7 @@ from flask import request
 from flask import jsonify
 from flask import session
 from flask import url_for
+from flask import abort
 from flask import flash
 from flask import g
 
@@ -31,7 +33,7 @@ def userCadastroMassivo():
         else:
             form = dict()
 
-        response = Response(status=200)
+        response = Response(status=201)
 
         if isinstance(form, list):
             size = len(form)
@@ -49,7 +51,7 @@ def userCadastro():
     response = make_response(render_template('cadastro.html'))
 
     if request.method == 'POST':
-        response = Response(status='200')
+        response = Response(status='201')
         if request.content_type.startswith('application/json'):
             form: dict | list[dict] = request.get_json()
         elif request.content_type.startswith('application/x-www-form-urlencoded'):
@@ -97,7 +99,7 @@ def userCadastro():
 def atulizarusuario():
     response = make_response(render_template('notfound.html'))
     if request.method == 'PUT':
-        response = Response(status='200')
+        response = Response(status='201')
         if request.content_type.startswith('application/json'):
             form: dict | list[dict] = request.get_json()
         elif request.content_type.startswith('application/x-www-form-urlencoded'):
@@ -105,7 +107,7 @@ def atulizarusuario():
         else:
             form = dict()
 
-        valido = all(key in form for key in ("idUsuarios","nome","dataNascimento","telefone","cpf","cep","rua","municipio","estado","complemento"))
+        valido = all(key in form for key in UPDATE_REQUIREMENTS)
         if valido:
             code = UserManager().atualizarUsuario(**form)
             if code == 0:
@@ -170,13 +172,6 @@ def login():
 
     return response
 
-@user.route('/atualizar', methods=['PUT', 'POST'])
-def userAtualizar():
-    if request.method == 'PUT' or request.method == 'POST':
-        form: dict = request.get_json()
-
-        if all (key in form for key in SINGUP_REQUIREMENTS): ...
-
 @user.route('/userinfo/<id>', methods=['GET'])
 def getUserInfo(id):
     if g.userid == int(id):
@@ -184,4 +179,4 @@ def getUserInfo(id):
         usuario = UserManager().buscarUsuarioPorEmail(email)
         if usuario != -1:
             return jsonify(**usuario.comoDicionario())
-    return Response(404)
+    return abort(404)

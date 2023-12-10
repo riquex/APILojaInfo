@@ -13,5 +13,6 @@ def index():
     context = {}
     if g.username:
         context['username'] = g.username
-    response = make_response(render_template('index_test.html', **context))
+    context['products'] = LojaManager().listaAleatoriaDeProdutos()
+    response = make_response(render_template('index.html', **context))
     return response

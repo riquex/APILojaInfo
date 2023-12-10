@@ -93,7 +93,7 @@ def atualizarProduto():
                 prodValor   = re.sub(pattern=r'\D', repl='',  string=str(form['Valor']))
             )
             if code:
-                response.status = '200'
+                response.status = '201'
     return response
 
 @admin.route('/admin/gerenciarusuarios')

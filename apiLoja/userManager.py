@@ -5,6 +5,7 @@ from hashlib import sha256
 import uuid
 
 SINGUP_REQUIREMENTS = ('email', 'senha', 'nome', 'datanascimento', 'telefone', 'cpf', 'cep', 'rua', 'municipio', 'estado', 'complemento')
+UPDATE_REQUIREMENTS = ("idUsuarios","nome","dataNascimento","telefone","cpf","cep","rua","municipio","estado","complemento")
 LOGIN_REQUIREMENTS = ('email', 'senha')
 
 def validator(email: str, password: str, key: str):

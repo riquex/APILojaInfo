@@ -31,16 +31,33 @@ class DBManager:
         return 1
 
     def AtualizarUsuario(self,
-                         idUser,
-                         Nome,
-                         DataNascimento,
-                         Telefone,
-                         cpf,
-                         cep,
-                         rua,
-                         municipio,
-                         estado,
-                         complemento):
+                         idUser: str,
+                         Nome: str,
+                         DataNascimento: str,
+                         Telefone: str,
+                         cpf: str,
+                         cep: str,
+                         rua: str,
+                         municipio: str,
+                         estado: str,
+                         complemento: str):
+        """Tenta atualizar o usuário no banco de dados
+
+        Args:
+            idUser (str): id
+            Nome (str): nome
+            DataNascimento (str): data nascimento
+            Telefone (str): telefone
+            cpf (str): cpf
+            cep (str): cep
+            rua (str): rua
+            municipio (str): município
+            estado (str): estado
+            complemento (str): complemento
+
+        Returns:
+            int: código de sucesso ou falha
+        """        
         try:
             self.__cursor.callproc(
                 'AtualizacaoCompletaUsuario',
@@ -77,6 +94,10 @@ class DBManager:
 
     def VisualizaProdutosCompletosRandom(self):
         self.__cursor.execute("SELECT * FROM ProdutosCompletos ORDER BY RAND()")
+        return self.__cursor.fetchall()
+
+    def VisualizaProdutosCompletosRandomLimiteCem(self):
+        self.__cursor.execute("SELECT * FROM ProdutosCompletos ORDER BY RAND() LIMIT 100")
         return self.__cursor.fetchall()
 
     def VisualizaProdutosCompletosLimiteCem(self, start):
