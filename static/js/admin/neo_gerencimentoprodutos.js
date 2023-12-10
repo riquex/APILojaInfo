@@ -100,7 +100,7 @@ window.onload = () => {
     const search_bar = document.getElementById("search-bar");
     const search_inp = document.getElementById("searchInp");
     const preco_input = document.querySelector("#inp-valor");
-    const popup = document.querySelector("body > div.content > div.alter-product.form-popup");
+    const popup = document.querySelector("body > div.content > div.form-popup");
 
     update.onclick = async () => {
         const headersList = {

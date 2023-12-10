@@ -1,9 +1,12 @@
 {% extends "layout/neo_admin.html" %}
 {% block title %}Gerenciar Usuários{% endblock %}
 {% block style%}
-    {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/usermanager.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/usermanager.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/form-popup.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block current %}gerenciarusuarios{% endblock %}
 {% block content %}
@@ -41,5 +44,52 @@
         </tr>
     </table>
 </div>
+<div class="alter-client form-popup">
+    <button class="close-form"></button>
+    <h3>Usuário ID:</h3>
+    <div class="form-section">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="inp-nome">
+    </div>
+    <div class="form-section">
+        <label for="cpf">CPF</label>
+        <input type="text" name="cpf" id="inp-cpf">
+    </div>
+    <div class="form-section">
+        <label for="datanascimento">Data de Nascimento</label>
+        <input type="date" name="datanascimento" id="inp-datanascimento">
+    </div>
+    <div class="form-section">
+        <label for="telefone">Telefone</label>
+        <input type="text" name="telefone" id="inp-telefone">
+    </div>
+    <div class="form-section">
+        <label for="cep">Cep</label>
+        <input type="text" name="cep" id="inp-cep" maxlength="8">
+    </div>
+    <div class="form-section">
+        <label for="rua">Rua</label>
+        <input type="text" name="rua" id="inp-rua">
+    </div>
+    <div class="form-section">
+        <label for="municipio">Município</label>
+        <input type="text" name="municipio" id="inp-municipio">
+    </div>
+    <div class="form-section">
+        <label for="estado">Estado</label>
+        <input type="text" name="estado" id="inp-estado">
+    </div>
+    <div class="form-section">
+        <label for="complemento">Complemento</label>
+        <input type="text" name="complemento" id="inp-complemento">
+    </div>
+
+    <div class="form-section">
+        <button type="submit">Submit</button>
+    </div>
+</div>
+<div class="snackbar wait">Aguarde ...</div>
+<div class="snackbar success">Registro Bem Sucedido</div>
+<div class="snackbar fail">Registro Mal Sucedido</div>
 <script src="{{ url_for('static', filename='js/admin/neo_gerenciamentousuarios.js') }}"></script>
 {% endblock %}

@@ -57,6 +57,9 @@ class UserManager:
             telefone, cpf, cep, rua, municipio, estado, complemento
         )
 
+    def atualizarUsuario(self,idUsuarios,nome,dataNascimento,telefone,cpf,cep,rua,municipio,estado,complemento,*args,**kwdargs):
+        return self.__dbm.AtualizacaoCompletaUsuario(idUsuarios,nome,dataNascimento,telefone,cpf,cep,rua,municipio,estado,complemento)
+
     def iniciarSecaoUsuario(self, email: str, senha: str, horasLimite:int=24):
         validador = validator(email, senha, '42')
         if self.__dbm.VerificarValidador(email=email, validador=validador):# or True:

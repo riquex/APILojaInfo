@@ -93,6 +93,25 @@ def userCadastro():
 
     return response
 
+@user.route('/user/atualizarusuario', methods=['PUT'])
+def atulizarusuario():
+    response = make_response(render_template('notfound.html'))
+    if request.method == 'PUT':
+        response = Response(status='200')
+        if request.content_type.startswith('application/json'):
+            form: dict | list[dict] = request.get_json()
+        elif request.content_type.startswith('application/x-www-form-urlencoded'):
+            form = request.form
+        else:
+            form = dict()
+
+        valido = all(key in form for key in ("idUsuarios","nome","dataNascimento","telefone","cpf","cep","rua","municipio","estado","complemento"))
+        if valido:
+            code = UserManager().atualizarUsuario(**form)
+            if code == 0:
+                response.status = 400
+    return response
+
 @user.route('/logoff', methods=['GET', 'POST'])
 def logoff():
     response = redirect('/')

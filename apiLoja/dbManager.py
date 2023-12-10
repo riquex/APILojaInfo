@@ -30,6 +30,39 @@ class DBManager:
             return 0
         return 1
 
+    def AtualizarUsuario(self,
+                         idUser,
+                         Nome,
+                         DataNascimento,
+                         Telefone,
+                         cpf,
+                         cep,
+                         rua,
+                         municipio,
+                         estado,
+                         complemento):
+        try:
+            self.__cursor.callproc(
+                'AtualizacaoCompletaUsuario',
+                (
+                    idUser,
+                    Nome,
+                    DataNascimento,
+                    Telefone,
+                    cpf,
+                    cep,
+                    rua,
+                    municipio,
+                    estado,
+                    complemento
+                )
+            )
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
     def VisualizaCompras(self):
         self.__cursor.execute("SELECT * FROM `todascompras`")
         return self.__cursor.fetchall()
