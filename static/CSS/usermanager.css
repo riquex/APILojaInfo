@@ -68,3 +68,10 @@ button.active {
 .table-container{
     overflow: auto;
 }
+
+.kilobyte-table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    /* white-space: nowrap; */
+}

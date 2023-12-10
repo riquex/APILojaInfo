@@ -44,7 +44,7 @@ input[type=text], input[type=number], select, textarea {
     resize: vertical;
 }
 
-input[type=submit] {
+input[type=submit], button[type=submit] {
     background-color: var(--kilobyte-blue);
     color: var(--kilobyte-almost-white);
     padding: 12px 20px;
@@ -123,4 +123,27 @@ input[type="file"]{
 
 .dp-block {
   display: block;
+}
+
+button.close-form {
+  background-color: rgb(255, 0, 0);
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 0;
+}
+
+button.close-form:hover {
+  background-color: rgb(101, 0, 0);
+  transition: background-color 100ms linear;
+}
+
+button.close-form::after {
+  content: "\d7";
+  font-size: 45px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  position: relative;
+  top: -7px;
+  left: 0px;
 }

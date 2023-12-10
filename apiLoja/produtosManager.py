@@ -25,7 +25,11 @@ class ProdutosManager:
         self.__dbm = DBManager()
     
     def pegarProduto(self, idprod, *args, **kwargs):
-        return self.__dbm.PegarProdutoCompleto(idProduto=idprod)
+        prod = self.__dbm.PegarProdutoCompleto(idProduto=idprod)
+        if prod != -1:
+            idProduto, nome, Descricao, Valor, Quantidade, staticlink = prod
+            return Produto(idProduto, nome, Descricao, Valor, Quantidade, staticlink)
+        return prod
     
     def pegarTodosProdutos(self, *args, **kwargs) -> Iterable[Produto]:
         result = self.__dbm.VisualizaProdutosCompletos()

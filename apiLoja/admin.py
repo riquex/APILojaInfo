@@ -1,6 +1,7 @@
 from .produtosManager import ProdutosManager
 from .adminManager import AdminManager
 from .userManager import UserManager
+from .produtosManager import Produto
 from flask import render_template
 from flask import make_response
 from traceback import print_exc
@@ -8,6 +9,7 @@ from flask import Blueprint
 from flask import Response
 from flask import jsonify
 from flask import request
+from flask import abort
 from io import BytesIO
 from PIL import Image
 from flask import g
@@ -46,6 +48,53 @@ def fetchProductsAll():
     return jsonify(
         [prod.comoDicionario() for prod in ProdutosManager().pegarTodosProdutos(**argumentos_pesquisa)]
     )
+
+@admin.route('/admin/fetchproduct', methods=['GET', 'POST'])
+def fetchProduct():
+    argumentos_pesquisa = dict(idProduto=-1)
+    if request.method == 'POST':
+        if request.content_type.startswith('application/json'):
+            form: dict[str | list, str|int|list] = request.get_json()
+        elif request.content_type.startswith('application/x-www-form-urlencoded'):
+            form = request.form
+        else:
+            form = dict()
+        
+        valido = all(key in form for key in ('idProduto',))
+        if valido:
+            argumentos_pesquisa['idProduto'] = form['idProduto']
+
+    prod = ProdutosManager().pegarProduto(**argumentos_pesquisa)
+
+    if isinstance(prod, Produto):
+        result = prod.comoDicionario()
+    else:
+        result = {}
+    
+    return jsonify(result)
+
+@admin.route('/admin/atualizarproduto', methods=['PUT'])
+def atualizarProduto():
+    response = Response(status=500)
+    if request.method == 'PUT':
+        if request.content_type.startswith('application/json'):
+            form: dict[str | list, str|int|list] = request.get_json()
+        elif request.content_type.startswith('application/x-www-form-urlencoded'):
+            form = request.form
+        else:
+            form = dict()
+
+        valido = all(key in form for key in ('idProduto', 'NOME', 'Descricao', 'Valor',))
+        if valido:
+            code = AdminManager().atulizaProdutoInfo(
+                prodId      = form['idProduto'],
+                prodNome    = form['NOME'],
+                prodDesc    = form['Descricao'],
+                prodValor   = re.sub(pattern=r'\D', repl='',  string=str(form['Valor']))
+            )
+            if code:
+                response.status = '200'
+    return response
 
 @admin.route('/admin/gerenciarusuarios')
 def gerenciarUsuarios():

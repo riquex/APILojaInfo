@@ -22,3 +22,6 @@ class AdminManager():
             return img_name
         else:
             raise TypeError(f'{image=} is not Image type')
+    
+    def atulizaProdutoInfo(self, prodId, prodNome, prodDesc, prodValor):
+        return self.__dbm.AtualizarProdutoInfo(prodId, prodNome, prodDesc, prodValor)

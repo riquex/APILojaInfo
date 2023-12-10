@@ -2,6 +2,7 @@
 {% block title %}CADASTRO DE PRODUTOS{% endblock %}
 {% block style%}
     {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/usermanager.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
 {% endblock %}

@@ -1,0 +1,26 @@
+.form-popup {
+    visibility: hidden;
+    background-color: rgb(168, 168, 168);
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+}
+
+.form-popup-show {
+    visibility: visible !important;
+}
+
+.form-section {
+    display: flex;
+    width: 75vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}

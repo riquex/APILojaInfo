@@ -21,6 +21,15 @@ class DBManager:
         )
         self.__cursor = self.__mydb.cursor()
 
+    def AtualizarProdutoInfo(self, ProdId, ProdNome, ProdDesc, ProdValor):
+        try:
+            self.__cursor.callproc('AtualizarProdutoInfo', (ProdId, ProdNome, ProdDesc, ProdValor))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
     def VisualizaCompras(self):
         self.__cursor.execute("SELECT * FROM `todascompras`")
         return self.__cursor.fetchall()

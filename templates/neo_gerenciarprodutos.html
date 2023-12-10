@@ -3,6 +3,9 @@
 {% block style%}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/usermanager.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/form-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block current %}gerenciarprodutos{% endblock %}
@@ -29,5 +32,28 @@
         </tr>
     </table>
 </div>
+
+<div class="alter-product form-popup">
+    <button class="close-form"></button>
+    <h3>Produto ID:</h3>
+    <div class="form-section">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="inp-nome">
+    </div>
+    <div class="form-section">
+        <label for="valor">Valor</label>
+        <input type="text" name="valor" id="inp-valor">
+    </div>
+    <div class="form-section">
+        <label for="descricao">Descrição</label>
+        <textarea name="descricao" id="text-descricao" rows="10" maxlength="4096"></textarea>
+    </div>
+    <div class="form-section">
+        <button type="submit">Submit</button>
+    </div>
+</div>
+<div class="snackbar wait">Aguarde ...</div>
+<div class="snackbar success">Registro Bem Sucedido</div>
+<div class="snackbar fail">Registro Mal Sucedido</div>
 <script src="{{ url_for('static', filename='js/admin/neo_gerencimentoprodutos.js') }}"></script>
 {% endblock %}
