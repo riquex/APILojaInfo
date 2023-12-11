@@ -1,5 +1,8 @@
 from .dbManager import DBManager
 from typing import Iterable
+from PIL.Image import Image
+from uuid import uuid4
+from os import path
 import re
 
 class Produto:
@@ -73,11 +76,16 @@ class ProdutosManager:
             idProduto, nome, Descricao, Valor, Quantidade, staticlink = prod
             yield Produto(idProduto, nome, Descricao, Valor, Quantidade, staticlink)
 
-    def cadastrar_produto(self, id_prod, categoria_prod, nome_prod, desc_prod, quantidade, valor_prod):
-        novo_produto = ProdutosManager(id_prod, categoria_prod, nome_prod, desc_prod, quantidade, valor_prod)
-        print(f"Produto '{nome_prod}' cadastrado com sucesso!")
-        return novo_produto
-    
+    def InsercaoCompletaProduto(self, nome: str, descricao: str, preco: int, quantidade: int, imagem: Image):
+        if isinstance(imagem, Image):
+            img_name = path.join('static','prodimages', f'{uuid4()}.webp')
+            imagem.save(img_name, 'WEBP')
+            code = self.__dbm.InsercaoCompletaProduto(nome, descricao, preco, 9999999, img_name)
+            return code
+
+    def delecaoCompletaProduto(self, prodId):
+        return self.__dbm.DelecaoCompletaProduto(prodId)
+
     def visualizaProdutosCompletosRandom(self) -> Iterable[Produto]:
         result = self.__dbm.VisualizaProdutosCompletosRandom()
         if isinstance(result, (list, tuple)):

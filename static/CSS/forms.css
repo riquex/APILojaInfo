@@ -60,6 +60,10 @@ input[type=submit], button[type=submit] {
     cursor: pointer;
 }
 
+button[type=submit].delete-btn {
+  background-color: rgb(101, 0, 0);
+}
+
 input[type=submit]:hover {
     background-color: var(--kilobyte-dark-blue);
 }
@@ -160,4 +164,13 @@ button.close-form::after {
   position: relative;
   top: -7px;
   left: 0px;
+}
+
+div.submit-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
 }

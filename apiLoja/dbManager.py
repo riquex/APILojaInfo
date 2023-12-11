@@ -173,12 +173,20 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
-        
-    
+
+    def DelecaoCompletaProduto(self, ProdId):
+        try:
+            self.__cursor.callproc('DelecaoCompletaProduto', (ProdId,))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
     def DeletarTodasImagens(self, idproduto: int):
         try:
             self.__cursor.callproc('RemoverTodasImagensDoProduto', (idproduto,))
-            self.mydb.commit()
+            self.__mydb.commit()
         except Exception:
             traceback.print_exc()
             return 0

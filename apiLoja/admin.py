@@ -127,7 +127,7 @@ def testCadastropoduto():
 
                 price = re.sub(pattern=r'\D', repl='', string=form['preco'])
 
-                code = AdminManager().InsercaoCompletaProduto(
+                code = ProdutosManager().InsercaoCompletaProduto(
                     form['nome'][:128],
                     form['descricao'][:512],
                     price,
@@ -143,6 +143,27 @@ def testCadastropoduto():
         else:
             response = Response(status=400)
     return response
+
+@admin.route('/admin/deleteprod', methods=['DELETE'])
+def delecaoProduto():
+    response = Response(status=200)
+    if request.method == 'DELETE':
+        if request.content_type.startswith('application/json'):
+            form: dict[str | list, str|int|list] = request.get_json()
+        elif request.content_type.startswith('application/x-www-form-urlencoded'):
+            form = request.form
+        else:
+            form = dict()
+
+        valido = all(key in form for key in ('idProduto',))
+        if valido:
+            code = ProdutosManager().delecaoCompletaProduto(form['idProduto'])
+            print(f'deletion code {code} {form=}')
+            if code == 0:
+                response = Response(status=500)
+            else: response = Response(status=200)
+    return response
+
 @admin.route('/admin/test/gerenciarusuarios')
 def testGerenciarUsuarios():
     return render_template('neo_gerenciarusuarios.html')
