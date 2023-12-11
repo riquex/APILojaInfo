@@ -1,31 +1,28 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/CSS/carrinho.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/static/CSS/product_card.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/static/CSS/product_section.css') }}">
-    <title>Meu Carrinho</title>
-</head>
-<body>
+{% from 'macros.html' import product_cart %}  {# Adiciona a função de carrinho #}
+{% extends "layout/neo_base_nova.html" %}
+
+{% block style %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/product_card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/product_section.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/cart_page.css') }}">  
+{% endblock %}
+
+{% block content %}
+    <h2>Meu Carrinho</h2>
 
     <div class="carrinho">
-        <h2>Meu Carrinho</h2>
-
-        {% for item in carrinho %}  {# Supondo que 'carrinho' seja uma lista de itens do carrinho #}
-            {{ product_cart(item.image, item.title, item.description, item.price) }}  {# função 'product_cart' para mostrar os itens do carrinho #}
+        {% for item in carrinho %}  {# 'carrinho' é uma lista de itens #}
+            {{ product_cart(item.image, item.title, item.description, item.price) }}  {# função 'product_cart' mostra os itens do carrinho #}
         {% endfor %}
-
-        <div id="resumo-compra">
-            <p>Subtotal: R$ <span id="subtotal">0.00</span></p>
-            <p>Frete: R$ <span id="frete">0.00</span></p>
-            <p>Total: R$ <span id="total">0.00</span></p>
-        </div>
-
-        <button onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
 
-    <script src="/static/js/carrinho.js"></script>
-</body>
-</html>
+    <div id="resumo-compra">
+        <p>Subtotal: R$ <span id="subtotal">0.00</span></p>
+        <p>Frete: R$ <span id="frete">0.00</span></p>
+        <p>Total: R$ <span id="total">0.00</span></p>
+    </div>
+
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+{% endblock %}
+
