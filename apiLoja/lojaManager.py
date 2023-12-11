@@ -8,3 +8,12 @@ class LojaManager:
     def listaAleatoriaDeProdutos(self):
         result = ProdutosManager().visualizaProdutosCompletosRandom()
         return [prod.comoListaEstilizado() for prod in result]
+
+    def adicionarAoCarrinho(self, idCliente, idProduto, quantidade, *args, **kwdargs):
+        return self.__dbm.AdicionarAoCarrinho(idCliente, idProduto, quantidade)
+
+    def removerItemdoCarrinho(self, idCliente, idProduto, *args, **kwdargs):
+        return self.__dbm.DeletarItemCarrinho(idCliente, idProduto, )
+
+    def limparCarrinho(self, idCliente, *args, **kwdargs):
+        return self.__dbm.DeletarTodosItensCarrinho(idCliente)

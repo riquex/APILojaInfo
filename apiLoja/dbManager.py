@@ -80,6 +80,15 @@ class DBManager:
             return 0
         return 1
 
+    def AdicionarAoCarrinho(self, idCliente, idProduto, quantidade):
+        try:
+            self.__cursor.callproc('AdicionarAoCarrinho', (idCliente, idProduto, quantidade,))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
     def VisualizaCompras(self):
         self.__cursor.execute("SELECT * FROM `todascompras`")
         return self.__cursor.fetchall()
@@ -195,6 +204,24 @@ class DBManager:
     def DeletarTodasImagens(self, idproduto: int):
         try:
             self.__cursor.callproc('RemoverTodasImagensDoProduto', (idproduto,))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
+    def DeletarItemCarrinho(self, idCliente, idProduto):
+        try:
+            self.__cursor.callproc('RemoverItemCarrinho', (idCliente, idProduto))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
+    def DeletarTodosItensCarrinho(self, idCliente):
+        try:
+            self.__cursor.callproc('LimparCarrinho', (idCliente,))
             self.__mydb.commit()
         except Exception:
             traceback.print_exc()

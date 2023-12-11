@@ -1,0 +1,95 @@
+div.produto-area {
+    background-color: #222;
+}
+
+.produto-titulo {
+    padding-left: 30px;
+}
+
+.container-apresentacao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container-apresentacao .area-produto, .container-apresentacao .area-compra {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #333;
+}
+
+.area-produto {
+    width: 64vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.area-imagens {
+    background-color: #222;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.desc {
+    margin-top: 10px;
+}
+
+.area-imagens img {
+    width: 28vw;
+}
+
+.area-compra {
+    width: 32vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: stretch;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.preco {
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(19, 131, 192);
+}
+
+.buy-btn {
+    background-color: rgb(19, 131, 192);
+    border: 0px;
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.buy-btn:hover {
+    background-color: rgb(2, 77, 117);
+}
+
+.cart-btn {
+    background-color: #ccc;
+    color: #000;
+    border: 0px;
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.cart-btn:hover {
+    background-color: #999;
+}

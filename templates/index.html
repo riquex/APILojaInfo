@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='CSS/product_section.css') }}">
 {% endblock %}
 {% block content %}
-
     {% if products != -1 %}
     <section class="product-section">
         {% for prod in products %}
@@ -14,4 +13,5 @@
         {% endfor %}
     </section>
     {% endif %}
+<script src="{{ url_for('static', filename='js/click_product.js') }}" defer></script>
 {% endblock %}

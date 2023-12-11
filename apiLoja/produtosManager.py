@@ -68,7 +68,7 @@ class ProdutosManager:
         if prod != -1:
             idProduto, nome, Descricao, Valor, Quantidade, staticlink = prod
             return Produto(idProduto, nome, Descricao, Valor, Quantidade, staticlink)
-        return prod
+        return -1
     
     def pegarTodosProdutos(self, *args, **kwargs) -> Iterable[Produto]:
         result = self.__dbm.VisualizaProdutosCompletos()
