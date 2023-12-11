@@ -17,3 +17,7 @@ class LojaManager:
 
     def limparCarrinho(self, idCliente, *args, **kwdargs):
         return self.__dbm.DeletarTodosItensCarrinho(idCliente)
+
+    def pegarCarrinhoDoCliente(self, idCliente, *args, **kwdargs):
+        result = self.__dbm.VisualizarCarrinhoDoUsuario(idCliente)
+        return result

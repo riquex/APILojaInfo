@@ -1,15 +1,28 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 .carrinho {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.item-cart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: stretch;
+    justify-content: space-evenly;
+    justify-items: start;
+}
+
+.item-cart img {
+    height: 50px;
+    width: 50px;
+}
+
+.carrinho-container {
+    padding: 10px;
+    background-color: #3c3c3c;
 }
 
 ul {

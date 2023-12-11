@@ -4,6 +4,7 @@ from .userManager import UserManager
 from flask import render_template
 from flask import make_response
 from flask import Blueprint
+from flask import redirect
 from flask import Response
 from flask import request
 from pathlib import Path
@@ -35,11 +36,12 @@ def produto(id):
     response = make_response(render_template('produtopagina.html', **context))
     return response
 
-@loja.route('/carrinho', methods=['POST', 'PUT', 'DELETE'])
+@loja.route('/carrinho', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def carrinho():
-    response = Response(status='201')
-    if g.userid is None: return Response(status=403)
+    if g.userid is None: return redirect('/login')
+
     if request.method in ('POST', 'PUT', 'DELETE'):
+        response = Response(status='201')
         if request.content_type.startswith('application/json'):
             form: dict | list[dict] = request.get_json()
         elif request.content_type.startswith('application/x-www-form-urlencoded'):
@@ -59,4 +61,10 @@ def carrinho():
             if code == 0:
                 response.status = '500'
         else: response.status = '400'
-    return response
+    else:
+        context = {'username': g.username}
+        result = LojaManager().pegarCarrinhoDoCliente(g.userid)
+        if result != -1:
+            context['prods'] = [ProdutosManager().pegarProduto(row[1]).comoListaEstilizadoNotStatic() + list(row) for row in result]
+        response = make_response(render_template('carrinho_test.html', **context))
+    return response 

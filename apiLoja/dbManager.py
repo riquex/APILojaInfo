@@ -143,6 +143,13 @@ class DBManager:
         if result is not None:
             return result
         return -1
+    
+    def VisualizarCarrinhoDoUsuario(self, idUsuario):
+        self.__cursor.execute(f'SELECT * FROM carrinhopreco WHERE `idUser` = {idUsuario}')
+        result = self.__cursor.fetchall()
+        if result is not None:
+            return result
+        return -1
 
     def VerificarSeUsuarioExiste(self, email: str):
         """Verifica se um usuário existe

@@ -1,6 +1,7 @@
 from .dbManager import DBManager
 from typing import Iterable
 from PIL.Image import Image
+from pathlib import Path
 from uuid import uuid4
 from os import path
 import re
@@ -41,7 +42,17 @@ class Produto:
             self.truncarDescricao(),
             self.valorEstilizado(),
             self.Quantidade,
-            self.staticlink
+            self.linkposix()
+        ]
+
+    def comoListaEstilizadoNotStatic(self):
+        return [
+            self.idProduto,
+            self.NOME,
+            self.truncarDescricao(),
+            self.valorEstilizado(),
+            self.Quantidade,
+            self.notstaticlink()
         ]
 
     def valorEstilizado(self) -> str:
@@ -57,6 +68,14 @@ class Produto:
         text = self.Descricao
         if len(text) > 50:
             text = text[:47] + '...'
+        return text
+    
+    def linkposix(self):
+        text = Path(self.staticlink).as_posix()
+        return text
+    
+    def notstaticlink(self):
+        text = re.sub(r'\/?static/', '', self.linkposix())
         return text
 
 class ProdutosManager:
