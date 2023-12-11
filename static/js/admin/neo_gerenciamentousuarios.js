@@ -280,5 +280,37 @@ window.onload = () => {
         };
     }
 
+    const delete_btn = document.querySelector("div.form-popup > * > button[type=submit].delete-btn");
+    if (delete_btn instanceof HTMLButtonElement){
+        delete_btn.onclick = async () => {
+            if(window.confirm('Esta ação tem efeitos permanetes.\nTem certeza disto?')){
+                wait();
+                let data_obj = {}
+                const h3 = document.querySelector("div.form-popup > h3");
+                if (h3 instanceof Element) data_obj['idUsuarios'] = h3.innerHTML.replace(/\D/g, '');
+
+                const headersList = {
+                    "Accept": "application/json",
+                    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                    "Content-Type": "application/json"
+                }
+
+                const response = await fetch("/user/delecaousuario", { 
+                    method: "DELETE",
+                    headers: headersList,
+                    body: JSON.stringify(
+                        data_obj
+                    )
+                });
+
+                if (response.ok){
+                    success();
+                }else{
+                    fail();
+                }
+            }
+        };
+    }
+
     update.dispatchEvent(clickEvent)
 }

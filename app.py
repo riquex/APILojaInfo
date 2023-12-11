@@ -24,12 +24,16 @@ def erroDePermissao(Erro):
 def before_request():
     g.username = None
     g.userid = None
+    g.admin = None
 
     if 'username' in session:
         g.username = session['username']
-    
+
     if 'userid' in session:
         g.userid = session['userid']
+
+    if 'admin' in session:
+        g.admin = session['admin']
 
 @app.teardown_appcontext
 def teardown(_exeption):

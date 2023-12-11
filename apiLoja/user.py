@@ -22,6 +22,7 @@ user = Blueprint('user', __name__)
 
 @user.route('/cadastro/massivo', methods=["POST"])
 def userCadastroMassivo():
+    if g.admin != True: abort(404)
     if request.method == 'POST':
         code = 0
         size = 0
@@ -109,9 +110,30 @@ def atulizarusuario():
 
         valido = all(key in form for key in UPDATE_REQUIREMENTS)
         if valido:
-            code = UserManager().atualizarUsuario(**form)
-            if code == 0:
-                response.status = 400
+            if g.admin == True or g.userid == int(form['idUsuarios']):
+                code = UserManager().atualizarUsuario(**form)
+                if code == 0:
+                    response.status = 400
+    return response
+
+@user.route('/user/delecaousuario', methods=['DELETE'])
+def delecaoUsuario():
+    response = make_response(render_template('notfound.html'))
+    if request.method == 'DELETE':
+        response = Response(status='201')
+        if request.content_type.startswith('application/json'):
+            form: dict | list[dict] = request.get_json()
+        elif request.content_type.startswith('application/x-www-form-urlencoded'):
+            form = request.form
+        else:
+            form = dict()
+        
+        valido = all(key in form for key in ('idUsuarios',))
+        if valido:
+            if g.admin == True or g.userid == int(form['idUsuarios']):
+                code = UserManager().delecaoCompletaUsuario(form['idUsuarios'])
+                if code == 0:
+                    response.status = 500
     return response
 
 @user.route('/logoff', methods=['GET', 'POST'])
@@ -125,15 +147,18 @@ def logoff():
 
 @user.route('/login', methods=['GET', 'POST'])
 def login():
+    userManager = UserManager()
     response = make_response(render_template('login.html'))
     response.status = "200"
 
     cookies = request.cookies
     if 'usersession' in cookies:
-        user = UserManager().buscarUsuarioPorSessao(cookies['usersession'])
+        user = userManager.buscarUsuarioPorSessao(cookies['usersession'])
         if user != -1:
             session['username'] = user.Nome
             session['userid'] = user.idUsuarios
+            if userManager.verificarSeEhAdmin(user.idUsuarios) == 1:
+                session['admin'] = True
             response = redirect(url_for('loja.index'))
             print('loja.index')
             return response
@@ -154,19 +179,22 @@ def login():
                 valido = False
 
         if valido:
-            chaveSessao = UserManager().iniciarSecaoUsuario(
+            chaveSessao = userManager.iniciarSecaoUsuario(
                 email=form['email'], senha=form['senha']
             )
             if chaveSessao is not None:
                 response = redirect('/')
                 response.set_cookie(
                     'usersession', chaveSessao,
-                    expires=UserManager().pegarExpiracaoDeSessaoUsuarioDateTime(chaveSessao)
+                    expires=userManager.pegarExpiracaoDeSessaoUsuarioDateTime(chaveSessao)
                     )
 
-                user = UserManager().buscarUsuarioPorEmail(form['email'])
+                user = userManager.buscarUsuarioPorEmail(form['email'])
                 session['username'] = user.Nome
                 session['userid'] = user.idUsuarios
+                print(f'admin test: {userManager.verificarSeEhAdmin(user.idUsuarios)}')
+                if userManager.verificarSeEhAdmin(user.idUsuarios) == 1:
+                    session['admin'] = True
             else:
                 response = Response(status=400)
 
@@ -174,9 +202,9 @@ def login():
 
 @user.route('/userinfo/<id>', methods=['GET'])
 def getUserInfo(id):
-    if g.userid == int(id):
+    if g.userid == int(id) or g.admin == True:
         email = UserManager().buscarEmailPorUsuarioId(id)
         usuario = UserManager().buscarUsuarioPorEmail(email)
         if usuario != -1:
             return jsonify(**usuario.comoDicionario())
-    return abort(404)
+    abort(404)

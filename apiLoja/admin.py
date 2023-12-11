@@ -20,14 +20,17 @@ admin = Blueprint('admin', __name__)
 
 @admin.route('/admin')
 def indexAdmin():
+    if g.admin != True: abort(404)
     return render_template('admin.html')
 
 @admin.route('/admin/cadastroproduto')
 def cadastroProduto():
+    if g.admin != True: abort(404)
     return render_template('cadastrarproduto.html')
 
 @admin.route('/admin/fetchusersall', methods=['GET', 'POST'])
 def fetchUsersAll():
+    if g.admin != True: abort(404)
     argumentos_pesquisa = dict()
     if request.method == "POST":
         if request.content_type.startswith('application/json'):
@@ -44,6 +47,7 @@ def fetchUsersAll():
 
 @admin.route('/admin/fetchproductsall', methods=['GET', 'POST'])
 def fetchProductsAll():
+    if g.admin != True: abort(404)
     argumentos_pesquisa = dict()
     return jsonify(
         [prod.comoDicionario() for prod in ProdutosManager().pegarTodosProdutos(**argumentos_pesquisa)]
@@ -51,6 +55,7 @@ def fetchProductsAll():
 
 @admin.route('/admin/fetchproduct', methods=['GET', 'POST'])
 def fetchProduct():
+    if g.admin != True: abort(404)
     argumentos_pesquisa = dict(idProduto=-1)
     if request.method == 'POST':
         if request.content_type.startswith('application/json'):
@@ -75,6 +80,7 @@ def fetchProduct():
 
 @admin.route('/admin/atualizarproduto', methods=['PUT'])
 def atualizarProduto():
+    if g.admin != True: abort(404)
     response = Response(status=500)
     if request.method == 'PUT':
         if request.content_type.startswith('application/json'):
@@ -98,15 +104,18 @@ def atualizarProduto():
 
 @admin.route('/admin/gerenciarusuarios')
 def gerenciarUsuarios():
+    if g.admin != True: abort(404)
     context = dict()
     return render_template('gerenciarusuarios.html', **context)
 
 @admin.route('/admin/test')
 def test():
+    if g.admin != True: abort(404)
     return render_template('layout/neo_admin.html')
 
 @admin.route('/admin/test/cadastroproduto', methods=['GET', 'POST'])
 def testCadastropoduto():
+    if g.admin != True: abort(404)
     response = make_response(render_template('neo_cadastroproduto.html'))
     if request.method == "POST":
         if request.content_type.startswith('application/json'):
@@ -146,6 +155,7 @@ def testCadastropoduto():
 
 @admin.route('/admin/deleteprod', methods=['DELETE'])
 def delecaoProduto():
+    if g.admin != True: abort(404)
     response = Response(status=200)
     if request.method == 'DELETE':
         if request.content_type.startswith('application/json'):
@@ -166,8 +176,10 @@ def delecaoProduto():
 
 @admin.route('/admin/test/gerenciarusuarios')
 def testGerenciarUsuarios():
+    if g.admin != True: abort(404)
     return render_template('neo_gerenciarusuarios.html')
 
 @admin.route('/admin/test/gerenciarprodutos')
 def testGerenciarProdutos():
+    if g.admin != True: abort(404)
     return render_template('neo_gerenciarprodutos.html')

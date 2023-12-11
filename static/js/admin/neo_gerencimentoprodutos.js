@@ -254,10 +254,7 @@ window.onload = () => {
                     "User-Agent": "Thunder Client (https://www.thunderclient.com)",
                     "Content-Type": "application/json"
                 }
-        
-                if (search_inp instanceof HTMLInputElement)
-                    search_data["stringlike"] = search_inp.value;
-        
+
                 const response = await fetch("/admin/deleteprod", { 
                     method: "DELETE",
                     headers: headersList,

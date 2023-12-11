@@ -183,6 +183,15 @@ class DBManager:
             return 0
         return 1
 
+    def DelecaoCompletaUsuario(self, UserId):
+        try:
+            self.__cursor.callproc('DelecaoCompletaUsuario', (UserId,))
+            self.__mydb.commit()
+        except Exception:
+            traceback.print_exc()
+            return 0
+        return 1
+
     def DeletarTodasImagens(self, idproduto: int):
         try:
             self.__cursor.callproc('RemoverTodasImagensDoProduto', (idproduto,))
@@ -191,7 +200,7 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
-    
+
     def AtualizacaoCompletaUsuario(self, IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento):
         try:
             self.__cursor.callproc('AtualizacaoCompletaUsuario', (IdUsuario, Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento))
@@ -303,6 +312,11 @@ class DBManager:
             traceback.print_exc()
             return 0
         return 1
+
+    def VerificarSeEhAdmin(self, idUser):
+        self.__cursor.execute(f'SELECT * FROM administradores WHERE idAdministrador = {idUser}')
+        result = self.__cursor.fetchone()
+        return 1 if result is not None else 0
 
 if __name__ == '__main__':
     a = DBManager()

@@ -58,6 +58,9 @@ class UserManager:
             telefone, cpf, cep, rua, municipio, estado, complemento
         )
 
+    def delecaoCompletaUsuario(self, UserId):
+        return self.__dbm.DelecaoCompletaUsuario(UserId)
+
     def atualizarUsuario(self,idUsuarios,nome,dataNascimento,telefone,cpf,cep,rua,municipio,estado,complemento,*args,**kwdargs):
         return self.__dbm.AtualizacaoCompletaUsuario(idUsuarios,nome,dataNascimento,telefone,cpf,cep,rua,municipio,estado,complemento)
 
@@ -117,6 +120,9 @@ class UserManager:
             idUsuarios, Nome, DataNascimento, Telefone, cpf, email, cep, rua, municipio, estado, complemento = userData
             usuario = User(idUsuarios, email, '', Nome, DataNascimento, Telefone, cpf, cep, rua, municipio, estado, complemento)
             yield usuario
+
+    def verificarSeEhAdmin(self, idUser):
+        return self.__dbm.VerificarSeEhAdmin(idUser)
 
     def buscarEmailPorUsuarioId(self, idUsuarios: int):
         return self.__dbm.PegarEmailPeloUsuarioId(idUsuarios)
