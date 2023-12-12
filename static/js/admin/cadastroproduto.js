@@ -15,7 +15,7 @@ const success = () => {
 }
 
 const fail = () => {
-    const failv = document.querySelector("body > div.snackbar.fail");
+    const failv = document.querySelector("div.snackbar.fail");
     if (failv != null){
         failv.classList.add("show");
         setTimeout(()=>{failv.classList.remove("show")}, 3000);
