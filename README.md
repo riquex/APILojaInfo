@@ -24,7 +24,7 @@ Para garantir um desenvolvimento eficiente e flexível, adotamos a metodologia �
 Bem-vindo à tela inicial, a porta de entrada para a experiência administrativa de excelência! Nossa página inicial foi projetada para capacitá-lo a gerenciar eficientemente todos os aspectos do seu domínio administrativo. Com uma interface intuitiva e funcionalidades objetivas.
 
 <div align="center">
-  <img src="static/imagens/Bem vindo a área de administração.png">
+  <img src="static/imagens/admin - home final.png">
 </div>
 
 # Plataforma Kilobyte Infoshop - Cadastro de Produtos
@@ -34,7 +34,7 @@ Insira o nome exclusivo do seu produto, destacando suas características distint
 Adicione uma imagem para proporcionar uma experiência visual impactante. Faça upload de fotos de alta qualidade que destaquem a estética e os detalhes do produto.
 
 <div align="center">
-  <img src="static/imagens/Cadastro de Produtos.png">
+  <img src="static/imagens/admin - cadastro de produtos final.png">
 </div>
 
 # Plataforma Kilobyte Infoshop - Gerenciamento de Usuários
@@ -94,7 +94,7 @@ Interação Tecnológica:
 É importante destacar que os dados fornecidos durante o cadastro são integrados à nossa plataforma por meio de tecnologia avançada. Isso permite uma comunicação eficiente entre as informações cadastradas por você e os dados acessíveis pelos administradores. Essa sincronização garante uma gestão eficaz e segura dos dados, promovendo uma experiência confiável para todos os usuários.
 
 <div align="center">
-  <img src="static/imagens/Cadastro de usuários.png">
+  <img src="static/imagens/Cadastro de usuário final.png">
 </div>
 
 # Plataforma Kilobyte Inforshop - Login de Usuários
@@ -111,7 +111,7 @@ Digite sua senha segura para acessar sua conta. Certifique-se de usar uma combin
 Nossa tela de login utiliza medidas avançadas de segurança, incluindo criptografia de ponta a ponta, para proteger suas informações pessoais. A proteção de seus dados é nossa prioridade.
 
 <div align="center">
-  <img src="static/imagens/Página de login de clientes.png">
+  <img src="static/imagens/login final.png">
 </div>
 
 # Plataforma Kilobyte - Pagina de Produtos
@@ -138,7 +138,7 @@ Visualizar Carrinho:
 Acesse seu carrinho a qualquer momento para revisar, ajustar detalhes ou finalizar suas escolhas. Uma jornada de compras totalmente personalizada está ao seu alcance.
 
 <div align="center">
-  <img src="static/imagens/Página inicial do Site.png">
+  <img src="static/imagens/Pagina de produtos final.png">
 </div>
 
 # AGRADECIMENTOS
@@ -151,3 +151,7 @@ Agradecemos sinceramente por dedicar seu tempo à visualização do nosso projet
 - [Perfil de Rafael Biscaia](https://github.com/Biscaia021)
 - [Perfil de Jorge Wallace](https://github.com/JorgeWallaceBR)
 - [Perfil de Eduardo Addum](https://github.com/ESADDUM)
+- [Perfil de Alexandre Maia](https://github.com/alexandremaia2)
+- [Perfil de Leonardo Gironde](https://github.com/leoggusmão)
+- [Perfil de Leandro Paes Leme](https://github.com/leandropaesleme)
+
