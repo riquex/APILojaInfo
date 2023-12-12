@@ -1,0 +1,51 @@
+{% from 'macros.html' import product_cart %}  {# Adiciona a função de carrinho #}
+{% extends "layout/neo_base_nova.html" %}
+
+{% block style %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/product_card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/product_section.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/carrinho.css') }}">  
+{% endblock %}
+
+{% block content %}
+<h2>Meu Carrinho</h2>
+
+<div class="carrinho-container">
+    <table class="carrinho">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in prods %}
+                <tr class="item-cart">
+                    <td>
+                        <img src="{{ url_for('static', filename=item[5]) }}" alt="{{ item[1] }}">
+                        <h4>{{ item[1] }}</h4>
+                    </td>
+                    <td>
+                        <h4>{{ item[8] }}</h4>
+                    </td>
+                    <td>
+                        <h4>{{ item[10] }}</h4>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="resumo-compra">
+        <p>Subtotal: R$ <span id="subtotal">0.00</span></p>
+        <p>Frete: R$ <span id="frete">0.00</span></p>
+        <p>Total: R$ <span id="total">0.00</span></p>
+    </div>
+</div>
+
+<button onclick="finalizarCompra()">Finalizar Compra</button>
+{% endblock %}
+
+

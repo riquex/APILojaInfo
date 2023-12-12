@@ -1,0 +1,36 @@
+{% from 'macros.html' import product_test %}
+{% extends "layout/neo_base_nova.html" %}
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/product_card.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/product_section.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/produtopagina.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="produto-area" id="{{ produto[0] }}">
+        <div class="produto-titulo">
+            <h2>{{ produto[1] }}</h2>
+        </div>
+        <div class="container-apresentacao">
+            <div class="area-produto">
+                <div class="area-imagens">
+                    <img src="{{ url_for('static', filename=produto[5]) }}" alt="Imagem do produto">
+                </div>
+                <div class="desc">{{ produto[2] }}</div>
+            </div>
+            <div class="area-compra">
+                <div>À vista</div>
+                <div class="preco">{{ produto[3] }}</div>
+                <div class="btns">
+                    <button class="buy-btn">Comprar</button>
+                    <button class="cart-btn">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="snackbar wait">Aguarde ...</div>
+    <div class="snackbar success">Registro Bem Sucedido</div>
+    <div class="snackbar fail">Registro Mal Sucedido</div>
+    <script src="{{ url_for('static', filename='js/paginaproduto.js') }}" defer></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout/base_limpa.html" %}
+{% block style%}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+{% endblock %}
+{% block content %}
+<div id="formsection">
+    <h1>Login</h1>
+    <div id="login" class="kilobyte-form">
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required><br>
+        </div>
+        <div>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required><br>
+        </div>
+        <div>
+            <input type="submit" value="Login" id="submit_form">
+        </div>
+        <br>
+        <a href="/cadastro" style="text-decoration: underline;">Ainda não tem conta? Cadastre-se aqui</a>
+    </div>
+</div>
+<div class="snackbar wait">Aguarde ...</div>
+<div class="snackbar success">Boas Vindas</div>
+<div class="snackbar fail">Email ou Senha inválidos</div>
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "layout/base_limpa.html" %}
+{% block style%}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+{% endblock %}
+{% block content %}
+<div id="formsection">
+    <h1>Cadastro de Usuário</h1>
+    <div id="cadastro" class="kilobyte-form">
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required>
+        </div>
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required>
+        </div>
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" id="cpf" required>
+        </div>
+        <div>
+            <label for="datanascimento">Data de Nascimento:</label>
+            <input type="date" name="datanascimento" id="datanascimento" pattern="\d{1,2}/\d{1,2}/\d{4}" required>
+        </div>
+        <div>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" name="telefone" id="telefone" required>
+        </div>
+        <div>
+            <label for="cep">CEP:</label>
+            <input type="text" name="cep" id="cep" maxlength="8" required>
+        </div>
+        <div>
+            <label for="rua">Rua:</label>
+            <input type="text" name="rua" id="rua" required>
+        </div>
+        <div>
+            <label for="municipio">Município:</label>
+            <input type="text" name="municipio" id="municipio" required>
+        </div>
+        <div>
+            <label for="estado">Estado:</label>
+            <input type="text" name="estado" id="estado" required>
+        </div>
+        <div>
+            <label for="complemento">Complemento:</label>
+            <input type="text" name="complemento" id="complemento">
+        </div>
+        <div>
+            <input type="submit" value="Cadastrar" id="submit_form">
+        </div>
+    </div>
+    <div class="snackbar wait">Aguarde ...</div>
+    <div class="snackbar success">Boas Vindas</div>
+    <div class="snackbar fail">Algo está faltando ou Registro já existe</div>
+    <script src="static\js\cadastro.js"></script>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block style %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='CSS/navbar.css') }}">
+        {% endblock %}
+    {% endblock %}
+    <title>
+        {% block title %}{% endblock %} KiloByte Info Shop
+    </title>
+</head>
+<body>
+    {% block header %}
+        <div class="navbar">
+            <a href="/">
+                <img src="{{ url_for('static', filename='imagens/kilobyte_alpha1.png') }}" alt="Logo" class="img_logo">
+            </a>
+
+            <div class="search-div">
+                <input type="search" name="">
+            </div>
+            <div class="hamburger-lines" id="hamburger">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+                <div id="drop-down" class="dropdown-content">
+                    <a class="drop-down-link" href="#">Lorem</a>
+                    <a class="drop-down-link" href="#">Lorem</a>
+                    <a class="drop-down-link" href="#">Lorem</a>
+                </div>
+            </div>
+
+            {% if username is defined %}
+                <a class="username">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 60.671 60.671" xml:space="preserve" style="width: 10px;height: 10px;">
+                    <g>
+                        <g>
+                            <ellipse style="fill:#ddd;" cx="30.336" cy="12.097" rx="11.997" ry="12.097"/>
+                            <path style="fill:#ddd;" d="M35.64,30.079H25.031c-7.021,0-12.714,5.739-12.714,12.821v17.771h36.037V42.9    C48.354,35.818,42.661,30.079,35.64,30.079z"/>
+                        </g>
+                    </g>
+                    </svg>
+                    {{ username }}
+                </a>
+                <a class="link_logoff border-btn" href="/logoff"> logoff</a>
+                <a href="/carrinho">&#128722</a>
+            {% else %}
+            <a class="border-btn" href="/login">Entrar</a>
+            <a href="/carrinho">&#128722</a>
+            {% endif %}
+        </div>
+    {% endblock %}
+    <div id="content">{% block content %}{% endblock %}</div>
+    <footer style="text-align: center;">
+        {% block footer %}
+        <p>Desenvolvido por Eduardo S. Addum</p>
+        <p>Projeto final Curso Back-End Senai</p>
+        <p><a href="https://github.com/ESADDUM" style="color: #898888;">GitHub.com/ESADDUM"</a></p>
+        <p>Todos os direitos reservados - Senai Maracanã - 2023</p>
+        {% endblock %}
+    </footer>
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+</body>
+</html>

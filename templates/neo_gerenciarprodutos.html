@@ -1,0 +1,60 @@
+{% extends "layout/neo_admin.html" %}
+{% block title %}Gerenciar Usuários{% endblock %}
+{% block style%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/usermanager.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/form-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/snackbar.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block current %}gerenciarprodutos{% endblock %}
+{% block content %}
+<div class="search-bar" id="search-bar">
+    <button class="search-btn toggle-btn">id</button>
+    <button class="search-btn toggle-btn active">nome</button>
+    <button class="search-btn toggle-btn">descricao</button>
+    <button class="search-btn toggle-btn">valor</button>
+    <button class="search-btn toggle-btn">quantidade</button>
+    <div class="search-inp-container">
+        <input type="text" name="search" id="seachInp">
+        <button type="submit" id="update"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+<div class="table-container">
+    <table class="kilobyte-table" id="kilobyte-products">
+        <tr id="linha-com-nomes">
+            <th class="clickble" id="id">id</th>
+            <th class="clickble" id="nome">nome</th>
+            <th class="clickble" id="descricao">descricao</th>
+            <th class="clickble" id="valor">valor</th>
+            <th class="clickble" id="quantidade">quantidade</th>
+        </tr>
+    </table>
+</div>
+
+<div class="alter-product form-popup">
+    <button class="close-form"></button>
+    <h3>Produto ID:</h3>
+    <div class="form-section">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="inp-nome">
+    </div>
+    <div class="form-section">
+        <label for="valor">Valor</label>
+        <input type="text" name="valor" id="inp-valor">
+    </div>
+    <div class="form-section">
+        <label for="descricao">Descrição</label>
+        <textarea name="descricao" id="text-descricao" rows="10" maxlength="4096"></textarea>
+    </div>
+    <div class="form-section submit-delete">
+        <button type="submit" class="submit-btn">Submit</button>
+        <button type="submit" class="delete-btn">Delete</button>
+    </div>
+</div>
+<div class="snackbar wait">Aguarde ...</div>
+<div class="snackbar success">Registro Bem Sucedido</div>
+<div class="snackbar fail">Registro Mal Sucedido</div>
+<script src="{{ url_for('static', filename='js/admin/neo_gerencimentoprodutos.js') }}"></script>
+{% endblock %}

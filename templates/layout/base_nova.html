@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+    {% endblock %}
+    <title>
+        {% block title %}{% endblock %} KiloByte Info Shop
+    </title>
+</head>
+<body>
+    {% block header %}
+        <div class="header">
+            <a href="/">
+                <img src="{{ url_for('static', filename='imagens/kilobyte1.png') }}" alt="Logo" class="img_logo">
+            </a>
+            {% if username is defined %}
+                <a>{{ username }}</a>
+                <a class="link_logoff" href="/logoff"> logoff</a>
+            {% else %}
+                <a class="link_entrar" href="login">Entrar</a>
+                <a class="link_entrar" href="cadastro">Cadastrar</a>
+                <a class="link_carrinho" href="carrinho">Meu carrinho</a>
+            {% endif %}
+        </div>
+    {% endblock %}
+    <div id="content">{% block content %}{% endblock %}</div>
+    <footer>
+        {% block footer %}
+        <p>Desenvolvido por Eduardo S. Addum</p>
+        <p>Projeto final Curso Back-End Senai</p>
+        <p><a href="https://github.com/ESADDUM" style="color: #898888;">GitHub.com/ESADDUM"</a></p>
+        <p>Todos os direitos reservados - Senai Maracanã - 2023</p>
+        {% endblock %}
+    </footer>
+</body>
+</html>

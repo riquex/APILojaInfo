@@ -1,0 +1,8 @@
+{% extends "layout/base_limpa.html" %}
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/default.css') }}">
+{% endblock %}
+{% block content %}
+<h1 style="text-align: center;">Página não encontrada &#128546;</h1>
+{% endblock %}

@@ -1,0 +1,176 @@
+:root{
+    --kilobyte-blue: rgb(19, 131, 192);
+    --kilobyte-dark-blue: rgb(22 70 120);
+    --kilobyte-gray: rgb(51 51 51);
+    --kilobyte-light-gray: rgb(85 85 85);
+    --kilobyte-almost-white: rgb(222, 222, 222);
+    --kilobyte-background-color: rgb(0, 0, 0);
+}
+
+img.previewimage {
+    width: 100%;
+}
+
+input[type=text].inp-text-not-apparently-disable {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+.label-btn{
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--kilobyte-blue);
+}
+
+.label-btn:hover{
+    background-color: var(--kilobyte-dark-blue);
+    transition: background-color 150ms linear;
+}
+
+div.kilobyte-container {
+    border-radius: 7px;
+    background-color: var(--kilobyte-gray);
+    padding: 20px;
+}
+
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=password],
+input[type=tel],
+input[type=date],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--kilobyte-light-gray);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit], button[type=submit] {
+    background-color: var(--kilobyte-blue);
+    color: var(--kilobyte-almost-white);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type=submit].delete-btn {
+  background-color: rgb(101, 0, 0);
+}
+
+input[type=submit]:hover {
+    background-color: var(--kilobyte-dark-blue);
+}
+
+input[type="file"]{
+    display: none;
+}
+
+
+.lds-facebook {
+    display: none;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }
+
+.inline-block {
+    display: inline-block;
+}
+
+.kilobyte-form {
+  display: flex;
+  background-color: var(--kilobyte-gray);
+  padding: 15px;
+  border-radius: 7px;
+  flex-direction: column;
+  align-items: center;
+  width: 66vw;
+}
+
+.kilobyte-form * label {
+  max-width: 200px;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
+.kilobyte-form div:not(.lds-facebook) {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  padding: 2px;
+}
+
+.dp-block {
+  display: block;
+}
+
+button.close-form {
+  background-color: rgb(255, 0, 0);
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 0;
+}
+
+button.close-form:hover {
+  background-color: rgb(101, 0, 0);
+  transition: background-color 100ms linear;
+}
+
+button.close-form::after {
+  content: "\d7";
+  font-size: 45px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  position: relative;
+  top: -7px;
+  left: 0px;
+}
+
+div.submit-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+}

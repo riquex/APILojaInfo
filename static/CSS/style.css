@@ -1,0 +1,468 @@
+:root{
+    --side-bar-max-width: 20vw;
+    --kilobyte-blue: rgb(19, 131, 192);
+    --kilobyte-gray: rgb(51 51 51);
+    --kilobyte-light-gray: rgb(85 85 85);
+}
+
+header *{
+    color: white !important;
+}
+
+html{
+    min-height: 100vh;
+}
+
+body{
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0px;
+}
+
+/* head */
+
+head{
+    background-color: var(--kilobyte-gray);
+    color: white;
+    font-size: 20px;
+    font-weight: 700; /*negrito*/
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+}
+/*table_1 - Definindo os estilos para a tabela */
+
+.table_1{
+    width: 100%;
+    border-collapse: collapse;
+}
+/* Definindo as colunas com tamanhos específicos */
+.table_1 td:nth-child(1){
+    width: 30%;
+}
+
+.table_1 td:nth-child(2) {
+    width: 35%;
+}
+
+.table_1 td:nth-child(3) {
+    width: 35%;
+}
+/* Definindo centralizando o texto nas células */
+.table_1 td {
+    text-align: center;
+}
+/* Removendo as bordas entre as células */
+.table_1 td, .table_1 th {
+    border: 2px solid black;
+    padding: 8px;
+}
+/* links (entrar, cadastrar e meu carrinho */
+.link_entrar{ 
+    color: white;
+    text-align: center;
+}
+.link_carrinho{ 
+    color: white;
+    text-align: right;
+}
+
+.link_logoff{
+    color: rgb(255, 255, 255);
+    text-align: right;
+}
+/* --------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------*/
+
+/* Estilos para o cabeçalho */
+div.header{
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+/* Estilos para a imagem do logo */
+.img_logo {
+    width: 12vw;
+    /* Adicione outros estilos conforme necessário */
+}
+
+/* Estilos para o menu superior */
+.menu_sup {
+    background-color: var(--kilobyte-gray); /* Mantém a cor de fundo original para o menu superior */
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white;
+}
+
+.menu_sup ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu_sup li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.menu_sup a {
+    text-decoration: none;
+    color: white;
+}
+
+/* --------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------*/
+/* div */
+
+.fundo_degrade{
+    background-image: linear-gradient(45deg,rgb(114, 113, 113), rgb(69, 67, 67));
+    height: 100vh; /* direção do degrade vh = degrade inclinado - v= degrade na vertical - h= degrade na horizontal */
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+.ofertas{
+    position: absolute;
+    background-color: var(--kilobyte-blue);
+    top: 750px;
+    left: 50%;
+    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
+    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+.placasDeVideo{
+    position: absolute;
+    background-color:  var(--kilobyte-blue);
+    top: 1200px;
+    left: 50%;
+    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
+    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    padding: 15px;
+    text-align: center;
+    color: white;
+
+}
+.placasMae{
+    position: absolute;
+    background-color:  var(--kilobyte-blue);
+    top: 1650px;
+    left: 50%;
+    transform: translate(-50%,-50%); /* usado para animar - neste caso ele ira dar zoom ao passar com o mouse sobre */
+    border-radius: 15px; /* Usado para criar um leve arredondamento das bordas */
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+footer{
+    text-align: center;
+    color: white;
+}
+/* Estilos para a tabela de produtos */
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-produtos td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+}
+
+.tabela-produtos img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos para cada seção de produtos */
+#grandes-ofertas {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+
+
+.h1{
+    color: white;
+    font-size: 20px;
+    font-weight: 700; /*negrito*/
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+    text-align: left; 
+}
+
+.menu_head{
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace; /*carrega o tipo de fonte na sequencia caso o navegador não tenha a primeira fonte e troca para a seguinte*/
+    text-align: right;
+    color: white; 
+}
+
+
+/* Estilos para o menu superior */
+.menu_sup {
+    background-color: var(--kilobyte-gray);
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: white; 
+}
+
+form{
+    display: flex;
+    background-color: var(--kilobyte-blue);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+form input[type="submit"]{
+    width: 100%;
+    flex: 1;
+}
+
+form input[type="file"] {
+    display: none;
+}
+
+form div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+form .label-image{
+    background-color: var(--kilobyte-gray);
+    border-radius: 7px;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    padding: 3px 12px 3px 12px;
+}
+
+div#content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+div#formsection{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.product {
+    background-color: var(--kilobyte-blue);
+    border-radius: 15px;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    border: #000000 solid 3px;
+}
+
+.product * {
+    color: #ffffff;
+}
+  
+.product .prodImage img{
+    min-height: 20vh;
+    max-width: 20vw;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.productSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+}
+
+.adm_menu {
+    text-align: center;
+    display: flex;
+    max-width: var(--side-bar-max-width);
+    min-height: 100vh;
+    background-color: var(--kilobyte-gray);
+    color: #fff;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.adm_menu a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    border-bottom: 1px solid #555;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+}
+
+.adm_content {
+    text-align: center;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    align-items: stretch;
+    justify-content: center;
+}
+
+body.b_admin {
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    padding-top: 0vh;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.adm_page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    flex: 1;
+    min-width: 100vw;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.topnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    background-color: var(--kilobyte-gray);
+    padding: 10px 0px 10px 0px;
+}
+
+.topnav a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-top {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.kilobyte-table {
+    border-spacing: 0px;
+    display: block;
+    overflow-x: auto;
+}
+
+.kilobyte-table th, .kilobyte-table td{
+    border: 1px solid var(--kilobyte-gray);
+}
+.kilobyte-table tr{
+    background-color: var(--kilobyte-light-gray);
+}
+
+.kilobyte-table th {
+    font-weight: bolder;
+}
+
+.kilobyte-table tr:nth-child(even){
+    background-color: var(--kilobyte-blue);
+}
+
+.clickble{
+    cursor: pointer;
+}
+
+.overflow-scroll-x {
+    overflow-x: auto;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+.grow{
+    flex: 1;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.top-sticky {
+    top: 0;
+    position: fixed;
+}

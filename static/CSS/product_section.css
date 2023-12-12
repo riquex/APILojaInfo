@@ -1,0 +1,6 @@
+.product-section {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+}
